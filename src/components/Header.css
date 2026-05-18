@@ -17,11 +17,11 @@ header {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .brand img {
-  height: 34px;
+  height: 44px;
   width: auto;
   display: block;
 }
@@ -44,7 +44,7 @@ header {
   color: var(--text-mute);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 nav.main {

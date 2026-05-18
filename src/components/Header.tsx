@@ -36,10 +36,7 @@ export default function Header() {
       <div className="container nav">
         <a href="#top" className="brand">
           <img src={beanicLogo} alt="BEANIC" />
-          <div className="brand-tag">
-            <span className="brand-name">BEANIC</span>
-            <span className="brand-sub">Soluções industriais</span>
-          </div>
+          <span className="brand-sub">Soluções industriais</span>
         </a>
 
         <nav className="main">
