@@ -1,0 +1,61 @@
+.ben {
+  background: radial-gradient(ellipse at 50% 50%, rgba(13, 28, 45, 0.5), transparent 70%);
+}
+
+.ben-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.bcell {
+  background: var(--bg);
+  padding: 38px 28px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.25s;
+}
+
+.bcell:hover {
+  background: var(--bg-2);
+}
+
+.bcell .num {
+  font-family: 'Sora', sans-serif;
+  font-size: 54px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.bcell .num .u {
+  color: var(--cyan);
+  font-size: 32px;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.bcell .l {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+
+.bcell .desc {
+  font-size: 13px;
+  color: var(--text-mute);
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .ben-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

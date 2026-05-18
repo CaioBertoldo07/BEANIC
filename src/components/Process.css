@@ -1,0 +1,90 @@
+.process-wrap {
+  position: relative;
+}
+
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.process-track::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--cyan);
+  width: 0%;
+  transition: width 1s ease;
+}
+
+.process-track.lit::before {
+  width: 100%;
+}
+
+.pstep {
+  padding: 36px 24px 8px;
+  position: relative;
+  border-right: 1px solid var(--line);
+  min-height: 220px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+.pstep:last-child {
+  border-right: 0;
+}
+
+.pstep:hover {
+  background: rgba(43, 180, 229, 0.03);
+}
+
+.pstep::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 24px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--line-strong);
+  transition: all 0.2s;
+}
+
+.pstep:hover::before {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px var(--cyan);
+}
+
+.pstep .pn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-mute);
+  letter-spacing: 0.12em;
+}
+
+.pstep h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 20px;
+  margin-top: 18px;
+  font-weight: 500;
+}
+
+.pstep p {
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+@media (max-width: 1024px) {
+  .process-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pstep {
+    border-bottom: 1px solid var(--line);
+  }
+}

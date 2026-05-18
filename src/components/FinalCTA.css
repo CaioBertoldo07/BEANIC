@@ -1,0 +1,80 @@
+.cta-final {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, #0a1d33 0%, #0e2a47 50%, #08151f 100%);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 80px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: "";
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(43, 180, 229, 0.18), transparent 60%);
+}
+
+.cta-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 30%, var(--cyan) 50%, transparent 70%);
+}
+
+.cta-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  mask: radial-gradient(ellipse at 30% 50%, #000 30%, transparent 80%);
+}
+
+.cta-inner {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.cta-inner h2 {
+  font-size: 48px;
+  line-height: 1.05;
+  max-width: 680px;
+}
+
+.cta-inner h2 b {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.cta-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 280px;
+}
+
+.cta-meta {
+  font-size: 12px;
+  color: var(--text-mute);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
