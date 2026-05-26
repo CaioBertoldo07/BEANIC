@@ -1,0 +1,118 @@
+/* ============================================================================
+   LoginPage — tela intermediária antes do redirect pro portal do cliente
+   ============================================================================ */
+
+.login-shell {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 60px 24px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.login-brand {
+  display: block;
+}
+.login-brand img {
+  width: 130px;
+  height: auto;
+}
+
+/* ── Head ────────────────────────────────────────────────────────────────── */
+.login-head h1 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  margin: 8px 0 12px;
+  letter-spacing: -0.02em;
+}
+.login-head p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.login-label {
+  margin-bottom: 2px;
+}
+
+/* ── Action ──────────────────────────────────────────────────────────────── */
+.login-action {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-btn {
+  justify-content: center;
+  padding: 13px 20px;
+  width: 100%;
+}
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Info bullets ────────────────────────────────────────────────────────── */
+.login-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: rgba(150, 180, 210, 0.03);
+  border: 1px solid var(--line);
+}
+
+.login-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.login-info-icon {
+  flex-shrink: 0;
+  color: var(--cyan);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ── Foot ────────────────────────────────────────────────────────────────── */
+.login-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.login-link {
+  color: var(--cyan);
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.login-link:hover {
+  opacity: 0.75;
+}
+
+/* ── Responsivo ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .login-card {
+    padding: 28px 22px;
+  }
+  .login-head h1 {
+    font-size: 24px;
+  }
+}

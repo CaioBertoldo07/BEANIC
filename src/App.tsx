@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MarketingPage from './pages/MarketingPage'
 import RegistrarPage from './pages/RegistrarPage'
+import LoginPage from './pages/LoginPage'
 import ClienteLayout from './pages/cliente/ClienteLayout'
 import ClienteDashboard from './pages/cliente/ClienteDashboard'
 import ClienteDownloads from './pages/cliente/ClienteDownloads'
@@ -17,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MarketingPage />} />
         <Route path="/registrar" element={<RegistrarPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/cliente" element={<ClienteLayout />}>
           <Route index element={<ClienteDashboard />} />
           <Route path="downloads" element={<ClienteDownloads />} />
