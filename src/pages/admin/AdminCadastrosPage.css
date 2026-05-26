@@ -346,3 +346,22 @@
     min-width: 0;
   }
 }
+
+@media (max-width: 560px) {
+  .admin-page-head h1 {
+    font-size: 24px;
+  }
+  .admin-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .admin-filters::-webkit-scrollbar {
+    display: none;
+  }
+  .admin-filter {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
