@@ -21,8 +21,6 @@ pages_build_output_dir = "dist"
 # — Variáveis públicas (vão ser editadas direto aqui ou substituídas em
 # Production via painel Pages → Environment variables) ————————————————
 [vars]
-ADMIN_EMAIL = "admin@beanic.com.br"
-MAIL_FROM = "Beanic <noreply@beanic.com.br>"
 SITE_URL = "https://beanic.com.br"
 
 # — KV namespace ——————————————————————————————————————————————————
