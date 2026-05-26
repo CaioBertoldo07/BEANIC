@@ -1,0 +1,42 @@
+# ============================================================================
+# wrangler.toml — config das Cloudflare Pages Functions
+# ============================================================================
+#
+# Este arquivo define:
+#  1. KV namespace (BEANIC_CLIENTES) usado pelas functions
+#  2. Variáveis públicas (ADMIN_EMAIL, MAIL_FROM, SITE_URL — não-secretas)
+#
+# Secrets (RESEND_API_KEY, CF_API_TOKEN) NÃO vão aqui — configurados pelo
+# painel Cloudflare → Pages → Settings → Environment variables → Encrypt.
+#
+# Pra desenvolvimento local:
+#   npm install -g wrangler
+#   wrangler pages dev -- npm run dev
+# ============================================================================
+
+name = "beanic"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "dist"
+
+# ── Variáveis públicas (vão ser editadas direto aqui ou substituídas em
+# Production via painel Pages → Environment variables) ──────────────────────
+[vars]
+ADMIN_EMAIL = "admin@beanic.com.br"
+MAIL_FROM = "Beanic <noreply@beanic.com.br>"
+SITE_URL = "https://beanic.com.br"
+
+# ── KV namespace ────────────────────────────────────────────────────────────
+# Criar com:  wrangler kv namespace create BEANIC_CLIENTES
+# Depois copiar o ID retornado e colar abaixo.
+[[kv_namespaces]]
+binding = "BEANIC_CLIENTES"
+id = "TROCAR_PELO_ID_REAL"           # Production
+preview_id = "TROCAR_PELO_PREVIEW"   # Branch previews / dev
+
+# ── Secrets (NÃO setar aqui — usar painel ou CLI) ───────────────────────────
+# Setar via wrangler:
+#   wrangler pages secret put RESEND_API_KEY      # Resend (e-mails)
+#   wrangler pages secret put CF_API_TOKEN        # Cloudflare API
+#   wrangler pages secret put CF_ACCOUNT_ID       # Account ID
+#   wrangler pages secret put CF_ACCESS_APP_UID   # Access app UID
+#   wrangler pages secret put CF_ACCESS_POLICY_UID # Access policy UID

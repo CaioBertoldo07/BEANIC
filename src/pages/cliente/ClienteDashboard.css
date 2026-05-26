@@ -1,0 +1,220 @@
+/* ============================================================================
+   ClienteDashboard
+   ============================================================================ */
+
+.cliente-page-head {
+  margin-bottom: 36px;
+}
+.cliente-page-head h1 {
+  font-size: 36px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  margin: 6px 0 12px;
+  letter-spacing: -0.02em;
+}
+.cliente-page-lead {
+  max-width: 640px;
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.cliente-cards {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+}
+
+.cliente-card {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cliente-card-license {
+  grid-row: span 2;
+}
+
+.cliente-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ── License ─────────────────────────────────────────────────────────────── */
+.cliente-license-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid;
+}
+.cliente-license-ativa {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(74, 222, 128, 0.08);
+}
+.cliente-license-expirando {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.3);
+  background: rgba(251, 191, 36, 0.08);
+}
+.cliente-license-expirada {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.3);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.cliente-license-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  padding: 6px 0;
+}
+
+.cliente-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cliente-field-label {
+  color: var(--text-mute);
+  font-size: 10px;
+}
+.cliente-field-value {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+}
+.cliente-field-value.highlight {
+  color: var(--cyan-2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+}
+
+.cliente-license-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.cliente-card-link {
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.cliente-card-link:hover {
+  opacity: 0.75;
+}
+
+.cliente-btn-sm {
+  padding: 9px 16px;
+  font-size: 13px;
+}
+
+/* ── Version ─────────────────────────────────────────────────────────────── */
+.cliente-version {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.cliente-version-num {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.cliente-version-date {
+  color: var(--text-mute);
+  font-size: 11px;
+}
+
+.cliente-version-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cliente-version-highlights li {
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 8px;
+}
+.cliente-bullet {
+  color: var(--cyan);
+  flex: none;
+}
+
+/* ── Shortcuts ───────────────────────────────────────────────────────────── */
+.cliente-shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cliente-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(150, 180, 210, 0.02);
+  transition: all 0.15s;
+}
+.cliente-shortcut:hover {
+  border-color: var(--cyan);
+  background: var(--cyan-soft);
+  transform: translateX(2px);
+}
+
+.cliente-shortcut-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--cyan-soft);
+  color: var(--cyan);
+  font-size: 14px;
+  flex: none;
+}
+
+.cliente-shortcut-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.cliente-shortcut-desc {
+  font-size: 12px;
+  color: var(--text-mute);
+  margin-top: 2px;
+}
+
+/* ── Responsivo ──────────────────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .cliente-cards {
+    grid-template-columns: 1fr;
+  }
+  .cliente-card-license {
+    grid-row: auto;
+  }
+  .cliente-license-grid {
+    grid-template-columns: 1fr;
+  }
+}

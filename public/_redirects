@@ -1,0 +1,3 @@
+# Cloudflare Pages SPA fallback — toda rota não-asset cai no index.html
+# pra react-router pegar. Sem isto, /cliente/downloads dá 404 ao recarregar.
+/*    /index.html   200

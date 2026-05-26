@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import beanicLogo from '../assets/beanic-logo.png'
 import './Header.css'
 
@@ -52,7 +53,10 @@ export default function Header() {
         </nav>
 
         <div className="nav-cta">
-          <a href="#contato" className="btn btn-ghost" style={{ padding: '10px 18px', fontSize: '13px' }}>
+          <Link to="/registrar" className="btn btn-ghost" style={{ padding: '10px 18px', fontSize: '13px' }}>
+            Solicitar acesso
+          </Link>
+          <a href="#contato" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>
             Falar agora
             <span className="btn-arrow" />
           </a>

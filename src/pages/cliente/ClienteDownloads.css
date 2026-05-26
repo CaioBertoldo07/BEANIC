@@ -1,0 +1,176 @@
+/* ============================================================================
+   ClienteDownloads
+   ============================================================================ */
+
+.cliente-page-link {
+  color: var(--cyan);
+  border-bottom: 1px solid rgba(43, 180, 229, 0.3);
+  transition: border-color 0.15s;
+}
+.cliente-page-link:hover {
+  border-color: var(--cyan);
+}
+
+.cliente-downloads-current {
+  padding: 28px;
+  margin-bottom: 36px;
+}
+
+.cliente-downloads-version-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.cliente-version-num-lg {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -0.025em;
+  margin-top: 6px;
+}
+
+.cliente-version-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cliente-version-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.cliente-downloads-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-download-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(150, 180, 210, 0.02);
+  transition: all 0.15s;
+}
+.cliente-download-card:hover {
+  border-color: rgba(43, 180, 229, 0.3);
+  background: rgba(43, 180, 229, 0.03);
+}
+
+.cliente-download-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cliente-download-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.cliente-download-tipo {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.cliente-download-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.cliente-checksum {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(150, 180, 210, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  transition: all 0.15s;
+}
+.cliente-checksum:hover {
+  border-color: var(--cyan);
+}
+
+.cliente-checksum-label {
+  color: var(--cyan);
+  font-size: 10px;
+}
+
+.cliente-checksum-value {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+}
+
+.cliente-checksum-action {
+  color: var(--cyan);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cliente-download-btn {
+  flex: none;
+  padding: 11px 22px;
+  font-size: 13px;
+}
+
+.cliente-downloads-old {
+  margin-top: 40px;
+}
+.cliente-downloads-old h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
+}
+
+.cliente-empty {
+  padding: 28px;
+  text-align: center;
+}
+.cliente-empty p {
+  color: var(--text-mute);
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .cliente-download-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .cliente-download-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

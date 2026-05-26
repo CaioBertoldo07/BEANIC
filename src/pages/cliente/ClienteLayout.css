@@ -1,0 +1,225 @@
+/* ============================================================================
+   ClienteLayout — sidebar + topbar + content shell
+   Reutiliza --bg, --panel, --cyan, --text de global.css
+   ============================================================================ */
+
+.cliente-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.cliente-sidebar {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+  border-right: 1px solid var(--line);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.cliente-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cliente-brand img {
+  width: 110px;
+  height: auto;
+  display: block;
+}
+
+.cliente-eyebrow {
+  color: var(--cyan);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.cliente-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.cliente-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+
+.cliente-link:hover {
+  background: rgba(150, 180, 210, 0.04);
+  color: var(--text);
+}
+
+.cliente-link.active {
+  background: var(--cyan-soft);
+  color: var(--cyan-2);
+  border-color: rgba(43, 180, 229, 0.25);
+  box-shadow: 0 4px 18px -8px rgba(43, 180, 229, 0.4);
+}
+
+.cliente-link-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  flex: none;
+  opacity: 0.7;
+}
+
+.cliente-link.active .cliente-link-icon {
+  opacity: 1;
+}
+
+.cliente-sidebar-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.cliente-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-mute);
+  font-size: 13px;
+  transition: color 0.15s;
+}
+
+.cliente-back:hover {
+  color: var(--cyan);
+}
+
+/* ── Main + Topbar ───────────────────────────────────────────────────────── */
+.cliente-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cliente-topbar {
+  height: 64px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: rgba(5, 13, 24, 0.6);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.cliente-burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+.cliente-burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text-dim);
+  transition: background 0.15s;
+}
+.cliente-burger:hover span {
+  background: var(--cyan);
+}
+
+.cliente-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.cliente-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--navy-2));
+  color: #04121d;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cliente-user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cliente-user-email {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cliente-user-status {
+  color: var(--text-mute);
+  font-size: 10px;
+}
+
+.cliente-content {
+  flex: 1;
+  padding: 40px 48px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+/* ── Responsivo ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cliente-shell {
+    grid-template-columns: 1fr;
+  }
+  .cliente-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 30px 0 60px -30px rgba(0, 0, 0, 0.8);
+  }
+  .cliente-sidebar.open {
+    transform: translateX(0);
+  }
+  .cliente-burger {
+    display: flex;
+  }
+  .cliente-content {
+    padding: 28px 24px;
+  }
+  .cliente-topbar {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cliente-user-text {
+    display: none;
+  }
+}

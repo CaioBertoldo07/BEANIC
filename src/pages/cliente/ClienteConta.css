@@ -1,0 +1,138 @@
+/* ============================================================================
+   ClienteConta
+   ============================================================================ */
+
+.cliente-conta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.cliente-conta-section {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cliente-conta-section h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.cliente-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cliente-data-row:last-of-type {
+  border-bottom: 0;
+}
+
+.cliente-data-label {
+  color: var(--text-mute);
+  font-size: 11px;
+  flex: none;
+}
+
+.cliente-data-value {
+  font-size: 14px;
+  color: var(--text);
+  text-align: right;
+  font-weight: 500;
+}
+.cliente-data-value.highlight {
+  color: var(--cyan-2);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cliente-conta-foot {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+}
+
+.cliente-conta-progress {
+  margin-top: 12px;
+  height: 6px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.cliente-conta-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--cyan-2));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* ── Suporte ─────────────────────────────────────────────────────────────── */
+.cliente-suporte h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+}
+
+.cliente-suporte-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.cliente-suporte-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.18s;
+  border: 1px solid var(--line);
+}
+.cliente-suporte-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -12px rgba(43, 180, 229, 0.25);
+}
+
+.cliente-suporte-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--cyan-soft);
+  color: var(--cyan);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.cliente-suporte-canal {
+  color: var(--text-mute);
+  font-size: 10px;
+}
+
+.cliente-suporte-valor {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.cliente-suporte-desc {
+  font-size: 12px;
+  color: var(--text-mute);
+  margin-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .cliente-conta-grid {
+    grid-template-columns: 1fr;
+  }
+}
