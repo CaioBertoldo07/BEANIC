@@ -74,7 +74,7 @@ export default function Differentials() {
               <span className="ix" />
               <span className="mono">Diferenciais · 04</span>
             </div>
-            <h2>Por que a BEANIC é uma escolha estratégica — e não só técnica.</h2>
+            <h2>Por que a BEANIC é uma escolha estratégica, não só técnica.</h2>
           </div>
           <p className="lead">
             Não somos uma agência genérica nem uma software house de prateleira.

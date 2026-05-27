@@ -13,7 +13,7 @@ export default function Portfolio() {
             <h2>Experiências que estão construindo a BEANIC.</h2>
           </div>
           <p className="lead">
-            Somos uma empresa nova — e não vamos inventar cases ou números que
+            Somos uma empresa nova e não vamos inventar cases ou números que
             ainda não existem. O que mostramos aqui é o que está em andamento,
             com transparência sobre o estágio real de cada entrega.
           </p>
@@ -51,10 +51,10 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="proj-info">
-              <h4>AMACOM — Estruturação digital completa</h4>
+              <h4>AMACOM · Estruturação digital completa</h4>
               <p>
                 Site institucional construído e no ar. Sistemas internos para setores
-                operacionais em desenvolvimento ativo — modelados a partir do fluxo
+                operacionais em desenvolvimento ativo, modelados a partir do fluxo
                 real da operação.
               </p>
               <div className="proj-tags">
@@ -134,7 +134,7 @@ export default function Portfolio() {
               <h4>Documentação e evolução</h4>
               <p>
                 Código documentado, arquitetura clara e roadmap definido para que
-                o sistema cresça junto com o negócio — sem refazer do zero.
+                o sistema cresça junto com o negócio, sem refazer do zero.
               </p>
             </div>
             <div className="proj-tags">

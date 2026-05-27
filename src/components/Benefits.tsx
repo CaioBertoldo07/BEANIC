@@ -11,7 +11,7 @@ interface BenefitItem {
 const benefits: BenefitItem[] = [
   { count: 42, unit: '%', label: 'Mais organização', desc: 'Processos saem da cabeça das pessoas e entram em sistemas auditáveis por setor.' },
   { count: 38, unit: '%', label: 'Redução de retrabalho', desc: 'Padronização e automação reduzem o ciclo de correções e perdas de produção.' },
-  { count: 3, unit: '×', label: 'Controle de processos', desc: 'Mais visibilidade do que acontece em cada setor — produção, estoque, qualidade.' },
+  { count: 3, unit: '×', label: 'Controle de processos', desc: 'Mais visibilidade do que acontece em cada setor: produção, estoque, qualidade.' },
   { count: 100, unit: '%', label: 'Visão gerencial clara', desc: 'Indicadores em tempo real para tomada de decisão executiva consolidada.' },
 ]
 
@@ -64,7 +64,7 @@ export default function Benefits() {
             <h2>O que sua operação ganha ao digitalizar com a BEANIC.</h2>
           </div>
           <p className="lead">
-            Ganhos mensuráveis nos primeiros ciclos — não promessas genéricas de
+            Ganhos mensuráveis nos primeiros ciclos, sem promessas genéricas de
             transformação digital.
           </p>
         </div>

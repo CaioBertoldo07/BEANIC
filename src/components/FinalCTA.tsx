@@ -17,7 +17,7 @@ export default function FinalCTA() {
               </h2>
               <p style={{ marginTop: '22px', maxWidth: '540px', fontSize: '16px' }}>
                 Conversa direta com nosso time. Sem comercial intermediário, sem proposta
-                genérica — começamos entendendo o seu negócio antes de qualquer escopo.
+                genérica. Começamos entendendo o seu negócio antes de qualquer escopo.
               </p>
             </div>
             <div className="cta-side">

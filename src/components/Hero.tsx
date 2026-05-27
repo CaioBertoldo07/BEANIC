@@ -16,7 +16,7 @@ export default function Hero() {
           </h1>
           <p className="sub">
             Desenvolvemos soluções digitais sob medida para empresas que precisam
-            sair do improviso — organizar processos, automatizar rotinas, vender
+            sair do improviso: organizar processos, automatizar rotinas, vender
             com mais consistência e tomar decisões com dados reais.
           </p>
           <div className="hero-actions">

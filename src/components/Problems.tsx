@@ -12,7 +12,7 @@ const problems = [
   },
   {
     title: 'Processos manuais',
-    desc: 'Rotinas que dependem da memória do operador — e param quando ele falta.',
+    desc: 'Rotinas que dependem da memória do operador e param quando ele falta.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12 8v4M12 16h.01" /><circle cx="12" cy="12" r="10" />
@@ -90,7 +90,7 @@ export default function Problems() {
           </div>
           <p className="lead">
             São as dores que vemos repetidas em quase todo negócio que chega até a
-            BEANIC. Não são casos isolados — são sintomas de uma operação que
+            BEANIC. Não são casos isolados, são sintomas de uma operação que
             cresceu sem estrutura.
           </p>
         </div>
@@ -113,7 +113,7 @@ export default function Problems() {
               Quando o negócio cresce em <em>improviso</em>, cada nova venda{' '}
               <em className="g">aumenta a confusão</em> em vez de aumentar o controle.
             </div>
-            <div className="smalltag">— O que ouvimos antes de cada diagnóstico</div>
+            <div className="smalltag">O que ouvimos antes de cada diagnóstico</div>
             <div className="prob-after">
               <div className="lbl">→ O que a BEANIC entrega</div>
               <div className="body">

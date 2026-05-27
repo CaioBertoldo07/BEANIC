@@ -40,7 +40,7 @@ const audiences = [
   },
   {
     title: 'Pequenos negócios',
-    desc: 'Donos que fazem tudo — vendas, atendimento, gestão — e precisam liberar tempo.',
+    desc: 'Donos que acumulam vendas, atendimento e gestão e precisam liberar tempo.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
         <path d="M4 7h16v4H4zM4 13h10v8H4zM18 13h2v8h-2z" />
@@ -58,7 +58,7 @@ const audiences = [
   },
   {
     title: 'Times que vivem em planilhas',
-    desc: 'Operação que cresceu no Excel e Google Sheets — e já não escala mais.',
+    desc: 'Operação que cresceu no Excel e Google Sheets e já não escala mais.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
         <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 12h18M12 3v18" />
@@ -67,7 +67,7 @@ const audiences = [
   },
   {
     title: 'Operações com WhatsApp central',
-    desc: 'Negócios que dependem do app para vender, atender e cobrar — e precisam de estrutura.',
+    desc: 'Negócios que dependem do app para vender, atender e cobrar e precisam de estrutura.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
@@ -90,7 +90,7 @@ export default function Audiences() {
           </div>
           <p className="lead">
             Atendemos empresas que cresceram em planilhas e WhatsApp e agora
-            precisam estruturar a operação. Não importa o porte — importa o estágio.
+            precisam estruturar a operação. Não importa o porte, importa o estágio.
           </p>
         </div>
         <div className="aud-grid">

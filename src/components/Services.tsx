@@ -27,7 +27,7 @@ export default function Services() {
             <p>
               Planilhas, WhatsApp e anotações avulsas não escalam. Quando a
               operação cresce, o controle some. Desenvolvemos sistemas internos
-              modelados a partir do seu fluxo real — controle de vendas, estoque,
+              modelados a partir do seu fluxo real: controle de vendas, estoque,
               produção e clientes em uma única fonte de verdade, sem forçar seu
               negócio dentro de um ERP genérico.
             </p>
@@ -67,7 +67,7 @@ export default function Services() {
             <h3>Sites e presença digital</h3>
             <p>
               Um site amador tira credibilidade antes da primeira conversa. Construímos
-              sites institucionais com narrativa comercial clara — estrutura que
+              sites institucionais com narrativa comercial clara, com estrutura que
               posiciona sua empresa como referência no mercado e gera orçamentos
               de quem realmente precisa do que você oferece.
             </p>
@@ -100,7 +100,7 @@ export default function Services() {
             <p>
               Tempo gasto em tarefas repetitivas é tempo perdido em decisão e
               crescimento. Substituímos confirmações, cobranças, alertas e relatórios
-              manuais por fluxos automáticos auditáveis — integrados com WhatsApp,
+              manuais por fluxos automáticos auditáveis, integrados com WhatsApp,
               formulários e CRM, sem o operador no meio.
             </p>
             <div className="feats">
@@ -160,7 +160,7 @@ export default function Services() {
             <p>
               Decisões tomadas no achismo têm custo. Consolidamos indicadores de
               vendas, operação e financeiro em painéis visuais que revelam o que
-              está acontecendo no seu negócio — o que está funcionando, o que
+              está acontecendo no seu negócio: o que está funcionando, o que
               travou e o que precisa de atenção agora.
             </p>
             <div className="feats">
