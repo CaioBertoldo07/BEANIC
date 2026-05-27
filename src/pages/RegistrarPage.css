@@ -94,7 +94,18 @@
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 36px;
+  color-scheme: dark;
   cursor: pointer;
+}
+
+.registrar-select option {
+  background: #0d1c2d;
+  color: #e7eef8;
+}
+
+.registrar-select option:checked {
+  background: #1f6fd1;
+  color: #ffffff;
 }
 
 .registrar-field-hint {
