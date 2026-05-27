@@ -120,13 +120,8 @@ type AccessPolicy = {
   require?: AccessRule[]
   precedence?: number
   session_duration?: string
-  approval_required?: boolean
-  approval_groups?: unknown[]
   purpose_justification_prompt?: string
   purpose_justification_required?: boolean
-  isolation_required?: boolean
-  mfa_config?: unknown
-  connection_rules?: unknown
 }
 
 // Adiciona um e-mail no grupo "Approved emails" da policy de Access.
@@ -204,13 +199,8 @@ function pickEditablePolicyFields(policy: AccessPolicy): AccessPolicy {
     'require',
     'precedence',
     'session_duration',
-    'approval_required',
-    'approval_groups',
     'purpose_justification_prompt',
     'purpose_justification_required',
-    'isolation_required',
-    'mfa_config',
-    'connection_rules',
   ]
 
   return editableKeys.reduce<AccessPolicy>((acc, key) => {

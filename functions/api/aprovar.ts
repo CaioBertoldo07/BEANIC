@@ -45,7 +45,13 @@ export const onRequestGet: PagesFunction<Env> = async ctx => {
     await addEmailToAccessPolicy(ctx.env, cliente.email)
   } catch (err) {
     console.error('Falha ao adicionar no CF Access:', err)
-    return htmlResponse(errorPage(`Erro ao liberar acesso no Cloudflare Access. Tente de novo ou adicione manualmente: ${cliente.email}`), 500)
+    return htmlResponse(
+      errorPage(
+        `Erro ao liberar acesso no Cloudflare Access para <code>${escape(cliente.email)}</code>.`,
+        (err as Error).message,
+      ),
+      500,
+    )
   }
 
   // 2. Atualiza KV
@@ -88,7 +94,11 @@ function infoPage(titulo: string, msg: string): string {
 </body></html>`
 }
 
-function errorPage(msg: string): string {
+function errorPage(msg: string, detail?: string): string {
+  const detailHtml = detail
+    ? `<div style="margin-top:18px;text-align:left;background:rgba(5,13,24,0.65);border:1px solid rgba(150,180,210,0.12);border-radius:10px;padding:14px;color:#dbeafe;font-size:12px;line-height:1.5;word-break:break-word;"><strong style="display:block;color:#9aa9bc;margin-bottom:6px;">Detalhe técnico</strong>${escape(detail)}</div>`
+    : ''
+
   return `<!doctype html>
 <html><head><meta charset="utf-8"><title>Erro — Beanic</title></head>
 <body style="font-family:'Inter',Arial,sans-serif;background:#050d18;color:#e8eef6;min-height:100vh;margin:0;display:grid;place-items:center;padding:40px;">
@@ -96,6 +106,7 @@ function errorPage(msg: string): string {
     <div style="width:64px;height:64px;margin:0 auto 16px;border-radius:50%;background:rgba(248,113,113,0.15);color:#f87171;display:grid;place-items:center;font-size:28px;">!</div>
     <h1 style="font-size:24px;margin:0 0 12px;font-weight:600;">Não foi possível processar</h1>
     <p style="color:#9aa9bc;line-height:1.6;margin:0;">${msg}</p>
+    ${detailHtml}
   </div>
 </body></html>`
 }
