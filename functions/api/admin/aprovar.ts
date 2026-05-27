@@ -36,10 +36,6 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
   if (!raw) return jsonResponse({ message: 'Cadastro não encontrado' }, 404)
   const cliente = JSON.parse(raw) as ClienteRegistro
 
-  if (cliente.status === 'approved') {
-    return jsonResponse({ message: 'Já aprovado anteriormente', cliente })
-  }
-
   try {
     await addEmailToAccessPolicy(ctx.env, cliente.email)
   } catch (err) {
@@ -48,6 +44,10 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
       { message: `Erro ao liberar no Cloudflare Access: ${(err as Error).message}` },
       500,
     )
+  }
+
+  if (cliente.status === 'approved') {
+    return jsonResponse({ message: 'Acesso sincronizado no Cloudflare Access', cliente })
   }
 
   cliente.status = 'approved'

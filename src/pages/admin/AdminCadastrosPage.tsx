@@ -275,9 +275,18 @@ function CadastroCard({ cadastro: c, expanded, onExpand, onAction, actioning }: 
               </button>
             )}
             {c.status === 'approved' && (
-              <span className="admin-approved-msg mono">
-                ✓ Acesso liberado · cliente já pode entrar em /cliente
-              </span>
+              <>
+                <button
+                  className="btn btn-ghost admin-btn-sm"
+                  disabled={isLoadingAction('aprovar')}
+                  onClick={() => onAction('aprovar', c.email)}
+                >
+                  {isLoadingAction('aprovar') ? 'Sincronizando...' : 'Sincronizar Access'}
+                </button>
+                <span className="admin-approved-msg mono">
+                  ✓ Aprovado no cadastro
+                </span>
+              </>
             )}
           </div>
         </div>
