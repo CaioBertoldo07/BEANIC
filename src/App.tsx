@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MarketingPage from './pages/MarketingPage'
-import RegistrarPage from './pages/RegistrarPage'
 import LoginPage from './pages/LoginPage'
 import ClienteLayout from './pages/cliente/ClienteLayout'
 import ClienteDashboard from './pages/cliente/ClienteDashboard'
@@ -8,7 +7,7 @@ import ClienteDownloads from './pages/cliente/ClienteDownloads'
 import ClienteDocs from './pages/cliente/ClienteDocs'
 import ClienteConta from './pages/cliente/ClienteConta'
 import AdminLayout from './pages/admin/AdminLayout'
-import AdminCadastrosPage from './pages/admin/AdminCadastrosPage'
+import AdminUsuariosPage from './pages/admin/AdminUsuariosPage'
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
       <div className="bg-glow" />
       <Routes>
         <Route path="/" element={<MarketingPage />} />
-        <Route path="/registrar" element={<RegistrarPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cliente" element={<ClienteLayout />}>
           <Route index element={<ClienteDashboard />} />
@@ -26,8 +24,8 @@ export default function App() {
           <Route path="conta" element={<ClienteConta />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminCadastrosPage />} />
-          <Route path="cadastros" element={<AdminCadastrosPage />} />
+          <Route index element={<AdminUsuariosPage />} />
+          <Route path="usuarios" element={<AdminUsuariosPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

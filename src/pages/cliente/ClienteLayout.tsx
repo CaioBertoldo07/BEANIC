@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import beanicLogo from '../../assets/beanic-logo.png'
 import './ClienteLayout.css'
 
@@ -10,11 +10,55 @@ const navItems = [
   { to: '/cliente/conta', label: 'Conta', icon: '○' },
 ]
 
+interface Usuario {
+  email: string
+  nome: string
+  empresa: string
+}
+
 export default function ClienteLayout() {
+  const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
-  // Email do cliente vem do header `Cf-Access-Authenticated-User-Email` que
-  // a Cloudflare Access injeta. No client-side a gente lê do cookie JWT:
-  const clienteEmail = readCfAccessEmail() ?? 'cliente@empresa.com.br'
+  const [usuario, setUsuario] = useState<Usuario | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const res = await fetch('/api/auth/me')
+        if (!res.ok) {
+          if (!cancelled) navigate('/login', { replace: true })
+          return
+        }
+        const body = (await res.json()) as { usuario: Usuario }
+        if (!cancelled) setUsuario(body.usuario)
+      } catch {
+        if (!cancelled) navigate('/login', { replace: true })
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [navigate])
+
+  const sair = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+    } finally {
+      navigate('/login', { replace: true })
+    }
+  }
+
+  if (loading || !usuario) {
+    return (
+      <div className="cliente-shell">
+        <div className="cliente-loading">Carregando portal...</div>
+      </div>
+    )
+  }
 
   return (
     <div className="cliente-shell">
@@ -57,37 +101,21 @@ export default function ClienteLayout() {
             <span /><span /><span />
           </button>
           <div className="cliente-topbar-user">
-            <div className="cliente-user-avatar">{clienteEmail[0]?.toUpperCase() ?? '?'}</div>
+            <div className="cliente-user-avatar">{usuario.nome[0]?.toUpperCase() ?? '?'}</div>
             <div className="cliente-user-text">
-              <div className="cliente-user-email">{clienteEmail}</div>
-              <div className="cliente-user-status mono">Sessão ativa</div>
+              <div className="cliente-user-email">{usuario.email}</div>
+              <div className="cliente-user-status mono">{usuario.empresa}</div>
             </div>
+            <button className="cliente-logout mono" onClick={sair}>
+              Sair
+            </button>
           </div>
         </header>
 
         <main className="cliente-content">
-          <Outlet context={{ clienteEmail }} />
+          <Outlet context={{ usuario }} />
         </main>
       </div>
     </div>
   )
-}
-
-// Lê o e-mail do JWT do Cloudflare Access (cookie CF_Authorization).
-// É só pra exibição — a autenticação real acontece NA BORDA pela CF antes
-// dessa página carregar. Se o cookie não existir, fallback pra placeholder.
-function readCfAccessEmail(): string | null {
-  try {
-    const cookies = document.cookie.split(';')
-    const cfCookie = cookies.find(c => c.trim().startsWith('CF_Authorization='))
-    if (!cfCookie) return null
-    const jwt = cfCookie.split('=')[1]?.trim()
-    if (!jwt) return null
-    const payload = jwt.split('.')[1]
-    if (!payload) return null
-    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')))
-    return decoded.email ?? null
-  } catch {
-    return null
-  }
 }

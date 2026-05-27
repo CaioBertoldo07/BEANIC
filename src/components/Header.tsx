@@ -53,8 +53,8 @@ export default function Header() {
         </nav>
 
         <div className="nav-cta">
-          <Link to="/registrar" className="btn btn-ghost" style={{ padding: '10px 18px', fontSize: '13px' }}>
-            Solicitar acesso
+          <Link to="/login" className="btn btn-ghost" style={{ padding: '10px 18px', fontSize: '13px' }}>
+            Área Usuário
           </Link>
           <a href="#contato" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>
             Falar agora

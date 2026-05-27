@@ -1,5 +1,5 @@
 /* ============================================================================
-   LoginPage — tela intermediária antes do redirect pro portal do cliente
+   LoginPage — Área do Usuário (email + código OTP)
    ============================================================================ */
 
 .login-shell {
@@ -46,10 +46,57 @@
   margin-bottom: 2px;
 }
 
-/* ── Action ──────────────────────────────────────────────────────────────── */
-.login-action {
+/* ── Form ────────────────────────────────────────────────────────────────── */
+.login-form {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-field-label {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.login-input {
+  background: rgba(150, 180, 210, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.login-input::placeholder {
+  color: rgba(154, 169, 188, 0.45);
+}
+.login-input:focus {
+  outline: none;
+  border-color: var(--cyan);
+  background: rgba(43, 180, 229, 0.04);
+}
+.login-input-otp {
+  font-family: monospace;
+  font-size: 22px;
+  letter-spacing: 0.4em;
+  text-align: center;
+  padding: 16px;
+}
+
+.login-error {
+  background: rgba(235, 90, 90, 0.08);
+  border: 1px solid rgba(235, 90, 90, 0.25);
+  color: #f08a8a;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .login-btn {
@@ -60,6 +107,20 @@
 .login-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.login-back {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 6px;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+.login-back:hover {
+  color: var(--cyan);
 }
 
 /* ── Info bullets ────────────────────────────────────────────────────────── */
@@ -114,5 +175,9 @@
   }
   .login-head h1 {
     font-size: 24px;
+  }
+  .login-input-otp {
+    font-size: 18px;
+    letter-spacing: 0.3em;
   }
 }
