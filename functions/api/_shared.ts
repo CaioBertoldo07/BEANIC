@@ -103,10 +103,50 @@ export async function sendEmail(
 
 // ── Cloudflare Access ───────────────────────────────────────────────────────
 
+type CloudflareApiResponse<T> = {
+  success: boolean
+  result: T
+  errors?: Array<{ code?: number; message?: string }>
+  messages?: Array<{ code?: number; message?: string }>
+}
+
+type AccessRule = Record<string, unknown>
+
+type AccessPolicy = {
+  name?: string
+  decision?: string
+  include?: AccessRule[]
+  exclude?: AccessRule[]
+  require?: AccessRule[]
+  precedence?: number
+  session_duration?: string
+  approval_required?: boolean
+  approval_groups?: unknown[]
+  purpose_justification_prompt?: string
+  purpose_justification_required?: boolean
+  isolation_required?: boolean
+  mfa_config?: unknown
+  connection_rules?: unknown
+}
+
 // Adiciona um e-mail no grupo "Approved emails" da policy de Access.
 // Pra que isto funcione, a policy precisa ter sido criada com a regra "Email"
 // (não "Email Domain") e o include é uma lista que vamos atualizar via API.
 export async function addEmailToAccessPolicy(env: Env, email: string): Promise<void> {
+  const missing = [
+    ['CF_ACCOUNT_ID', env.CF_ACCOUNT_ID],
+    ['CF_API_TOKEN', env.CF_API_TOKEN],
+    ['CF_ACCESS_APP_UID', env.CF_ACCESS_APP_UID],
+    ['CF_ACCESS_POLICY_UID', env.CF_ACCESS_POLICY_UID],
+  ]
+    .filter(([, value]) => !value)
+    .map(([name]) => name)
+
+  if (missing.length > 0) {
+    throw new Error(`Variáveis Cloudflare ausentes: ${missing.join(', ')}`)
+  }
+
+  const normalizedEmail = email.trim().toLowerCase()
   const url = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps/${env.CF_ACCESS_APP_UID}/policies/${env.CF_ACCESS_POLICY_UID}`
 
   // 1. Pegar a policy atual
@@ -114,20 +154,22 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
     headers: { Authorization: `Bearer ${env.CF_API_TOKEN}` },
   })
   if (!getRes.ok) {
-    throw new Error(`CF Access GET ${getRes.status}`)
+    const body = await getRes.text()
+    throw new Error(`CF Access GET ${getRes.status}: ${body}`)
   }
-  const data = (await getRes.json()) as {
-    result: { include: Array<{ email?: { email: string } }>; [k: string]: unknown }
+  const data = (await getRes.json()) as CloudflareApiResponse<AccessPolicy>
+  if (!data.success) {
+    throw new Error(`CF Access GET falhou: ${formatCloudflareErrors(data)}`)
   }
   const policy = data.result
 
   // 2. Adicionar e-mail no include (sem duplicar)
-  const existingEmails = policy.include
-    .filter(rule => rule.email)
-    .map(rule => rule.email!.email)
-  if (existingEmails.includes(email)) return
+  const include = Array.isArray(policy.include) ? policy.include : []
+  const existingEmails = include.map(rule => getAccessRuleEmail(rule)).filter(Boolean)
+  if (existingEmails.includes(normalizedEmail)) return
 
-  policy.include = [...policy.include, { email: { email } }]
+  const payload: AccessPolicy = pickEditablePolicyFields(policy)
+  payload.include = [...include, { email: { email: normalizedEmail } }]
 
   // 3. PUT pra atualizar
   const putRes = await fetch(url, {
@@ -136,12 +178,53 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
       Authorization: `Bearer ${env.CF_API_TOKEN}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(policy),
+    body: JSON.stringify(payload),
   })
   if (!putRes.ok) {
     const body = await putRes.text()
     throw new Error(`CF Access PUT ${putRes.status}: ${body}`)
   }
+  const putData = (await putRes.json()) as CloudflareApiResponse<AccessPolicy>
+  if (!putData.success) {
+    throw new Error(`CF Access PUT falhou: ${formatCloudflareErrors(putData)}`)
+  }
+}
+
+function getAccessRuleEmail(rule: AccessRule): string | null {
+  const emailRule = rule.email as { email?: unknown } | undefined
+  return typeof emailRule?.email === 'string' ? emailRule.email.trim().toLowerCase() : null
+}
+
+function pickEditablePolicyFields(policy: AccessPolicy): AccessPolicy {
+  const editableKeys: Array<keyof AccessPolicy> = [
+    'name',
+    'decision',
+    'include',
+    'exclude',
+    'require',
+    'precedence',
+    'session_duration',
+    'approval_required',
+    'approval_groups',
+    'purpose_justification_prompt',
+    'purpose_justification_required',
+    'isolation_required',
+    'mfa_config',
+    'connection_rules',
+  ]
+
+  return editableKeys.reduce<AccessPolicy>((acc, key) => {
+    if (policy[key] !== undefined) {
+      ;(acc as Record<string, unknown>)[key] = policy[key]
+    }
+    return acc
+  }, {})
+}
+
+function formatCloudflareErrors(response: Pick<CloudflareApiResponse<unknown>, 'errors' | 'messages'>): string {
+  const entries = [...(response.errors ?? []), ...(response.messages ?? [])]
+  if (entries.length === 0) return 'sem detalhe retornado pela API'
+  return entries.map(e => [e.code, e.message].filter(Boolean).join(' - ')).join('; ')
 }
 
 // ── HTML responses ──────────────────────────────────────────────────────────
