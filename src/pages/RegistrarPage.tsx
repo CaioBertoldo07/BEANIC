@@ -225,7 +225,7 @@ export default function RegistrarPage() {
         </form>
 
         <div className="registrar-foot">
-          Já tem acesso? <a href="/cliente" className="registrar-link">Entrar no portal</a>
+          Já tem acesso? <a href="/login" className="registrar-link">Entrar no portal</a>
         </div>
       </div>
     </div>

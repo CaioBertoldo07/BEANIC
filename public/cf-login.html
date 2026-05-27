@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal do Cliente — BEANIC</title>
+  <link rel="icon" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ───────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Tokens ──────────────────────────────────────────────────────────── */
+    :root {
+      --bg:        #050d18;
+      --panel:     #0d1c2d;
+      --panel-2:   #102338;
+      --line:      rgba(150, 180, 210, 0.10);
+      --cyan:      #2bb4e5;
+      --cyan-2:    #5ed0f5;
+      --text:      #e8eef6;
+      --text-dim:  #9aa9bc;
+    }
+
+    /* ── Shell ───────────────────────────────────────────────────────────── */
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 60px 24px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* grid lines */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(150, 180, 210, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150, 180, 210, 0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+              mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+    }
+
+    /* cyan glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(43, 180, 229, 0.10), transparent 60%);
+      pointer-events: none;
+      filter: blur(20px);
+    }
+
+    /* ── Card ────────────────────────────────────────────────────────────── */
+    .login-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ── Brand ───────────────────────────────────────────────────────────── */
+    .login-brand img {
+      width: 130px;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Head ────────────────────────────────────────────────────────────── */
+    .login-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 6px;
+    }
+
+    .login-head h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 8px 0 12px;
+    }
+
+    .login-head p {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── Cloudflare Access form override ─────────────────────────────────── */
+    /*
+      Cloudflare injeta o HTML de autenticação via {{access_template_html}}.
+      Os estilos abaixo sobrescrevem os defaults do Cloudflare Access para
+      manter a identidade visual BEANIC.
+    */
+
+    /* wrapper que o CF às vezes adiciona */
+    .access-error-card,
+    .access-card { background: transparent !important; box-shadow: none !important; }
+
+    /* esconde o título padrão do CF e o app name */
+    .access-app-name,
+    .access-team-name,
+    h1.access-page-title { display: none !important; }
+
+    /* label dos campos */
+    label,
+    .access-label {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 11px !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      color: var(--cyan) !important;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* input de e-mail */
+    input[type="email"],
+    input[type="text"],
+    input[type="number"],
+    .access-input {
+      width: 100% !important;
+      padding: 12px 16px !important;
+      background: rgba(8, 19, 31, 0.8) !important;
+      border: 1px solid var(--line) !important;
+      border-radius: 8px !important;
+      color: var(--text) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 14px !important;
+      outline: none !important;
+      transition: border-color 0.2s !important;
+      -webkit-appearance: none !important;
+    }
+
+    input[type="email"]:focus,
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    .access-input:focus {
+      border-color: var(--cyan) !important;
+      box-shadow: 0 0 0 3px rgba(43, 180, 229, 0.10) !important;
+    }
+
+    input::placeholder { color: var(--text-dim) !important; opacity: 1 !important; }
+
+    /* botão principal */
+    button[type="submit"],
+    input[type="submit"],
+    .access-btn,
+    .access-submit {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      padding: 13px 22px !important;
+      border-radius: 8px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      font-family: 'Inter', sans-serif !important;
+      background: var(--cyan) !important;
+      color: #04121d !important;
+      border: none !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+    }
+
+    button[type="submit"]:hover,
+    input[type="submit"]:hover,
+    .access-btn:hover {
+      background: var(--cyan-2) !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 10px 30px -10px rgba(43, 180, 229, 0.5) !important;
+    }
+
+    button[type="submit"]:disabled,
+    input[type="submit"]:disabled {
+      opacity: 0.6 !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+    }
+
+    /* form layout */
+    form,
+    .access-form {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 14px !important;
+    }
+
+    /* erros */
+    .access-error,
+    .field-error {
+      color: #f87171 !important;
+      font-size: 12px !important;
+      margin-top: 4px !important;
+    }
+
+    /* links internos do CF ("use outro método", etc.) */
+    .access-links a,
+    .access-alternate-methods a {
+      color: var(--cyan) !important;
+      font-size: 13px !important;
+    }
+
+    /* ── Info bullets ────────────────────────────────────────────────────── */
+    .login-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      background: rgba(150, 180, 210, 0.03);
+      border: 1px solid var(--line);
+    }
+
+    .login-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .login-info-icon {
+      flex-shrink: 0;
+      color: var(--cyan);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* ── Footer do card ──────────────────────────────────────────────────── */
+    .login-foot {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .login-foot a {
+      color: var(--cyan);
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .login-foot a:hover { opacity: 0.75; }
+
+    /* ── Responsivo ──────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .login-card { padding: 28px 22px; }
+      .login-head h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+
+    <!-- Brand -->
+    <a href="https://beanic.com.br" class="login-brand">
+      <img src="/beanic-logo.png" alt="BEANIC" />
+    </a>
+
+    <!-- Head -->
+    <div class="login-head">
+      <div class="login-label">Portal do cliente</div>
+      <h1>Acesse seu portal</h1>
+      <p>
+        Digite seu e-mail corporativo para receber o código de acesso.
+        Sem senha, sem complicação.
+      </p>
+    </div>
+
+    <!--
+      Cloudflare Access injeta aqui o formulário de autenticação (campo de
+      e-mail + botão "Send login code") via a variável de template abaixo.
+      NÃO remover esta linha.
+    -->
+    {{access_template_html}}
+
+    <!-- Info bullets -->
+    <div class="login-info">
+      <div class="login-info-item">
+        <span class="login-info-icon">&#9993;</span>
+        <span>Você receberá um código de acesso no seu e-mail corporativo</span>
+      </div>
+      <div class="login-info-item">
+        <span class="login-info-icon">&#128274;</span>
+        <span>Acesso restrito a clientes com cadastro aprovado pela BEANIC</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="login-foot">
+      Ainda não tem acesso?
+      <a href="https://beanic.com.br/registrar">Solicitar cadastro</a>
+    </div>
+
+  </div>
+</body>
+</html>
