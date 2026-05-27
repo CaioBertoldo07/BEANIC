@@ -11,8 +11,9 @@ footer {
 }
 
 .footer-brand img {
-  height: 34px;
+  height: 48px;
   width: auto;
+  mix-blend-mode: screen;
 }
 
 .footer-brand .sig {
