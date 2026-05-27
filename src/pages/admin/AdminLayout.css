@@ -31,7 +31,7 @@
 }
 
 .admin-brand img {
-  width: 100px;
+  width: 140px;
   height: auto;
   display: block;
 }
@@ -111,7 +111,7 @@
     min-width: 0;
   }
   .admin-brand img {
-    width: 80px;
+    width: 110px;
   }
   .admin-topbar-right {
     gap: 10px;

@@ -22,10 +22,9 @@ header {
 }
 
 .brand img {
-  height: 48px;
+  height: 56px;
   width: auto;
   display: block;
-  mix-blend-mode: screen;
 }
 
 nav.main {
@@ -77,7 +76,7 @@ nav.main a.active::after {
   }
 
   .brand img {
-    height: 26px;
+    height: 38px;
   }
 
   .nav-cta {
