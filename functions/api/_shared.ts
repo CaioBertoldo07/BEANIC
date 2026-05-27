@@ -113,6 +113,7 @@ type CloudflareApiResponse<T> = {
 type AccessRule = Record<string, unknown>
 
 type AccessPolicy = {
+  id?: string
   name?: string
   decision?: string
   include?: AccessRule[]
@@ -122,6 +123,14 @@ type AccessPolicy = {
   session_duration?: string
   purpose_justification_prompt?: string
   purpose_justification_required?: boolean
+}
+
+type AccessApplication = {
+  uid?: string
+  id?: string
+  name?: string
+  domain?: string
+  self_hosted_domains?: string[]
 }
 
 // Adiciona um e-mail no grupo "Approved emails" da policy de Access.
@@ -137,12 +146,13 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
     .filter(([, value]) => !value)
     .map(([name]) => name)
 
-  if (missing.length > 0) {
+  if (missing.includes('CF_ACCOUNT_ID') || missing.includes('CF_API_TOKEN')) {
     throw new Error(`Variáveis Cloudflare ausentes: ${missing.join(', ')}`)
   }
 
   const normalizedEmail = email.trim().toLowerCase()
-  const url = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps/${env.CF_ACCESS_APP_UID}/policies/${env.CF_ACCESS_POLICY_UID}`
+  const target = await resolveAccessPolicyTarget(env)
+  const url = accessPolicyUrl(env, target.appUid, target.policyUid)
 
   // 1. Pegar a policy atual
   const getRes = await fetch(url, {
@@ -188,6 +198,67 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
 function getAccessRuleEmail(rule: AccessRule): string | null {
   const emailRule = rule.email as { email?: unknown } | undefined
   return typeof emailRule?.email === 'string' ? emailRule.email.trim().toLowerCase() : null
+}
+
+async function resolveAccessPolicyTarget(env: Env): Promise<{ appUid: string; policyUid: string }> {
+  if (env.CF_ACCESS_APP_UID && env.CF_ACCESS_POLICY_UID) {
+    return {
+      appUid: env.CF_ACCESS_APP_UID,
+      policyUid: env.CF_ACCESS_POLICY_UID,
+    }
+  }
+
+  const applicationsUrl = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps`
+  const appsRes = await fetch(applicationsUrl, {
+    headers: { Authorization: `Bearer ${env.CF_API_TOKEN}` },
+  })
+  if (!appsRes.ok) {
+    const body = await appsRes.text()
+    throw new Error(`CF Access apps GET ${appsRes.status}: ${body}`)
+  }
+
+  const appsData = (await appsRes.json()) as CloudflareApiResponse<AccessApplication[]>
+  if (!appsData.success) {
+    throw new Error(`CF Access apps GET falhou: ${formatCloudflareErrors(appsData)}`)
+  }
+
+  const hostname = new URL(env.SITE_URL).hostname
+  const app = appsData.result.find(candidate => {
+    const domains = [candidate.domain, ...(candidate.self_hosted_domains ?? [])]
+      .filter((domain): domain is string => typeof domain === 'string')
+      .map(domain => domain.replace(/^https?:\/\//, '').split('/')[0].toLowerCase())
+    return domains.includes(hostname)
+  })
+
+  const appUid = app?.uid ?? app?.id
+  if (!appUid) {
+    throw new Error(`CF Access app não encontrado para ${hostname}. Configure CF_ACCESS_APP_UID no Cloudflare Pages.`)
+  }
+
+  const policiesUrl = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps/${appUid}/policies`
+  const policiesRes = await fetch(policiesUrl, {
+    headers: { Authorization: `Bearer ${env.CF_API_TOKEN}` },
+  })
+  if (!policiesRes.ok) {
+    const body = await policiesRes.text()
+    throw new Error(`CF Access policies GET ${policiesRes.status}: ${body}`)
+  }
+
+  const policiesData = (await policiesRes.json()) as CloudflareApiResponse<AccessPolicy[]>
+  if (!policiesData.success) {
+    throw new Error(`CF Access policies GET falhou: ${formatCloudflareErrors(policiesData)}`)
+  }
+
+  const policy = policiesData.result.find(candidate => candidate.decision === 'allow') ?? policiesData.result[0]
+  if (!policy?.id) {
+    throw new Error(`CF Access policy não encontrada para ${hostname}. Configure CF_ACCESS_POLICY_UID no Cloudflare Pages.`)
+  }
+
+  return { appUid, policyUid: policy.id }
+}
+
+function accessPolicyUrl(env: Env, appUid: string, policyUid: string): string {
+  return `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps/${appUid}/policies/${policyUid}`
 }
 
 function pickEditablePolicyFields(policy: AccessPolicy): AccessPolicy {
