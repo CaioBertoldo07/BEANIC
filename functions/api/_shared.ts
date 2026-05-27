@@ -130,7 +130,8 @@ type AccessApplication = {
   id?: string
   name?: string
   domain?: string
-  self_hosted_domains?: string[]
+  self_hosted_domains?: unknown[]
+  destinations?: unknown[]
 }
 
 // Adiciona um e-mail no grupo "Approved emails" da policy de Access.
@@ -256,17 +257,15 @@ async function resolveAccessPolicyTarget(env: Env): Promise<{ appUid: string; po
     throw new Error(`CF Access apps GET falhou: ${formatCloudflareErrors(appsData)}`)
   }
 
-  const hostname = new URL(env.SITE_URL).hostname
-  const app = appsData.result.find(candidate => {
-    const domains = [candidate.domain, ...(candidate.self_hosted_domains ?? [])]
-      .filter((domain): domain is string => typeof domain === 'string')
-      .map(domain => domain.replace(/^https?:\/\//, '').split('/')[0].toLowerCase())
-    return domains.includes(hostname)
-  })
+  const targetUrl = new URL('/cliente', env.SITE_URL)
+  const app = appsData.result
+    .map(candidate => ({ app: candidate, score: scoreAccessApplication(candidate, targetUrl) }))
+    .filter(candidate => candidate.score > 0)
+    .sort((a, b) => b.score - a.score)[0]?.app
 
   const appUid = app?.uid ?? app?.id
   if (!appUid) {
-    throw new Error(`CF Access app não encontrado para ${hostname}. Configure CF_ACCESS_APP_UID no Cloudflare Pages.`)
+    throw new Error(`CF Access app não encontrado para ${targetUrl.hostname}/cliente. Configure CF_ACCESS_APP_UID no Cloudflare Pages.`)
   }
 
   const policiesUrl = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/apps/${appUid}/policies`
@@ -283,12 +282,78 @@ async function resolveAccessPolicyTarget(env: Env): Promise<{ appUid: string; po
     throw new Error(`CF Access policies GET falhou: ${formatCloudflareErrors(policiesData)}`)
   }
 
-  const policy = policiesData.result.find(candidate => candidate.decision === 'allow') ?? policiesData.result[0]
+  const policy = policiesData.result
+    .map(candidate => ({ policy: candidate, score: scoreAccessPolicy(candidate) }))
+    .filter(candidate => candidate.score > 0)
+    .sort((a, b) => b.score - a.score)[0]?.policy
   if (!policy?.id) {
-    throw new Error(`CF Access policy não encontrada para ${hostname}. Configure CF_ACCESS_POLICY_UID no Cloudflare Pages.`)
+    throw new Error(`CF Access policy não encontrada para ${targetUrl.hostname}/cliente. Configure CF_ACCESS_POLICY_UID no Cloudflare Pages.`)
   }
 
   return { appUid, policyUid: policy.id }
+}
+
+function scoreAccessApplication(app: AccessApplication, targetUrl: URL): number {
+  const resources = getAccessApplicationResources(app)
+  const resourceScore = Math.max(...resources.map(resource => scoreProtectedResource(resource, targetUrl)), 0)
+  if (resourceScore === 0) return 0
+
+  const name = app.name?.toLowerCase() ?? ''
+  const nameScore = name.includes('cliente') || name.includes('client') || name.includes('portal') ? 20 : 0
+  return resourceScore + nameScore
+}
+
+function getAccessApplicationResources(app: AccessApplication): string[] {
+  return [
+    app.domain,
+    ...extractStringValues(app.self_hosted_domains),
+    ...extractStringValues(app.destinations),
+  ].filter((resource): resource is string => typeof resource === 'string' && resource.trim().length > 0)
+}
+
+function extractStringValues(value: unknown): string[] {
+  if (!Array.isArray(value)) return []
+
+  return value.flatMap(item => {
+    if (typeof item === 'string') return [item]
+    if (!item || typeof item !== 'object') return []
+
+    const record = item as Record<string, unknown>
+    return [record.uri, record.hostname, record.domain]
+      .filter((field): field is string => typeof field === 'string')
+  })
+}
+
+function scoreProtectedResource(resource: string, targetUrl: URL): number {
+  const normalized = normalizeAccessResource(resource)
+  if (!normalized) return 0
+  if (normalized.hostname !== targetUrl.hostname.toLowerCase()) return 0
+
+  if (normalized.path === '/cliente') return 100
+  if (normalized.path.startsWith('/cliente/')) return 95
+  if (targetUrl.pathname.startsWith(normalized.path) && normalized.path !== '/') return 80
+  if (normalized.path === '/') return 40
+  return 0
+}
+
+function normalizeAccessResource(resource: string): { hostname: string; path: string } | null {
+  const withoutProtocol = resource.replace(/^https?:\/\//, '')
+  const [hostWithMaybeWildcard, ...pathParts] = withoutProtocol.split('/')
+  const hostname = hostWithMaybeWildcard.replace(/^\*\./, '').toLowerCase()
+  if (!hostname) return null
+
+  const rawPath = pathParts.length > 0 ? `/${pathParts.join('/')}` : '/'
+  const path = rawPath.replace(/\/\*$/, '').replace(/\/$/, '') || '/'
+  return { hostname, path }
+}
+
+function scoreAccessPolicy(policy: AccessPolicy): number {
+  if (policy.decision !== 'allow') return 0
+
+  const name = policy.name?.toLowerCase() ?? ''
+  if (name.includes('cliente') || name.includes('client') || name.includes('portal')) return 100
+  if (name.includes('admin')) return 10
+  return 50
 }
 
 function accessPolicyUrl(env: Env, appUid: string, policyUid: string): string {
