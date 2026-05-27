@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BEANIC — Tecnologia para organizar e escalar negócios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#080d15;
+    --bg-2:#0b1320;
+    --ink:#0e1827;
+    --panel:#101c2c;
+    --panel-2:#152437;
+    --line:rgba(180,200,225,0.08);
+    --line-strong:rgba(180,200,225,0.16);
+    --line-bright:rgba(180,200,225,0.28);
+
+    --teal:#2dd4bf;
+    --teal-2:#5eead4;
+    --teal-soft:rgba(45,212,191,0.10);
+    --teal-soft-2:rgba(45,212,191,0.18);
+
+    --lime:#a8e065;
+    --lime-2:#c4ec8d;
+    --lime-soft:rgba(168,224,101,0.12);
+
+    --text:#eef2f7;
+    --text-dim:#9aa9bc;
+    --text-mute:#6a7a8e;
+
+    --radius:14px;
+    --radius-lg:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
+  h1,h2,h3,h4,h5{font-family:'Sora',sans-serif;font-weight:600;letter-spacing:-0.022em;margin:0;text-wrap:balance}
+  p{margin:0;color:var(--text-dim);line-height:1.6}
+  .container{max-width:1280px;margin:0 auto;padding:0 40px}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)}
+
+  /* Ambient bg */
+  .amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .amb::before{
+    content:"";position:absolute;top:-300px;left:50%;transform:translateX(-50%);
+    width:1200px;height:1200px;border-radius:50%;
+    background:radial-gradient(circle, rgba(45,212,191,0.10) 0%, rgba(45,212,191,0.03) 35%, transparent 65%);
+    filter:blur(20px);
+  }
+  .amb::after{
+    content:"";position:absolute;top:600px;right:-200px;width:700px;height:700px;border-radius:50%;
+    background:radial-gradient(circle, rgba(168,224,101,0.07), transparent 65%);
+    filter:blur(20px);
+  }
+  .dots{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(rgba(180,200,225,0.10) 1px, transparent 1px);
+    background-size:32px 32px;
+    mask:radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+  }
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(8,13,21,0.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{height:30px;width:auto;display:block}
+  nav.main{display:flex;gap:32px}
+  nav.main a{font-size:14px;color:var(--text-dim);transition:color .2s;position:relative;padding:8px 0}
+  nav.main a:hover{color:var(--text)}
+  nav.main a.active{color:var(--text)}
+  nav.main a.active::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--teal)}
+  .nav-cta{display:flex;align-items:center;gap:12px}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:500;transition:all .2s;border:1px solid transparent;font-family:'Inter',sans-serif}
+  .btn-primary{background:var(--teal);color:#04211d}
+  .btn-primary:hover{background:var(--teal-2);transform:translateY(-1px);box-shadow:0 14px 32px -12px rgba(45,212,191,0.45)}
+  .btn-ghost{border-color:var(--line-strong);color:var(--text);background:rgba(255,255,255,0.02)}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);background:transparent}
+  .btn-sm{padding:9px 16px;font-size:13px}
+  .arr{width:16px;height:16px;display:inline-block;background:currentColor;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2'><path d='M5 12h14M13 6l6 6-6 6'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2'><path d='M5 12h14M13 6l6 6-6 6'/></svg>") center/contain no-repeat}
+
+  /* Pill / chips */
+  .pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 12px;border-radius:100px;background:rgba(45,212,191,0.06);border:1px solid var(--teal-soft-2);font-size:12px;color:var(--text);letter-spacing:0.02em}
+  .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+
+  section{position:relative;z-index:1}
+  .section{padding:128px 0;position:relative}
+  .section-head{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;margin-bottom:72px;align-items:end}
+  .section-head h2{font-size:50px;line-height:1.04;font-weight:600;letter-spacing:-0.025em;max-width:720px}
+  .section-head .lead{max-width:440px;color:var(--text-dim);font-size:15px;line-height:1.65}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+  .eyebrow .ix{width:18px;height:1px;background:var(--teal)}
+
+  /* ========== HERO ========== */
+  .hero{padding:80px 0 100px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .hero h1{font-size:62px;line-height:1.02;font-weight:600;letter-spacing:-0.028em}
+  .hero h1 b{color:var(--teal);font-weight:600;position:relative;white-space:nowrap}
+  .hero h1 .g{color:var(--lime);font-weight:600}
+  .hero p.sub{margin-top:26px;font-size:18px;color:var(--text-dim);max-width:560px;line-height:1.55}
+  .hero-actions{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap}
+  .hero-meta{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap;color:var(--text-mute);font-size:13px}
+  .hero-meta span{display:flex;align-items:center;gap:8px}
+  .hero-meta span::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid var(--teal);position:relative}
+  .hero-meta span::before{background:radial-gradient(circle, var(--teal) 30%, transparent 35%)}
+
+  /* Hero composition */
+  .hero-comp{position:relative;height:600px}
+  .panel{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:0 40px 80px -40px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02) inset}
+
+  /* App window mock */
+  .app{position:absolute;top:0;left:30px;width:520px;animation:float 8s ease-in-out infinite}
+  .app-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .app-head .dots{display:flex;gap:6px}
+  .app-head .dots i{width:8px;height:8px;border-radius:50%;background:var(--line-strong);display:block}
+  .app-head .dots i:first-child{background:var(--teal)}
+  .app-head .crumb{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute)}
+  .app-head .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--lime);letter-spacing:0.12em;background:var(--lime-soft);padding:3px 8px;border-radius:6px}
+
+  .app-body{display:grid;grid-template-columns:140px 1fr;min-height:380px}
+  .app-side{border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:4px}
+  .app-side .group{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-mute);letter-spacing:0.14em;text-transform:uppercase;margin:10px 6px 4px}
+  .app-side .it{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:12px;color:var(--text-dim);transition:all .2s}
+  .app-side .it svg{width:14px;height:14px;color:var(--text-mute);flex:0 0 14px}
+  .app-side .it.on{background:var(--teal-soft);color:var(--text)}
+  .app-side .it.on svg{color:var(--teal)}
+  .app-side .badge{margin-left:auto;background:var(--teal);color:#04211d;font-size:9px;font-weight:600;padding:1px 6px;border-radius:6px;font-family:'JetBrains Mono',monospace}
+
+  .app-main{padding:20px 22px;display:flex;flex-direction:column;gap:16px}
+  .app-title{display:flex;justify-content:space-between;align-items:center}
+  .app-title h4{font-size:16px;font-weight:500}
+  .app-title .sub{font-size:11px;color:var(--text-mute);margin-top:4px}
+  .app-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .kpi{background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .kpi .k{font-size:10px;color:var(--text-mute);letter-spacing:0.08em;text-transform:uppercase}
+  .kpi .v{font-family:'Sora',sans-serif;font-size:20px;font-weight:600;margin-top:3px}
+  .kpi .d{font-size:11px;margin-top:2px;display:flex;align-items:center;gap:4px}
+  .kpi .d.up{color:var(--lime)}
+  .kpi .d.dn{color:#f87171}
+  .kpi .d svg{width:10px;height:10px}
+
+  .app-chart{padding:6px 0 0}
+  .chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .chart-head .t{font-size:12px;font-weight:500;color:var(--text)}
+  .chart-head .legend{display:flex;gap:14px;font-size:10px;color:var(--text-mute)}
+  .chart-head .legend i{display:inline-block;width:8px;height:2px;margin-right:6px;vertical-align:middle;border-radius:2px}
+  .app-chart svg{width:100%;height:124px;display:block}
+
+  /* Floating elements */
+  .float-card{position:absolute;padding:14px 16px;border-radius:14px;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);box-shadow:0 30px 60px -25px rgba(0,0,0,0.8);font-size:12px}
+  .float-card .row{display:flex;align-items:center;gap:10px}
+  .float-card .ic{width:34px;height:34px;border-radius:10px;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;flex:0 0 34px}
+  .float-card .ic.g{background:var(--lime-soft);color:var(--lime)}
+  .float-card .lbl{color:var(--text-mute);font-size:10px;letter-spacing:0.1em;text-transform:uppercase}
+  .float-card .val{font-family:'Sora',sans-serif;font-size:15px;font-weight:600;margin-top:2px}
+
+  .fc-automation{top:34%;left:-30px;width:240px;animation:float 7s ease-in-out infinite}
+  .fc-growth{bottom:60px;right:-10px;width:230px;animation:float 9s ease-in-out infinite reverse}
+  .fc-flow{bottom:-10px;left:140px;width:340px;animation:float 11s ease-in-out infinite}
+  .fc-flow .row-flow{display:flex;align-items:center;gap:8px;justify-content:space-between}
+  .fc-flow .step{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text)}
+  .fc-flow .step .b{width:24px;height:24px;border-radius:7px;background:var(--ink);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--teal)}
+  .fc-flow .sep{flex:1;height:1px;background:linear-gradient(90deg,var(--teal),var(--lime));position:relative;margin:0 4px;opacity:0.7}
+  .fc-flow .sep::after{content:"";position:absolute;right:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:travel 2.4s linear infinite}
+
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes travel{0%{right:100%;opacity:0}10%,90%{opacity:1}100%{right:-3%;opacity:0}}
+
+  /* ========== TRUST STRIP ========== */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;background:rgba(11,19,32,0.5)}
+  .strip-wrap{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .strip-label{font-size:11px;color:var(--text-mute);letter-spacing:0.18em;text-transform:uppercase}
+  .strip-items{display:flex;gap:36px;flex-wrap:wrap}
+  .strip-items div{display:flex;align-items:center;gap:10px;color:var(--text-dim);font-size:14px}
+  .strip-items div svg{width:16px;height:16px;color:var(--teal)}
+
+  /* ========== PILLARS ========== */
+  .pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .pillar{background:linear-gradient(180deg,rgba(16,28,44,0.6),rgba(11,19,32,0.6));border:1px solid var(--line);border-radius:var(--radius-lg);padding:36px;min-height:420px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all .3s}
+  .pillar::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:0;transition:opacity .3s}
+  .pillar:hover{border-color:var(--line-bright);transform:translateY(-4px)}
+  .pillar:hover::before{opacity:1}
+  .pillar .pnum{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);letter-spacing:0.14em}
+  .pillar h3{font-size:26px;font-weight:500;margin:18px 0 12px;letter-spacing:-0.02em}
+  .pillar > p{font-size:15px;line-height:1.55}
+  .pillar .feats{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pillar .feats span{font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+  .pillar .feats span::before{content:"";width:4px;height:4px;background:var(--teal);border-radius:50%;flex:0 0 4px}
+
+  .pillar-viz{margin-top:auto;padding-top:24px;height:140px;display:flex;align-items:flex-end}
+
+  /* Pillar-specific mini visuals */
+  .v-system{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
+  .v-system .col{display:flex;flex-direction:column;gap:5px}
+  .v-system .row{height:10px;border-radius:3px;background:rgba(255,255,255,0.04);border:1px solid var(--line)}
+  .v-system .row.hi{background:var(--teal-soft);border-color:var(--teal-soft-2)}
+  .v-system .head{height:12px;background:var(--teal);border-radius:3px;opacity:0.7}
+
+  .v-sites{width:100%;display:grid;grid-template-columns:130px 1fr;gap:10px}
+  .v-sites .b{background:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px}
+  .v-sites .bar{height:6px;background:rgba(255,255,255,0.05);border-radius:3px}
+  .v-sites .bar.t{background:var(--teal-soft);width:60%;height:10px}
+  .v-sites .bar.s{background:rgba(255,255,255,0.08);width:80%}
+  .v-sites .bar.s2{background:rgba(255,255,255,0.06);width:50%}
+  .v-sites .b-r{display:flex;flex-direction:column;gap:8px}
+  .v-sites .tile{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:8px;display:flex;align-items:flex-end;padding:8px}
+  .v-sites .tile .tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:0.1em}
+
+  .v-auto{width:100%;display:flex;align-items:center;gap:0;justify-content:space-between}
+  .v-auto .n{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}
+  .v-auto .n .b{width:42px;height:42px;border-radius:10px;background:var(--ink);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--teal)}
+  .v-auto .n .b.lim{color:var(--lime);border-color:var(--lime-soft)}
+  .v-auto .n .l{font-size:9px;color:var(--text-mute);font-family:'JetBrains Mono',monospace;letter-spacing:0.1em;text-transform:uppercase}
+  .v-auto .sep{flex:1;height:1px;border-top:1px dashed var(--line-bright);margin:0 6px;position:relative}
+  .v-auto .sep::after{content:"→";position:absolute;right:-6px;top:-12px;font-size:14px;color:var(--text-mute)}
+
+  .v-dash{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+  .v-dash svg{width:100%;height:90px}
+  .v-dash .bars{display:flex;align-items:flex-end;gap:6px;height:90px}
+  .v-dash .bars i{flex:1;background:var(--teal-soft);border-radius:3px 3px 0 0;display:block}
+  .v-dash .bars i.lit{background:var(--teal)}
+  .v-dash .bars i.lim{background:var(--lime)}
+
+  /* ========== AUDIENCES ========== */
+  .aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .aud{background:linear-gradient(180deg,rgba(16,28,44,0.4),rgba(11,19,32,0.4));border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:all .2s;min-height:200px}
+  .aud:hover{border-color:var(--teal-soft-2);background:linear-gradient(180deg,rgba(45,212,191,0.04),rgba(11,19,32,0.4))}
+  .aud .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.04);color:var(--teal);display:grid;place-items:center;border:1px solid var(--line)}
+  .aud .ic svg{width:18px;height:18px}
+  .aud h4{font-size:16px;font-weight:500}
+  .aud p{font-size:13px;color:var(--text-mute)}
+
+  /* ========== PROBLEMS ========== */
+  .prob-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+  .prob-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .prob{background:linear-gradient(180deg,rgba(16,28,44,0.5),rgba(11,19,32,0.5));border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;transition:all .25s}
+  .prob:hover{border-color:var(--line-strong);transform:translateY(-2px)}
+  .prob .ic{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.04);color:var(--text-dim);display:grid;place-items:center}
+  .prob .ic svg{width:16px;height:16px}
+  .prob h5{font-size:14px;font-weight:500}
+  .prob p{font-size:12px;color:var(--text-mute);line-height:1.55}
+
+  .prob-aside{padding-left:20px}
+  .prob-aside .quote{font-family:'Sora',sans-serif;font-size:22px;line-height:1.35;font-weight:500;letter-spacing:-0.01em}
+  .prob-aside .quote em{color:var(--teal);font-style:normal}
+  .prob-aside .quote em.g{color:var(--lime)}
+  .prob-aside .smalltag{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);letter-spacing:0.12em}
+  .prob-after{margin-top:18px;background:linear-gradient(135deg,rgba(45,212,191,0.10),rgba(168,224,101,0.08));border:1px solid var(--teal-soft-2);border-radius:14px;padding:22px}
+  .prob-after .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:0.14em;text-transform:uppercase}
+  .prob-after .body{font-family:'Sora',sans-serif;font-size:18px;line-height:1.4;margin-top:8px;font-weight:500;color:var(--text)}
+
+  /* ========== PROCESS ========== */
+  .proc{position:relative}
+  .proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);position:relative}
+  .proc-grid::before{content:"";position:absolute;top:-1px;left:0;height:1px;background:linear-gradient(90deg,var(--teal),var(--lime));width:0;transition:width 1.4s ease}
+  .proc-grid.lit::before{width:100%}
+  .pstep{padding:32px 24px 8px;border-right:1px solid var(--line);min-height:220px;position:relative;cursor:default;transition:background .2s}
+  .pstep:last-child{border-right:0}
+  .pstep:hover{background:rgba(255,255,255,0.015)}
+  .pstep::before{content:"";position:absolute;top:-7px;left:24px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--line-strong);transition:all .2s}
+  .pstep:hover::before{border-color:var(--teal);box-shadow:0 0 14px var(--teal)}
+  .pstep .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);letter-spacing:0.12em}
+  .pstep h4{font-family:'Sora',sans-serif;font-size:20px;margin-top:18px;font-weight:500}
+  .pstep p{font-size:13px;margin-top:12px;line-height:1.55}
+
+  /* ========== DIFFERENTIALS ========== */
+  .diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .diff{background:rgba(15,24,40,0.5);border:1px solid var(--line);border-radius:14px;padding:28px;min-height:220px;display:flex;flex-direction:column;gap:14px;transition:all .25s}
+  .diff:hover{border-color:var(--teal-soft-2);background:rgba(45,212,191,0.04)}
+  .diff .head{display:flex;align-items:center;justify-content:space-between}
+  .diff .ic{width:36px;height:36px;border-radius:9px;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center}
+  .diff .ic svg{width:18px;height:18px}
+  .diff .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-mute);letter-spacing:0.12em}
+  .diff h4{font-size:18px;font-weight:500;letter-spacing:-0.01em}
+  .diff p{font-size:13px;line-height:1.55;color:var(--text-mute)}
+
+  /* ========== PROJECTS / EXPERIENCES ========== */
+  .proj-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:18px}
+  .proj{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s}
+  .proj:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+  .proj-cover{height:240px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;background:radial-gradient(ellipse at top right, rgba(45,212,191,0.10), transparent 60%), var(--ink)}
+  .proj-cover .label{position:absolute;top:18px;left:18px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:0.14em;text-transform:uppercase;background:var(--teal-soft);padding:4px 10px;border-radius:6px;border:1px solid var(--teal-soft-2)}
+  .proj-info{padding:24px}
+  .proj-info h4{font-size:20px;font-weight:500;margin-bottom:8px}
+  .proj-info p{font-size:13px;line-height:1.55;color:var(--text-mute)}
+  .proj-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+  .proj-tags span{font-size:10px;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;color:var(--text-mute);padding:3px 8px;border:1px solid var(--line);border-radius:100px}
+
+  /* AMACOM cover composition */
+  .amacom-cover{padding:24px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+  .amacom-cover .head{display:flex;justify-content:space-between;align-items:flex-start}
+  .amacom-cover .brand{font-family:'Sora',sans-serif;font-size:22px;letter-spacing:0.18em;font-weight:600;color:var(--text)}
+  .amacom-cover .body{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+  .amacom-cover .body .k{background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:8px;padding:10px}
+  .amacom-cover .body .k .l{font-size:9px;color:var(--text-mute);letter-spacing:0.1em;text-transform:uppercase}
+  .amacom-cover .body .k .v{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;margin-top:3px}
+  .amacom-cover .body .k .s{height:18px;margin-top:4px}
+
+  /* Experience tile */
+  .exp{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;min-height:300px}
+  .exp .ic{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.04);color:var(--teal);display:grid;place-items:center;border:1px solid var(--line)}
+  .exp .ic svg{width:20px;height:20px}
+  .exp h4{font-size:18px;font-weight:500}
+  .exp p{font-size:13px;color:var(--text-mute);line-height:1.55}
+  .exp .stat{font-family:'Sora',sans-serif;font-size:32px;font-weight:600;letter-spacing:-0.02em}
+  .exp .stat .u{color:var(--lime);font-size:20px;font-weight:500;margin-left:2px}
+  .exp .stat-l{font-size:12px;color:var(--text-mute)}
+
+  /* ========== CTA FINAL ========== */
+  .cta-final{padding:120px 0}
+  .cta-card{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--line-strong);padding:80px 64px;background:
+    radial-gradient(circle at 80% -20%, rgba(168,224,101,0.18), transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(45,212,191,0.18), transparent 55%),
+    linear-gradient(135deg,#0c1a26,#0a1422)}
+  .cta-card::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:48px 48px;mask:radial-gradient(ellipse at 50% 100%, #000 30%, transparent 80%);pointer-events:none}
+  .cta-inner{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center}
+  .cta-inner h2{font-size:46px;line-height:1.05;letter-spacing:-0.025em;max-width:640px}
+  .cta-inner h2 b{color:var(--teal);font-weight:600}
+  .cta-inner h2 .g{color:var(--lime);font-weight:600}
+  .cta-side{display:flex;flex-direction:column;gap:14px}
+  .cta-side .meta{font-size:12px;color:var(--text-mute);letter-spacing:0.1em;margin-top:6px}
+  .wa{display:flex;align-items:center;gap:10px;padding:13px 22px;border:1px solid var(--line-strong);border-radius:10px;color:var(--text);font-size:14px;justify-content:center;transition:all .2s;background:rgba(255,255,255,0.02)}
+  .wa:hover{border-color:var(--lime);color:var(--lime)}
+  .wa svg{width:18px;height:18px}
+
+  /* ========== FOOTER ========== */
+  footer{border-top:1px solid var(--line);padding:80px 0 28px;background:var(--bg-2)}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px}
+  .footer-brand img{height:34px;width:auto}
+  .footer-brand .sig{margin-top:18px;font-family:'Sora',sans-serif;font-size:14px;color:var(--text);font-weight:500}
+  .footer-brand p{margin-top:8px;font-size:13px;color:var(--text-mute);max-width:340px;line-height:1.55}
+  .footer-col h5{font-family:'Sora',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:18px;font-weight:500}
+  .footer-col a{display:block;font-size:14px;color:var(--text-dim);padding:6px 0;transition:color .2s}
+  .footer-col a:hover{color:var(--teal)}
+  .socials{display:flex;gap:10px;margin-top:24px}
+  .socials a{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--text-dim);transition:all .2s}
+  .socials a:hover{border-color:var(--teal);color:var(--teal)}
+  .socials svg{width:16px;height:16px}
+  .footer-bottom{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-mute);flex-wrap:wrap;gap:16px}
+
+  /* Responsive */
+  @media (max-width: 1024px){
+    .container{padding:0 24px}
+    .hero-grid,.prob-grid,.cta-inner{grid-template-columns:1fr}
+    .hero h1{font-size:44px}
+    .section{padding:80px 0}
+    .section-head{grid-template-columns:1fr;gap:24px}
+    .section-head h2{font-size:34px}
+    .pillars,.diff-grid,.proj-grid,.aud-grid,.prob-list{grid-template-columns:1fr 1fr}
+    .proc-grid{grid-template-columns:1fr 1fr}
+    .pstep{border-bottom:1px solid var(--line)}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    nav.main{display:none}
+    .hero-comp{height:540px;margin-top:40px}
+    .cta-card{padding:48px 28px}
+    .cta-inner h2{font-size:32px}
+  }
+  @media (max-width: 640px){
+    .pillars,.diff-grid,.proj-grid,.aud-grid,.prob-list,.proc-grid,.footer-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="amb"></div>
+<div class="dots"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="container nav">
+    <a href="#top" class="brand">
+      <img src="assets/beanic-logo-light.png" alt="BEANIC" />
+    </a>
+    <nav class="main">
+      <a href="#pilares">Pilares</a>
+      <a href="#publico">Para quem</a>
+      <a href="#problemas">Problemas</a>
+      <a href="#processo">Processo</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-primary btn-sm">Solicitar diagnóstico<span class="arr"></span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="pill"><span class="dot"></span> Tecnologia para organizar e escalar negócios</div>
+      <h1 style="margin-top:24px">Soluções digitais para negócios que querem <b>organizar</b>, <b>automatizar</b> e <span class="g">crescer</span>.</h1>
+      <p class="sub">Desenvolvemos sistemas, sites institucionais, dashboards e automações para empresas que precisam organizar processos, vender melhor e tomar decisões com mais controle.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn btn-primary">Solicitar diagnóstico<span class="arr"></span></a>
+        <a href="#contato" class="btn btn-ghost">Falar sobre meu projeto</a>
+      </div>
+      <div class="hero-meta">
+        <span>Sob medida para o seu negócio</span>
+        <span>Foco em organização e resultado</span>
+      </div>
+    </div>
+
+    <!-- Composition -->
+    <div class="hero-comp">
+      <div class="panel app">
+        <div class="app-head">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="crumb">app.beanic / vendas / painel</div>
+          <div class="tag">● ao vivo</div>
+        </div>
+        <div class="app-body">
+          <div class="app-side">
+            <div class="group">Operação</div>
+            <div class="it on">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              Painel
+            </div>
+            <div class="it">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+              Vendas
+              <span class="badge">12</span>
+            </div>
+            <div class="it">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7L9 19l-5-5"/></svg>
+              Tarefas
+            </div>
+            <div class="it">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M17 11l2 2 4-4"/></svg>
+              Clientes
+            </div>
+            <div class="group">Gestão</div>
+            <div class="it">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20V8"/></svg>
+              Relatórios
+            </div>
+            <div class="it">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.36.27.65.65.85 1.08"/></svg>
+              Config.
+            </div>
+          </div>
+          <div class="app-main">
+            <div class="app-title">
+              <div>
+                <h4>Visão geral · Operação</h4>
+                <div class="sub">Atualizado há 2 min</div>
+              </div>
+              <div class="mono" style="color:var(--text-mute)">7 DIAS</div>
+            </div>
+            <div class="app-kpis">
+              <div class="kpi"><div class="k">Vendas</div><div class="v">R$ 184k</div><div class="d up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5-5 5 5M10 19V7"/></svg>+18%</div></div>
+              <div class="kpi"><div class="k">Pedidos</div><div class="v">312</div><div class="d up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5-5 5 5M10 19V7"/></svg>+9%</div></div>
+              <div class="kpi"><div class="k">Ticket</div><div class="v">R$ 590</div><div class="d up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5-5 5 5M10 19V7"/></svg>+4%</div></div>
+            </div>
+            <div class="app-chart">
+              <div class="chart-head">
+                <div class="t">Faturamento × Meta</div>
+                <div class="legend"><span><i style="background:var(--teal)"></i>Faturamento</span><span><i style="background:var(--lime)"></i>Meta</span></div>
+              </div>
+              <svg viewBox="0 0 400 124" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.45"/>
+                    <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <g stroke="rgba(180,200,225,0.06)">
+                  <line x1="0" y1="30" x2="400" y2="30"/>
+                  <line x1="0" y1="60" x2="400" y2="60"/>
+                  <line x1="0" y1="90" x2="400" y2="90"/>
+                </g>
+                <path d="M0,75 L40,72 L80,60 L120,68 L160,52 L200,58 L240,42 L280,48 L320,32 L360,38 L400,22"
+                      stroke="#a8e065" stroke-width="1.4" stroke-dasharray="3 3" fill="none"/>
+                <path d="M0,86 L40,76 L80,82 L120,66 L160,72 L200,52 L240,60 L280,42 L320,50 L360,28 L400,30"
+                      stroke="#2dd4bf" stroke-width="2.2" fill="none"/>
+                <path d="M0,86 L40,76 L80,82 L120,66 L160,72 L200,52 L240,60 L280,42 L320,50 L360,28 L400,30 L400,124 L0,124 Z" fill="url(#g1)"/>
+                <g fill="#2dd4bf">
+                  <circle cx="280" cy="42" r="2.5"/>
+                  <circle cx="320" cy="50" r="2.5"/>
+                  <circle cx="360" cy="28" r="2.5"/>
+                  <circle cx="400" cy="30" r="3"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card fc-automation">
+        <div class="row">
+          <div class="ic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.7 1 6.3 2.7"/><path d="M17 4v5h5"/></svg>
+          </div>
+          <div>
+            <div class="lbl">Automação</div>
+            <div class="val">28 rotinas/dia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card fc-growth">
+        <div class="row">
+          <div class="ic g">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </div>
+          <div>
+            <div class="lbl">Crescimento</div>
+            <div class="val">+34% em 90 dias</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card fc-flow">
+        <div class="row-flow">
+          <div class="step">
+            <div class="b">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg>
+            </div>
+            Formulário
+          </div>
+          <div class="sep"></div>
+          <div class="step">
+            <div class="b">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"/><path d="M3 21l3-3"/></svg>
+            </div>
+            WhatsApp
+          </div>
+          <div class="sep"></div>
+          <div class="step">
+            <div class="b">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 20V10M10 20V4M16 20v-8"/></svg>
+            </div>
+            Painel
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<section class="strip">
+  <div class="container strip-wrap">
+    <div class="strip-label">Atendemos</div>
+    <div class="strip-items">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9v.01M13 9v.01M9 13v.01M13 13v.01M9 17v.01M13 17v.01"/></svg> Indústrias</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1-4h16l1 4M3 9v11h18V9M3 9h18M9 13h6"/></svg> Comércios</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="4"/><path d="M17 11a4 4 0 0 0 0-8M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M17 21v-2c0-1.5-.6-2.8-1.6-3.7"/></svg> Prestadores de serviço</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg> Empresas em crescimento</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.2 4.2l4.2 4.2M15.6 15.6l4.2 4.2M1 12h6M17 12h6M4.2 19.8l4.2-4.2M15.6 8.4l4.2-4.2"/></svg> Pequenos negócios</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section" id="pilares">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Pilares · 01</span></div>
+        <h2>Quatro frentes que conectam tecnologia ao seu negócio.</h2>
+      </div>
+      <p class="lead">Cada pilar resolve um pedaço diferente da operação. Combinados, formam uma camada digital sólida — capaz de organizar processos, automatizar rotinas e revelar dados que apoiam decisão.</p>
+    </div>
+
+    <div class="pillars">
+      <!-- Pillar 1: Sistemas -->
+      <div class="pillar">
+        <div class="pnum">01 · Operação</div>
+        <h3>Sistemas sob medida</h3>
+        <p>Plataformas internas modeladas a partir do seu fluxo real — não de um ERP genérico que não cabe. Controle de vendas, estoque, produção, clientes, financeiro e setores integrados em uma única fonte de verdade.</p>
+        <div class="feats">
+          <span>Controle de vendas</span>
+          <span>Estoque e produção</span>
+          <span>Clientes e pedidos</span>
+          <span>Financeiro</span>
+          <span>Setores internos</span>
+          <span>Fluxos operacionais</span>
+        </div>
+        <div class="pillar-viz">
+          <div class="v-system">
+            <div class="col"><div class="head"></div><div class="row hi"></div><div class="row"></div><div class="row hi"></div><div class="row"></div></div>
+            <div class="col"><div class="head"></div><div class="row"></div><div class="row hi"></div><div class="row hi"></div><div class="row"></div></div>
+            <div class="col"><div class="head"></div><div class="row hi"></div><div class="row"></div><div class="row"></div><div class="row hi"></div></div>
+            <div class="col"><div class="head"></div><div class="row"></div><div class="row hi"></div><div class="row"></div><div class="row"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Sites -->
+      <div class="pillar">
+        <div class="pnum">02 · Presença digital</div>
+        <h3>Sites e presença digital</h3>
+        <p>Sites institucionais, landing pages e portfólios construídos para gerar conversa qualificada. Estrutura comercial clara, narrativa do seu negócio e captação de orçamento integrada ao seu fluxo.</p>
+        <div class="feats">
+          <span>Sites institucionais</span>
+          <span>Landing pages</span>
+          <span>Portfólios</span>
+          <span>Páginas de serviços</span>
+          <span>Catálogos</span>
+          <span>Captação de orçamento</span>
+        </div>
+        <div class="pillar-viz">
+          <div class="v-sites">
+            <div class="b">
+              <div class="bar t"></div>
+              <div class="bar s"></div>
+              <div class="bar"></div>
+              <div class="bar s2"></div>
+              <div class="bar"></div>
+            </div>
+            <div class="b-r">
+              <div class="tile"><span class="tag">// hero</span></div>
+              <div class="tile"><span class="tag">// CTA</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Automações -->
+      <div class="pillar">
+        <div class="pnum">03 · Automação</div>
+        <h3>Automações</h3>
+        <p>Substituímos planilhas, e-mails e rotinas manuais por fluxos automáticos auditáveis. WhatsApp, formulários, CRM, relatórios e alertas — tudo conversando em tempo real, sem o operador no meio.</p>
+        <div class="feats">
+          <span>Integrações</span>
+          <span>WhatsApp</span>
+          <span>Relatórios automáticos</span>
+          <span>Alertas</span>
+          <span>Formulários</span>
+          <span>CRM</span>
+        </div>
+        <div class="pillar-viz">
+          <div class="v-auto">
+            <div class="n"><div class="b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div><div class="l">Form</div></div>
+            <div class="sep"></div>
+            <div class="n"><div class="b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="l">Trigger</div></div>
+            <div class="sep"></div>
+            <div class="n"><div class="b lim"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z"/><path d="M3 21l3-3"/></svg></div><div class="l">WhatsApp</div></div>
+            <div class="sep"></div>
+            <div class="n"><div class="b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="l">Salvo</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 4: Dashboards -->
+      <div class="pillar">
+        <div class="pnum">04 · Dados</div>
+        <h3>Dashboards e gestão de dados</h3>
+        <p>Indicadores, painéis gerenciais e visualização de dados que sustentam decisão executiva. Você sai do achismo e passa a olhar para o seu negócio com clareza — em tempo real.</p>
+        <div class="feats">
+          <span>Indicadores</span>
+          <span>Relatórios</span>
+          <span>Painéis gerenciais</span>
+          <span>Desempenho</span>
+          <span>Visualização de dados</span>
+          <span>Apoio à decisão</span>
+        </div>
+        <div class="pillar-viz">
+          <div class="v-dash">
+            <svg viewBox="0 0 200 90" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="d1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,70 L20,60 L40,64 L60,48 L80,52 L100,32 L120,40 L140,28 L160,30 L180,18 L200,22 L200,90 L0,90 Z" fill="url(#d1)"/>
+              <path d="M0,70 L20,60 L40,64 L60,48 L80,52 L100,32 L120,40 L140,28 L160,30 L180,18 L200,22" stroke="#2dd4bf" stroke-width="2" fill="none"/>
+            </svg>
+            <div class="bars">
+              <i style="height:35%"></i>
+              <i style="height:48%"></i>
+              <i class="lit" style="height:62%"></i>
+              <i style="height:50%"></i>
+              <i class="lit" style="height:72%"></i>
+              <i class="lim" style="height:88%"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<section class="section" id="publico" style="padding-top:0">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Para quem · 02</span></div>
+        <h2>Negócios diferentes, uma mesma necessidade: organizar para crescer.</h2>
+      </div>
+      <p class="lead">Atendemos empresas que cresceram em planilhas e WhatsApp e agora precisam estruturar a operação. Não importa o porte — importa o estágio.</p>
+    </div>
+    <div class="aud-grid">
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9v.01M13 9v.01M9 13v.01M13 13v.01M9 17v.01M13 17v.01"/></svg></div>
+        <div>
+          <h4>Indústrias</h4>
+          <p>Operações com produção, estoque, qualidade e manutenção que precisam sair da planilha.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l1-4h16l1 4M3 9v11h18V9M3 9h18M9 13h6"/></svg></div>
+        <div>
+          <h4>Comércios</h4>
+          <p>Lojas físicas e online com vendas, estoque e clientes em controles improvisados.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="4"/><path d="M17 11a4 4 0 0 0 0-8M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div>
+        <div>
+          <h4>Prestadores de serviço</h4>
+          <p>Times técnicos, ateliês e estúdios com orçamento, OS e agenda no WhatsApp.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <div>
+          <h4>Empresas em crescimento</h4>
+          <p>Negócios saindo da fase improvisada e precisando de processo, dado e controle.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v4H4zM4 13h10v8H4zM18 13h2v8h-2z"/></svg></div>
+        <div>
+          <h4>Pequenos negócios</h4>
+          <p>Donos que fazem tudo — vendas, atendimento, gestão — e precisam liberar tempo.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/><path d="M8 14h8"/></svg></div>
+        <div>
+          <h4>Marcas sem presença digital</h4>
+          <p>Empresas sólidas que precisam de site institucional e narrativa comercial à altura.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg></div>
+        <div>
+          <h4>Times que vivem em planilhas</h4>
+          <p>Operação que cresceu no Excel e Google Sheets — e já não escala mais.</p>
+        </div>
+      </div>
+      <div class="aud">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        <div>
+          <h4>Operações com WhatsApp central</h4>
+          <p>Negócios que dependem do app para vender, atender e cobrar — e precisam de estrutura.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="section" id="problemas">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Problemas que resolvemos · 03</span></div>
+        <h2>Você se identifica com pelo menos três destes pontos?</h2>
+      </div>
+      <p class="lead">São as dores que vemos repetidas em quase todo negócio que chega até a BEANIC. Não são casos isolados — são sintomas de uma operação que cresceu sem estrutura.</p>
+    </div>
+
+    <div class="prob-grid">
+      <div class="prob-list">
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg></div>
+          <div>
+            <h5>Excesso de planilhas</h5>
+            <p>Vinte abas, três versões diferentes, ninguém sabe qual é a oficial.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4M12 16h.01"/><circle cx="12" cy="12" r="10"/></svg></div>
+          <div>
+            <h5>Processos manuais</h5>
+            <p>Rotinas que dependem da memória do operador — e param quando ele falta.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg></div>
+          <div>
+            <h5>Retrabalho constante</h5>
+            <p>A mesma informação digitada três vezes em três sistemas diferentes.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20V8"/></svg></div>
+          <div>
+            <h5>Falta de indicadores</h5>
+            <p>Você sente que o negócio cresceu, mas não consegue provar com número.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></div>
+          <div>
+            <h5>Informações espalhadas</h5>
+            <p>Dado importante vive em WhatsApp, e-mail, papel e na cabeça do dono.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div>
+            <h5>Sem visão de vendas</h5>
+            <p>Difícil enxergar o que está performando, o que travou e o que precisa atenção.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/></svg></div>
+          <div>
+            <h5>Presença digital fraca</h5>
+            <p>Site amador, redes desatualizadas, sem narrativa comercial profissional.</p>
+          </div>
+        </div>
+        <div class="prob">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12c5 5 13 5 18 0M3 12c5-5 13-5 18 0"/></svg></div>
+          <div>
+            <h5>Pouca automação</h5>
+            <p>Tarefas repetitivas consumindo o tempo de quem deveria estar decidindo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prob-aside">
+        <div class="quote">Quando o negócio cresce em <em>improviso</em>, cada nova venda <em class="g">aumenta a confusão</em> em vez de aumentar o controle.</div>
+        <div class="smalltag">— O que ouvimos antes de cada diagnóstico</div>
+        <div class="prob-after">
+          <div class="lbl">→ O que a BEANIC entrega</div>
+          <div class="body">Uma camada digital sob medida que organiza a operação, automatiza o repetitivo e devolve visibilidade real do negócio.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="processo">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Como trabalhamos · 04</span></div>
+        <h2>Um método claro, com entregas mensuráveis em cada etapa.</h2>
+      </div>
+      <p class="lead">Você sempre sabe onde o projeto está, o que vem agora e qual o próximo ganho operacional. Sem caixa-preta, sem promessa genérica de transformação digital.</p>
+    </div>
+
+    <div class="proc">
+      <div class="proc-grid" id="ptrack">
+        <div class="pstep"><div class="n">01 · Discovery</div><h4>Diagnóstico</h4><p>Mapeamos sua operação atual, fluxos, gargalos e o que já funciona. Saímos com um retrato claro.</p></div>
+        <div class="pstep"><div class="n">02 · Strategy</div><h4>Planejamento</h4><p>Definimos escopo, indicadores de sucesso e um roadmap com entregas em etapas curtas.</p></div>
+        <div class="pstep"><div class="n">03 · Build</div><h4>Desenvolvimento</h4><p>Construímos em ciclos curtos, com você acompanhando. Sem surpresa no fim do projeto.</p></div>
+        <div class="pstep"><div class="n">04 · Rollout</div><h4>Implantação</h4><p>Treinamento por setor, migração de dados e acompanhamento real da adoção pelo seu time.</p></div>
+        <div class="pstep"><div class="n">05 · Evolve</div><h4>Evolução</h4><p>Squad dedicada para ajustes, novos módulos e otimizações conforme o negócio cresce.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIALS -->
+<section class="section" id="diferenciais">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Diferenciais · 05</span></div>
+        <h2>Por que a BEANIC é uma escolha estratégica — e não só técnica.</h2>
+      </div>
+      <p class="lead">Não somos uma agência genérica nem uma software house de prateleira. Somos um time de tecnologia aplicada a negócio.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="n">01</div>
+        </div>
+        <h4>Sob medida, de verdade</h4>
+        <p>Modelamos o sistema a partir do seu fluxo real. Sem template forçado, sem adaptar seu negócio a um software.</p>
+      </div>
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+          <div class="n">02</div>
+        </div>
+        <h4>Foco em organização e crescimento</h4>
+        <p>Cada feature responde a uma dor concreta de operação. Nada entra só para ficar bonito na tela.</p>
+      </div>
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/></svg></div>
+          <div class="n">03</div>
+        </div>
+        <h4>Tecnologia ↔ operação</h4>
+        <p>Conversamos com quem está no chão da operação, não só com a diretoria. Daí nasce um software que o time usa.</p>
+      </div>
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg></div>
+          <div class="n">04</div>
+        </div>
+        <h4>Visão prática de negócio</h4>
+        <p>Olhamos antes para o impacto na operação, depois para o stack. Tecnologia é meio, não fim.</p>
+      </div>
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l1.7-4.5A8 8 0 1 1 8 19l-5 2z"/></svg></div>
+          <div class="n">05</div>
+        </div>
+        <h4>Atendimento próximo</h4>
+        <p>Você fala direto com quem está construindo. Sem comercial intermediário, sem PMO entre você e a solução.</p>
+      </div>
+      <div class="diff">
+        <div class="head">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div class="n">06</div>
+        </div>
+        <h4>Clareza do início ao fim</h4>
+        <p>Escopo, prazo, orçamento e progresso visíveis em cada etapa. Você nunca fica adivinhando onde o projeto está.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS / EXPERIENCES -->
+<section class="section" id="projetos">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow"><span class="ix"></span><span class="mono">Projetos e experiências · 06</span></div>
+        <h2>Projetos reais, soluções tangíveis.</h2>
+      </div>
+      <p class="lead">Cada projeto da BEANIC é construído em parceria — começa com diagnóstico, vira sistema, dashboard ou site, e segue evoluindo.</p>
+    </div>
+
+    <div class="proj-grid">
+      <div class="proj">
+        <div class="proj-cover">
+          <div class="label">Case em destaque</div>
+          <div class="amacom-cover">
+            <div class="head">
+              <div class="brand">AMACOM</div>
+              <div class="mono" style="color:var(--text-mute)">// indústria</div>
+            </div>
+            <div>
+              <div style="font-family:'Sora',sans-serif;font-size:18px;line-height:1.25;max-width:80%">Engenharia industrial sob medida para operações que não param.</div>
+            </div>
+            <div class="body">
+              <div class="k"><div class="l">Linha A</div><div class="v">312/h</div>
+                <svg class="s" viewBox="0 0 100 18" preserveAspectRatio="none"><polyline points="0,14 20,12 40,10 60,6 80,8 100,4" fill="none" stroke="#2dd4bf" stroke-width="1.5"/></svg>
+              </div>
+              <div class="k"><div class="l">Linha B</div><div class="v">208/h</div>
+                <svg class="s" viewBox="0 0 100 18" preserveAspectRatio="none"><polyline points="0,10 20,14 40,8 60,10 80,6 100,8" fill="none" stroke="#2dd4bf" stroke-width="1.5"/></svg>
+              </div>
+              <div class="k"><div class="l">Estoque</div><div class="v">98,2%</div>
+                <svg class="s" viewBox="0 0 100 18" preserveAspectRatio="none"><polyline points="0,12 20,10 40,8 60,8 80,4 100,2" fill="none" stroke="#a8e065" stroke-width="1.5"/></svg>
+              </div>
+              <div class="k"><div class="l">Refugo</div><div class="v">1,2%</div>
+                <svg class="s" viewBox="0 0 100 18" preserveAspectRatio="none"><polyline points="0,4 20,6 40,5 60,8 80,10 100,12" fill="none" stroke="#a8e065" stroke-width="1.5"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <h4>AMACOM — Estruturação digital completa</h4>
+          <p>Site institucional, sistemas internos para setores operacionais e organização de processos em um único projeto contínuo.</p>
+          <div class="proj-tags"><span>Site institucional</span><span>Sistemas internos</span><span>Processos</span></div>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-8M22 20V8"/></svg></div>
+        <div>
+          <div class="stat">+18<span class="u">%</span></div>
+          <div class="stat-l">Em visibilidade de vendas (média entre projetos)</div>
+        </div>
+        <p>Quando indicadores entram em painel — e saem da planilha — o time decide com base em dado, não em achismo.</p>
+      </div>
+
+      <div class="exp">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.7 1 6.3 2.7"/><path d="M17 4v5h5"/></svg></div>
+        <div>
+          <div class="stat">−38<span class="u">%</span></div>
+          <div class="stat-l">Tempo gasto em tarefas repetitivas</div>
+        </div>
+        <p>Automações de WhatsApp, formulários e relatórios devolvem horas por semana ao time operacional.</p>
+      </div>
+
+      <div class="exp">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3zM3 9h18M9 21V9"/></svg></div>
+        <div>
+          <h4>Sistemas internos</h4>
+          <p>Plataformas sob medida para vendas, OS, estoque e setores operacionais — desenhadas a partir do fluxo real.</p>
+        </div>
+        <div class="proj-tags"><span>Sistemas</span><span>Operação</span><span>Sob medida</span></div>
+      </div>
+
+      <div class="exp">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/></svg></div>
+        <div>
+          <h4>Sites institucionais</h4>
+          <p>Presença digital comercialmente forte, com narrativa clara e estrutura voltada a converter conversa qualificada.</p>
+        </div>
+        <div class="proj-tags"><span>Sites</span><span>Landing pages</span><span>Posicionamento</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-final" id="contato">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-inner">
+        <div>
+          <div class="pill" style="margin-bottom:24px"><span class="dot"></span> Próximo passo</div>
+          <h2>Vamos <b>organizar</b> e <span class="g">escalar</span> seu negócio com tecnologia.</h2>
+          <p style="margin-top:22px;max-width:540px;font-size:16px">Conversa direta com nosso time. Sem comercial intermediário, sem proposta genérica — começamos entendendo o seu negócio antes de qualquer escopo.</p>
+        </div>
+        <div class="cta-side">
+          <a href="#" class="btn btn-primary" style="padding:18px 28px;font-size:15px">Solicitar diagnóstico<span class="arr"></span></a>
+          <a href="#" class="wa">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l1.7-4.5A8 8 0 1 1 8 19l-5 2z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <div class="meta">Resposta em até 1 dia útil · diagnóstico sem custo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <img src="assets/beanic-logo-light.png" alt="BEANIC" />
+        </a>
+        <div class="sig">Tecnologia para organizar e escalar negócios</div>
+        <p>Sistemas, sites institucionais, dashboards e automações para empresas que precisam organizar processos, vender melhor e tomar decisões com mais controle.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v16H4zM6 2a2 2 0 110 4 2 2 0 010-4zM10 8h4v2c.7-1.2 2.2-2.2 4-2.2 3 0 5 2 5 5.2V20h-4v-6c0-1.5-1-2.5-2.5-2.5S14 12.5 14 14v6h-4V8z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21l1.7-4.5A8 8 0 1 1 8 19l-5 2z"/></svg></a>
+          <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Pilares</h5>
+        <a href="#pilares">Sistemas sob medida</a>
+        <a href="#pilares">Sites e presença digital</a>
+        <a href="#pilares">Automações</a>
+        <a href="#pilares">Dashboards</a>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <a href="#publico">Para quem é</a>
+        <a href="#problemas">Problemas que resolvemos</a>
+        <a href="#processo">Como trabalhamos</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#projetos">Projetos</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <a href="mailto:contato@beanic.com.br">contato@beanic.com.br</a>
+        <a href="#">WhatsApp comercial</a>
+        <a href="#">Segunda a Sexta · 8h-18h</a>
+        <a href="#contato">Solicitar diagnóstico</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 BEANIC · Tecnologia para organizar e escalar negócios.</div>
+      <div>Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); window.scrollTo({top: el.offsetTop - 60, behavior: 'smooth'}); }
+      }
+    });
+  });
+
+  // Scrollspy
+  const links = document.querySelectorAll('nav.main a');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 200;
+    let i = 0;
+    sections.forEach((s,idx) => { if (s.offsetTop <= y) i = idx; });
+    links.forEach(l => l.classList.remove('active'));
+    if (links[i]) links[i].classList.add('active');
+  });
+
+  // Process track lit on enter
+  const ptrack = document.getElementById('ptrack');
+  const io = new IntersectionObserver(e => {
+    e.forEach(en => { if (en.isIntersecting) ptrack.classList.add('lit'); });
+  }, {threshold: 0.3});
+  if (ptrack) io.observe(ptrack);
+</script>
+
+</body>
+</html>
