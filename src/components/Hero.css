@@ -5,7 +5,7 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 72px;
   align-items: center;
 }
@@ -21,7 +21,6 @@
   color: var(--teal);
   font-weight: 600;
   position: relative;
-  white-space: nowrap;
 }
 
 .hero h1 .g {
