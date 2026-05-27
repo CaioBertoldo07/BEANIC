@@ -177,6 +177,34 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
   payload.include = [...include, { email: { email: normalizedEmail } }]
 
   // 3. PUT pra atualizar
+  await updateAccessPolicy(env, url, target.policyUid, payload)
+}
+
+async function updateAccessPolicy(
+  env: Env,
+  applicationPolicyUrl: string,
+  policyUid: string,
+  payload: AccessPolicy,
+): Promise<void> {
+  const appPolicyResult = await putAccessPolicy(env, applicationPolicyUrl, payload)
+  if (appPolicyResult.ok) return
+
+  if (!isReusablePolicyEndpointError(appPolicyResult.error)) {
+    throw new Error(appPolicyResult.error)
+  }
+
+  const reusablePolicyUrl = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/access/policies/${policyUid}`
+  const reusablePolicyResult = await putAccessPolicy(env, reusablePolicyUrl, payload)
+  if (!reusablePolicyResult.ok) {
+    throw new Error(reusablePolicyResult.error)
+  }
+}
+
+async function putAccessPolicy(
+  env: Env,
+  url: string,
+  payload: AccessPolicy,
+): Promise<{ ok: true } | { ok: false; error: string }> {
   const putRes = await fetch(url, {
     method: 'PUT',
     headers: {
@@ -187,12 +215,18 @@ export async function addEmailToAccessPolicy(env: Env, email: string): Promise<v
   })
   if (!putRes.ok) {
     const body = await putRes.text()
-    throw new Error(`CF Access PUT ${putRes.status}: ${body}`)
+    return { ok: false, error: `CF Access PUT ${putRes.status}: ${body}` }
   }
   const putData = (await putRes.json()) as CloudflareApiResponse<AccessPolicy>
   if (!putData.success) {
-    throw new Error(`CF Access PUT falhou: ${formatCloudflareErrors(putData)}`)
+    return { ok: false, error: `CF Access PUT falhou: ${formatCloudflareErrors(putData)}` }
   }
+
+  return { ok: true }
+}
+
+function isReusablePolicyEndpointError(error: string): boolean {
+  return error.includes('can not update reusable policies through this endpoint')
 }
 
 function getAccessRuleEmail(rule: AccessRule): string | null {
