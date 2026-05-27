@@ -52,11 +52,10 @@ export default function Footer() {
 
           <div className="footer-col">
             <h5>Empresa</h5>
-            <a href="#publico">Para quem é</a>
             <a href="#problemas">Problemas que resolvemos</a>
             <a href="#processo">Como trabalhamos</a>
             <a href="#diferenciais">Diferenciais</a>
-            <a href="#projetos">Projetos</a>
+            <a href="#projetos">Projetos em andamento</a>
           </div>
 
           <div className="footer-col">

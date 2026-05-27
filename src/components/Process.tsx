@@ -34,7 +34,7 @@ export default function Process() {
           <div>
             <div className="eyebrow">
               <span className="ix" />
-              <span className="mono">Como trabalhamos · 04</span>
+              <span className="mono">Como trabalhamos · 03</span>
             </div>
             <h2>Um método claro, com entregas mensuráveis em cada etapa.</h2>
           </div>

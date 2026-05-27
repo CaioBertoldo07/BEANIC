@@ -10,14 +10,14 @@ export default function Hero() {
             Tecnologia para organizar e escalar negócios
           </div>
           <h1 style={{ marginTop: '24px' }}>
-            Soluções digitais para negócios que querem{' '}
-            <b>organizar</b>, <b>automatizar</b> e{' '}
-            <span className="g">crescer</span>.
+            Transformamos processos manuais em{' '}
+            <b>sistemas, sites, dashboards e automações</b> para empresas que
+            querem <span className="g">crescer com controle</span>.
           </h1>
           <p className="sub">
-            Desenvolvemos sistemas, sites institucionais, dashboards e automações
-            para empresas que precisam organizar processos, vender melhor e tomar
-            decisões com mais controle.
+            Desenvolvemos soluções digitais sob medida para empresas que precisam
+            sair do improviso — organizar processos, automatizar rotinas, vender
+            com mais consistência e tomar decisões com dados reais.
           </p>
           <div className="hero-actions">
             <a href="#contato" className="btn btn-primary">
@@ -29,8 +29,8 @@ export default function Hero() {
             </a>
           </div>
           <div className="hero-meta">
-            <span>Sob medida para o seu negócio</span>
-            <span>Foco em organização e resultado</span>
+            <span>Solução sob medida para o seu fluxo real</span>
+            <span>Sem ERP genérico, sem template forçado</span>
           </div>
         </div>
 

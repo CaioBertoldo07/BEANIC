@@ -4,10 +4,10 @@ import beanicLogo from '../assets/beanic-logo.png'
 import './Header.css'
 
 const navLinks = [
-  { href: '#pilares', label: 'Pilares' },
-  { href: '#publico', label: 'Para quem' },
   { href: '#problemas', label: 'Problemas' },
+  { href: '#pilares', label: 'Pilares' },
   { href: '#processo', label: 'Processo' },
+  { href: '#diferenciais', label: 'Diferenciais' },
   { href: '#projetos', label: 'Projetos' },
   { href: '#contato', label: 'Contato' },
 ]

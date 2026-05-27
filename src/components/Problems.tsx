@@ -84,7 +84,7 @@ export default function Problems() {
           <div>
             <div className="eyebrow">
               <span className="ix" />
-              <span className="mono">Problemas que resolvemos · 03</span>
+              <span className="mono">Problemas que resolvemos · 01</span>
             </div>
             <h2>Você se identifica com pelo menos três destes pontos?</h2>
           </div>

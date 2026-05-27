@@ -8,13 +8,14 @@ export default function Portfolio() {
           <div>
             <div className="eyebrow">
               <span className="ix" />
-              <span className="mono">Projetos e experiências · 06</span>
+              <span className="mono">Onde estamos agora · 05</span>
             </div>
-            <h2>Projetos reais, soluções tangíveis.</h2>
+            <h2>Experiências que estão construindo a BEANIC.</h2>
           </div>
           <p className="lead">
-            Cada projeto da BEANIC é construído em parceria — começa com
-            diagnóstico, vira sistema, dashboard ou site, e segue evoluindo.
+            Somos uma empresa nova — e não vamos inventar cases ou números que
+            ainda não existem. O que mostramos aqui é o que está em andamento,
+            com transparência sobre o estágio real de cada entrega.
           </p>
         </div>
 
@@ -22,7 +23,7 @@ export default function Portfolio() {
           {/* Case AMACOM */}
           <div className="proj">
             <div className="proj-cover">
-              <div className="cover-label">Case em destaque</div>
+              <div className="cover-label">Projeto em andamento</div>
               <div className="amacom-cover">
                 <div className="ac-head">
                   <div className="ac-brand">AMACOM</div>
@@ -33,64 +34,57 @@ export default function Portfolio() {
                     Engenharia industrial sob medida para operações que não param.
                   </div>
                 </div>
-                <div className="ac-body">
-                  <div className="ac-k">
-                    <div className="ac-l">Linha A</div>
-                    <div className="ac-v">312/h</div>
-                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
-                      <polyline points="0,14 20,12 40,10 60,6 80,8 100,4" fill="none" stroke="#2dd4bf" strokeWidth="1.5" />
-                    </svg>
+                <div className="ac-status">
+                  <div className="status-item done">
+                    <span className="status-dot" />
+                    Site institucional entregue
                   </div>
-                  <div className="ac-k">
-                    <div className="ac-l">Linha B</div>
-                    <div className="ac-v">208/h</div>
-                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
-                      <polyline points="0,10 20,14 40,8 60,10 80,6 100,8" fill="none" stroke="#2dd4bf" strokeWidth="1.5" />
-                    </svg>
+                  <div className="status-item active">
+                    <span className="status-dot pulse-dot" />
+                    Sistemas internos em desenvolvimento
                   </div>
-                  <div className="ac-k">
-                    <div className="ac-l">Estoque</div>
-                    <div className="ac-v">98,2%</div>
-                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
-                      <polyline points="0,12 20,10 40,8 60,8 80,4 100,2" fill="none" stroke="#a8e065" strokeWidth="1.5" />
-                    </svg>
-                  </div>
-                  <div className="ac-k">
-                    <div className="ac-l">Refugo</div>
-                    <div className="ac-v">1,2%</div>
-                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
-                      <polyline points="0,4 20,6 40,5 60,8 80,10 100,12" fill="none" stroke="#a8e065" strokeWidth="1.5" />
-                    </svg>
+                  <div className="status-item pending">
+                    <span className="status-dot" />
+                    Dashboards operacionais · em planejamento
                   </div>
                 </div>
               </div>
             </div>
             <div className="proj-info">
               <h4>AMACOM — Estruturação digital completa</h4>
-              <p>Site institucional, sistemas internos para setores operacionais e organização de processos em um único projeto contínuo.</p>
+              <p>
+                Site institucional construído e no ar. Sistemas internos para setores
+                operacionais em desenvolvimento ativo — modelados a partir do fluxo
+                real da operação.
+              </p>
               <div className="proj-tags">
                 <span>Site institucional</span>
                 <span>Sistemas internos</span>
-                <span>Processos</span>
+                <span>Em andamento</span>
               </div>
             </div>
           </div>
 
-          {/* Exp: +18% */}
+          {/* Proof of process: Diagnóstico */}
           <div className="exp">
             <div className="exp-ic">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M4 20V10M10 20V4M16 20v-8M22 20V8" />
+                <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.3-4.3" />
               </svg>
             </div>
             <div>
-              <div className="stat">+18<span className="u">%</span></div>
-              <div className="stat-l">Em visibilidade de vendas (média entre projetos)</div>
+              <h4>Diagnóstico antes de código</h4>
+              <p>
+                Todo projeto começa mapeando o fluxo real da operação. Nada entra
+                em desenvolvimento sem ser validado com quem trabalha no dia a dia.
+              </p>
             </div>
-            <p>Quando indicadores entram em painel — e saem da planilha — o time decide com base em dado, não em achismo.</p>
+            <div className="proj-tags">
+              <span>Processo</span><span>Sem surpresa</span>
+            </div>
           </div>
 
-          {/* Exp: -38% */}
+          {/* Proof of process: Ciclos curtos */}
           <div className="exp">
             <div className="exp-ic">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -99,13 +93,18 @@ export default function Portfolio() {
               </svg>
             </div>
             <div>
-              <div className="stat">−38<span className="u">%</span></div>
-              <div className="stat-l">Tempo gasto em tarefas repetitivas</div>
+              <h4>Entregas em ciclos curtos</h4>
+              <p>
+                Desenvolvemos em etapas visíveis, com revisão constante. Você
+                acompanha o progresso e valida cada entrega antes de avançar.
+              </p>
             </div>
-            <p>Automações de WhatsApp, formulários e relatórios devolvem horas por semana ao time operacional.</p>
+            <div className="proj-tags">
+              <span>Transparência</span><span>Sem caixa-preta</span>
+            </div>
           </div>
 
-          {/* Exp: Sistemas internos */}
+          {/* Proof of process: Implantação */}
           <div className="exp">
             <div className="exp-ic">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -113,15 +112,18 @@ export default function Portfolio() {
               </svg>
             </div>
             <div>
-              <h4>Sistemas internos</h4>
-              <p>Plataformas sob medida para vendas, OS, estoque e setores operacionais — desenhadas a partir do fluxo real.</p>
+              <h4>Implantação acompanhada</h4>
+              <p>
+                Sistema entregue com treinamento por setor e acompanhamento da
+                adoção real. Não entregamos e somimos.
+              </p>
             </div>
             <div className="proj-tags">
-              <span>Sistemas</span><span>Operação</span><span>Sob medida</span>
+              <span>Treinamento</span><span>Suporte</span>
             </div>
           </div>
 
-          {/* Exp: Sites institucionais */}
+          {/* Proof of process: Evolução */}
           <div className="exp">
             <div className="exp-ic">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -129,14 +131,39 @@ export default function Portfolio() {
               </svg>
             </div>
             <div>
-              <h4>Sites institucionais</h4>
-              <p>Presença digital comercialmente forte, com narrativa clara e estrutura voltada a converter conversa qualificada.</p>
+              <h4>Documentação e evolução</h4>
+              <p>
+                Código documentado, arquitetura clara e roadmap definido para que
+                o sistema cresça junto com o negócio — sem refazer do zero.
+              </p>
             </div>
             <div className="proj-tags">
-              <span>Sites</span><span>Landing pages</span><span>Posicionamento</span>
+              <span>Escalável</span><span>Documentado</span>
             </div>
           </div>
         </div>
+
+        {/*
+          === SEÇÃO FUTURA: Quem está por trás da BEANIC ===
+          Descomentar quando houver informações reais para apresentar
+          (fotos, nomes, histórico verificável).
+
+          <div className="team-section" id="time">
+            <div className="section-head" style={{ marginTop: '96px' }}>
+              <div>
+                <div className="eyebrow">
+                  <span className="ix" />
+                  <span className="mono">Time · 06</span>
+                </div>
+                <h2>Quem está por trás da BEANIC.</h2>
+              </div>
+              <p className="lead">
+                Pessoas reais com histórico real em tecnologia e operação de negócios.
+              </p>
+            </div>
+            // cards de equipe aqui
+          </div>
+        */}
       </div>
     </section>
   )

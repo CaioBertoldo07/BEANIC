@@ -72,7 +72,7 @@ export default function Differentials() {
           <div>
             <div className="eyebrow">
               <span className="ix" />
-              <span className="mono">Diferenciais · 05</span>
+              <span className="mono">Diferenciais · 04</span>
             </div>
             <h2>Por que a BEANIC é uma escolha estratégica — e não só técnica.</h2>
           </div>

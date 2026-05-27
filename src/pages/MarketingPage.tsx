@@ -2,9 +2,8 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Trust from '../components/Trust'
-import Services from '../components/Services'
-import Audiences from '../components/Audiences'
 import Problems from '../components/Problems'
+import Services from '../components/Services'
 import Process from '../components/Process'
 import Differentials from '../components/Differentials'
 import Portfolio from '../components/Portfolio'
@@ -34,9 +33,9 @@ export default function MarketingPage() {
       <Header />
       <Hero />
       <Trust />
-      <Services />
-      <Audiences />
+      {/* Dor primeiro — antes da explicação institucional */}
       <Problems />
+      <Services />
       <Process />
       <Differentials />
       <Portfolio />

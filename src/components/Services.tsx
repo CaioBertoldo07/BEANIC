@@ -8,14 +8,14 @@ export default function Services() {
           <div>
             <div className="eyebrow">
               <span className="ix" />
-              <span className="mono">Pilares · 01</span>
+              <span className="mono">A solução · 02</span>
             </div>
-            <h2>Quatro frentes que conectam tecnologia ao seu negócio.</h2>
+            <h2>Quatro frentes para organizar, automatizar e crescer com controle.</h2>
           </div>
           <p className="lead">
-            Cada pilar resolve um pedaço diferente da operação. Combinados, formam
-            uma camada digital sólida — capaz de organizar processos, automatizar
-            rotinas e revelar dados que apoiam decisão.
+            Cada pilar resolve uma dor concreta de operação. Juntos, formam a
+            camada digital que seu negócio precisa para parar de improvisar e
+            começar a escalar com estrutura.
           </p>
         </div>
 
@@ -25,9 +25,11 @@ export default function Services() {
             <div className="pnum">01 · Operação</div>
             <h3>Sistemas sob medida</h3>
             <p>
-              Plataformas internas modeladas a partir do seu fluxo real — não de
-              um ERP genérico que não cabe. Controle de vendas, estoque, produção,
-              clientes, financeiro e setores integrados em uma única fonte de verdade.
+              Planilhas, WhatsApp e anotações avulsas não escalam. Quando a
+              operação cresce, o controle some. Desenvolvemos sistemas internos
+              modelados a partir do seu fluxo real — controle de vendas, estoque,
+              produção e clientes em uma única fonte de verdade, sem forçar seu
+              negócio dentro de um ERP genérico.
             </p>
             <div className="feats">
               <span>Controle de vendas</span>
@@ -64,9 +66,10 @@ export default function Services() {
             <div className="pnum">02 · Presença digital</div>
             <h3>Sites e presença digital</h3>
             <p>
-              Sites institucionais, landing pages e portfólios construídos para
-              gerar conversa qualificada. Estrutura comercial clara, narrativa do
-              seu negócio e captação de orçamento integrada ao seu fluxo.
+              Um site amador tira credibilidade antes da primeira conversa. Construímos
+              sites institucionais com narrativa comercial clara — estrutura que
+              posiciona sua empresa como referência no mercado e gera orçamentos
+              de quem realmente precisa do que você oferece.
             </p>
             <div className="feats">
               <span>Sites institucionais</span>
@@ -83,8 +86,8 @@ export default function Services() {
                   <div className="bar s2" /><div className="bar" />
                 </div>
                 <div className="b-r">
-                  <div className="tile"><span className="tag-code">// hero</span></div>
-                  <div className="tile"><span className="tag-code">// CTA</span></div>
+                  <div className="tile" />
+                  <div className="tile" />
                 </div>
               </div>
             </div>
@@ -95,9 +98,10 @@ export default function Services() {
             <div className="pnum">03 · Automação</div>
             <h3>Automações</h3>
             <p>
-              Substituímos planilhas, e-mails e rotinas manuais por fluxos
-              automáticos auditáveis. WhatsApp, formulários, CRM, relatórios e
-              alertas — tudo conversando em tempo real, sem o operador no meio.
+              Tempo gasto em tarefas repetitivas é tempo perdido em decisão e
+              crescimento. Substituímos confirmações, cobranças, alertas e relatórios
+              manuais por fluxos automáticos auditáveis — integrados com WhatsApp,
+              formulários e CRM, sem o operador no meio.
             </p>
             <div className="feats">
               <span>Integrações</span>
@@ -154,9 +158,10 @@ export default function Services() {
             <div className="pnum">04 · Dados</div>
             <h3>Dashboards e gestão de dados</h3>
             <p>
-              Indicadores, painéis gerenciais e visualização de dados que sustentam
-              decisão executiva. Você sai do achismo e passa a olhar para o seu
-              negócio com clareza — em tempo real.
+              Decisões tomadas no achismo têm custo. Consolidamos indicadores de
+              vendas, operação e financeiro em painéis visuais que revelam o que
+              está acontecendo no seu negócio — o que está funcionando, o que
+              travou e o que precisa de atenção agora.
             </p>
             <div className="feats">
               <span>Indicadores</span>
