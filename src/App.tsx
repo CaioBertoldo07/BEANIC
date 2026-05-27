@@ -14,8 +14,8 @@ const AdminUsuariosPage = lazy(() => import('./pages/admin/AdminUsuariosPage'))
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="bg-grid" />
-      <div className="bg-glow" />
+      <div className="amb" />
+      <div className="dots-bg" />
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<MarketingPage />} />

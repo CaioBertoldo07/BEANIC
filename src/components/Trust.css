@@ -1,11 +1,11 @@
-.trust {
+.strip {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 36px 0;
-  background: rgba(8, 19, 31, 0.6);
+  padding: 32px 0;
+  background: rgba(11, 19, 32, 0.5);
 }
 
-.trust-wrap {
+.strip-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   flex-wrap: wrap;
 }
 
-.trust-label {
+.strip-label {
   font-size: 11px;
   color: var(--text-mute);
   letter-spacing: 0.18em;
@@ -21,13 +21,13 @@
   flex: 0 0 auto;
 }
 
-.trust-sectors {
+.strip-items {
   display: flex;
-  gap: 48px;
+  gap: 36px;
   flex-wrap: wrap;
 }
 
-.trust-sectors div {
+.strip-items div {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -35,11 +35,9 @@
   font-size: 14px;
 }
 
-.trust-sectors div::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: var(--cyan);
-  transform: rotate(45deg);
+.strip-items div svg {
+  width: 16px;
+  height: 16px;
+  color: var(--teal);
   flex-shrink: 0;
 }

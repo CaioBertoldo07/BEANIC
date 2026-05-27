@@ -1,109 +1,196 @@
 import './Services.css'
 
-const services = [
-  {
-    num: '01 / Presença digital',
-    title: 'Sites institucionais',
-    desc: 'Sites pensados para indústrias: posicionamento estratégico, narrativa técnica e estrutura que converte buyer industrial em conversa qualificada.',
-    feats: ['Arquitetura comercial', 'Páginas de produto e linha', 'Integração com CRM e ERP'],
-    size: 'big',
-    icon: (
-      <svg className="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <rect x="3" y="4" width="18" height="14" rx="2" />
-        <path d="M3 9h18M8 14h4" />
-      </svg>
-    ),
-  },
-  {
-    num: '02 / Software interno',
-    title: 'Sistemas sob medida',
-    desc: 'Sistemas internos construídos sobre o fluxo real da fábrica — estoque, OS, qualidade, manutenção, expedição.',
-    feats: ['Modelagem orientada ao processo', 'Permissões por setor'],
-    size: 'med',
-    icon: (
-      <svg className="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M8 6l-5 6 5 6M16 6l5 6-5 6M14 4l-4 16" />
-      </svg>
-    ),
-  },
-  {
-    num: '03',
-    title: 'Dashboards gerenciais',
-    desc: 'Indicadores de produção, finanças e operação consolidados em uma única visão executiva.',
-    feats: [],
-    size: '',
-    icon: (
-      <svg className="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M4 20V10M10 20V4M16 20v-8M22 20V8" />
-      </svg>
-    ),
-  },
-  {
-    num: '04',
-    title: 'Automação de processos',
-    desc: 'Substituímos planilhas, e-mails e rotinas manuais por fluxos automáticos auditáveis.',
-    feats: [],
-    size: '',
-    icon: (
-      <svg className="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <circle cx="6" cy="6" r="3" />
-        <circle cx="18" cy="18" r="3" />
-        <path d="M9 6h6a3 3 0 0 1 3 3v6" />
-      </svg>
-    ),
-  },
-  {
-    num: '05',
-    title: 'Integração setorial',
-    desc: 'Produção, RH, financeiro e estoque conversando em tempo real — uma única fonte de verdade.',
-    feats: [],
-    size: '',
-    icon: (
-      <svg className="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M4 7h6v6H4zM14 11h6v6h-6zM10 10l4 4" />
-      </svg>
-    ),
-  },
-]
-
 export default function Services() {
   return (
-    <section className="section" id="servicos">
+    <section className="section" id="pilares">
       <div className="container">
         <div className="section-head">
           <div>
             <div className="eyebrow">
-              <span className="dot" />
-              <span className="mono">Serviços / 01</span>
+              <span className="ix" />
+              <span className="mono">Pilares · 01</span>
             </div>
-            <h2>Cinco frentes para digitalizar sua operação industrial.</h2>
+            <h2>Quatro frentes que conectam tecnologia ao seu negócio.</h2>
           </div>
           <p className="lead">
-            Da presença digital ao chão de fábrica conectado. Cada solução é
-            desenhada a partir do fluxo real da sua indústria, não de templates.
+            Cada pilar resolve um pedaço diferente da operação. Combinados, formam
+            uma camada digital sólida — capaz de organizar processos, automatizar
+            rotinas e revelar dados que apoiam decisão.
           </p>
         </div>
 
-        <div className="services-grid">
-          {services.map((svc) => (
-            <div key={svc.num} className={`svc${svc.size ? ' ' + svc.size : ''}`}>
-              <div>
-                <div className="num">{svc.num}</div>
-                <div className="ic" style={{ marginTop: '18px' }}>
-                  {svc.icon}
-                </div>
-                <h3>{svc.title}</h3>
-                <p>{svc.desc}</p>
-              </div>
-              {svc.feats.length > 0 && (
-                <div className="feats">
-                  {svc.feats.map((f) => (
-                    <span key={f}>{f}</span>
-                  ))}
-                </div>
-              )}
+        <div className="pillars">
+          {/* Pillar 1: Sistemas */}
+          <div className="pillar">
+            <div className="pnum">01 · Operação</div>
+            <h3>Sistemas sob medida</h3>
+            <p>
+              Plataformas internas modeladas a partir do seu fluxo real — não de
+              um ERP genérico que não cabe. Controle de vendas, estoque, produção,
+              clientes, financeiro e setores integrados em uma única fonte de verdade.
+            </p>
+            <div className="feats">
+              <span>Controle de vendas</span>
+              <span>Estoque e produção</span>
+              <span>Clientes e pedidos</span>
+              <span>Financeiro</span>
+              <span>Setores internos</span>
+              <span>Fluxos operacionais</span>
             </div>
-          ))}
+            <div className="pillar-viz">
+              <div className="v-system">
+                <div className="col">
+                  <div className="head" /><div className="row hi" /><div className="row" />
+                  <div className="row hi" /><div className="row" />
+                </div>
+                <div className="col">
+                  <div className="head" /><div className="row" /><div className="row hi" />
+                  <div className="row hi" /><div className="row" />
+                </div>
+                <div className="col">
+                  <div className="head" /><div className="row hi" /><div className="row" />
+                  <div className="row" /><div className="row hi" />
+                </div>
+                <div className="col">
+                  <div className="head" /><div className="row" /><div className="row hi" />
+                  <div className="row" /><div className="row" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 2: Sites */}
+          <div className="pillar">
+            <div className="pnum">02 · Presença digital</div>
+            <h3>Sites e presença digital</h3>
+            <p>
+              Sites institucionais, landing pages e portfólios construídos para
+              gerar conversa qualificada. Estrutura comercial clara, narrativa do
+              seu negócio e captação de orçamento integrada ao seu fluxo.
+            </p>
+            <div className="feats">
+              <span>Sites institucionais</span>
+              <span>Landing pages</span>
+              <span>Portfólios</span>
+              <span>Páginas de serviços</span>
+              <span>Catálogos</span>
+              <span>Captação de orçamento</span>
+            </div>
+            <div className="pillar-viz">
+              <div className="v-sites">
+                <div className="b">
+                  <div className="bar t" /><div className="bar s" /><div className="bar" />
+                  <div className="bar s2" /><div className="bar" />
+                </div>
+                <div className="b-r">
+                  <div className="tile"><span className="tag-code">// hero</span></div>
+                  <div className="tile"><span className="tag-code">// CTA</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 3: Automações */}
+          <div className="pillar">
+            <div className="pnum">03 · Automação</div>
+            <h3>Automações</h3>
+            <p>
+              Substituímos planilhas, e-mails e rotinas manuais por fluxos
+              automáticos auditáveis. WhatsApp, formulários, CRM, relatórios e
+              alertas — tudo conversando em tempo real, sem o operador no meio.
+            </p>
+            <div className="feats">
+              <span>Integrações</span>
+              <span>WhatsApp</span>
+              <span>Relatórios automáticos</span>
+              <span>Alertas</span>
+              <span>Formulários</span>
+              <span>CRM</span>
+            </div>
+            <div className="pillar-viz">
+              <div className="v-auto">
+                <div className="n">
+                  <div className="b">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 4h16v6H4zM4 14h16v6H4z" />
+                    </svg>
+                  </div>
+                  <div className="l">Form</div>
+                </div>
+                <div className="auto-sep" />
+                <div className="n">
+                  <div className="b">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+                    </svg>
+                  </div>
+                  <div className="l">Trigger</div>
+                </div>
+                <div className="auto-sep" />
+                <div className="n">
+                  <div className="b lim">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z" /><path d="M3 21l3-3" />
+                    </svg>
+                  </div>
+                  <div className="l">WhatsApp</div>
+                </div>
+                <div className="auto-sep" />
+                <div className="n">
+                  <div className="b">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M9 11l3 3 8-8" />
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                    </svg>
+                  </div>
+                  <div className="l">Salvo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 4: Dashboards */}
+          <div className="pillar">
+            <div className="pnum">04 · Dados</div>
+            <h3>Dashboards e gestão de dados</h3>
+            <p>
+              Indicadores, painéis gerenciais e visualização de dados que sustentam
+              decisão executiva. Você sai do achismo e passa a olhar para o seu
+              negócio com clareza — em tempo real.
+            </p>
+            <div className="feats">
+              <span>Indicadores</span>
+              <span>Relatórios</span>
+              <span>Painéis gerenciais</span>
+              <span>Desempenho</span>
+              <span>Visualização de dados</span>
+              <span>Apoio à decisão</span>
+            </div>
+            <div className="pillar-viz">
+              <div className="v-dash">
+                <svg viewBox="0 0 200 90" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="d1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,70 L20,60 L40,64 L60,48 L80,52 L100,32 L120,40 L140,28 L160,30 L180,18 L200,22 L200,90 L0,90 Z"
+                    fill="url(#d1)" />
+                  <path d="M0,70 L20,60 L40,64 L60,48 L80,52 L100,32 L120,40 L140,28 L160,30 L180,18 L200,22"
+                    stroke="#2dd4bf" strokeWidth="2" fill="none" />
+                </svg>
+                <div className="bars">
+                  <i style={{ height: '35%' }} />
+                  <i style={{ height: '48%' }} />
+                  <i className="lit" style={{ height: '62%' }} />
+                  <i style={{ height: '50%' }} />
+                  <i className="lit" style={{ height: '72%' }} />
+                  <i className="lim" style={{ height: '88%' }} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

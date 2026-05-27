@@ -3,114 +3,96 @@ import './Differentials.css'
 const items = [
   {
     n: '01',
-    title: 'Foco exclusivo em indústrias',
-    desc: 'Falamos a linguagem do PCP, da qualidade e da manutenção — não traduzimos templates de e-commerce para o seu galpão.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    ),
+    title: 'Sob medida, de verdade',
+    desc: 'Modelamos o sistema a partir do seu fluxo real. Sem template forçado, sem adaptar seu negócio a um software.',
   },
   {
     n: '02',
-    title: 'Construído sob medida, do zero',
-    desc: 'Sem ERP genérico forçado a caber. Modelamos a partir do processo real que sua operação roda hoje.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" />
+      </svg>
+    ),
+    title: 'Foco em organização e crescimento',
+    desc: 'Cada feature responde a uma dor concreta de operação. Nada entra só para ficar bonito na tela.',
   },
   {
     n: '03',
-    title: 'Visão de operação, não só de tela',
-    desc: 'Antes de prototipar, andamos pelo fluxo. Cada feature responde a um gargalo concreto que medimos.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="6" cy="6" r="3" /><circle cx="18" cy="18" r="3" />
+        <path d="M9 6h6a3 3 0 0 1 3 3v6" />
+      </svg>
+    ),
+    title: 'Tecnologia ↔ operação',
+    desc: 'Conversamos com quem está no chão da operação, não só com a diretoria. Daí nasce um software que o time usa.',
   },
   {
     n: '04',
-    title: 'Design + tecnologia + gestão',
-    desc: 'Time integrado de produto, engenharia e operação — entrega que conecta interface, dado e decisão.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+      </svg>
+    ),
+    title: 'Visão prática de negócio',
+    desc: 'Olhamos antes para o impacto na operação, depois para o stack. Tecnologia é meio, não fim.',
   },
   {
     n: '05',
-    title: 'Sistemas pensados para resultado',
-    desc: 'Implantação acompanhada por indicadores. Você vê o impacto em retrabalho, OEE e ciclo desde o primeiro mês.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 21l1.7-4.5A8 8 0 1 1 8 19l-5 2z" />
+      </svg>
+    ),
+    title: 'Atendimento próximo',
+    desc: 'Você fala direto com quem está construindo. Sem comercial intermediário, sem PMO entre você e a solução.',
   },
-]
-
-const nodes = [
-  { label: 'Produção', style: { top: '90px', left: '36px' }, delay: 0 },
-  { label: 'Estoque', style: { top: '160px', left: '200px' }, delay: 0.3 },
-  { label: 'Qualidade', style: { top: '120px', right: '30px' }, delay: 0.6 },
-  { label: 'Manutenção', style: { top: '260px', left: '80px' }, delay: 0.9 },
-  { label: 'RH', style: { top: '310px', right: '60px' }, delay: 1.2 },
-  { label: 'Financeiro', style: { bottom: '80px', left: '140px' }, delay: 1.5 },
+  {
+    n: '06',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" />
+      </svg>
+    ),
+    title: 'Clareza do início ao fim',
+    desc: 'Escopo, prazo, orçamento e progresso visíveis em cada etapa. Você nunca fica adivinhando onde o projeto está.',
+  },
 ]
 
 export default function Differentials() {
   return (
-    <section className="section diff" id="diferenciais">
+    <section className="section" id="diferenciais">
       <div className="container">
         <div className="section-head">
           <div>
             <div className="eyebrow">
-              <span className="dot" />
-              <span className="mono">Diferenciais / 02</span>
+              <span className="ix" />
+              <span className="mono">Diferenciais · 05</span>
             </div>
-            <h2>Não somos uma agência. Somos engenharia digital para indústrias.</h2>
+            <h2>Por que a BEANIC é uma escolha estratégica — e não só técnica.</h2>
           </div>
           <p className="lead">
-            Cada projeto começa entendendo o chão de fábrica — o fluxo da peça,
-            o fluxo do documento, o fluxo da decisão. Daí nasce o software.
+            Não somos uma agência genérica nem uma software house de prateleira.
+            Somos um time de tecnologia aplicada a negócio.
           </p>
         </div>
 
         <div className="diff-grid">
-          <div className="diff-list">
-            {items.map((item) => (
-              <div key={item.n} className="diff-item">
+          {items.map((item) => (
+            <div key={item.n} className="diff">
+              <div className="diff-head">
+                <div className="ic">{item.icon}</div>
                 <div className="n">{item.n}</div>
-                <div>
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
-                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="diff-visual">
-            <div className="mono" style={{ position: 'relative', zIndex: 2 }}>
-              // arquitetura.modular
+              <h4>{item.title}</h4>
+              <p>{item.desc}</p>
             </div>
-            <div style={{ position: 'relative', zIndex: 2, marginTop: '8px', fontSize: '13px', color: 'var(--text-mute)' }}>
-              setores integrados em tempo real
-            </div>
-
-            <div className="nodes">
-              {nodes.map((node) => (
-                <div key={node.label} className="node" style={node.style as React.CSSProperties}>
-                  <span className="pulse" style={{ animationDelay: `${node.delay}s` }} />
-                  {node.label}
-                </div>
-              ))}
-              <div
-                className="node"
-                style={{
-                  bottom: '36px',
-                  right: '36px',
-                  background: 'var(--cyan)',
-                  color: '#04121d',
-                  borderColor: 'var(--cyan)',
-                }}
-              >
-                <strong style={{ fontFamily: "'Sora',sans-serif" }}>Dashboard gerencial</strong>
-              </div>
-            </div>
-
-            <svg
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-              preserveAspectRatio="none"
-            >
-              <g stroke="rgba(43,180,229,0.35)" strokeWidth="1" fill="none" strokeDasharray="3 4">
-                <path d="M120,110 C 200,160 220,170 240,180" />
-                <path d="M260,180 C 320,170 360,160 400,140" />
-                <path d="M130,280 C 220,260 300,250 380,260" />
-                <path d="M240,180 C 280,240 320,300 380,330" />
-                <path d="M260,280 C 320,320 360,360 410,400" />
-                <path d="M220,400 C 300,410 360,420 420,440" />
-              </g>
-            </svg>
-          </div>
+          ))}
         </div>
       </div>
     </section>

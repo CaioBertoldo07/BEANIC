@@ -3,10 +3,11 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Trust from '../components/Trust'
 import Services from '../components/Services'
+import Audiences from '../components/Audiences'
+import Problems from '../components/Problems'
+import Process from '../components/Process'
 import Differentials from '../components/Differentials'
 import Portfolio from '../components/Portfolio'
-import Process from '../components/Process'
-import Benefits from '../components/Benefits'
 import FinalCTA from '../components/FinalCTA'
 import Footer from '../components/Footer'
 
@@ -34,10 +35,11 @@ export default function MarketingPage() {
       <Hero />
       <Trust />
       <Services />
+      <Audiences />
+      <Problems />
+      <Process />
       <Differentials />
       <Portfolio />
-      <Process />
-      <Benefits />
       <FinalCTA />
       <Footer />
     </>

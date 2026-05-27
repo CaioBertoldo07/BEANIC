@@ -2,12 +2,11 @@ import { useEffect, useRef } from 'react'
 import './Process.css'
 
 const steps = [
-  { n: '01 — Discovery', title: 'Diagnóstico', desc: 'Mapeamos o fluxo atual no chão de fábrica e os gargalos reais por setor.' },
-  { n: '02 — Strategy', title: 'Planejamento', desc: 'Definimos escopo, indicadores de sucesso e roadmap por entregáveis.' },
-  { n: '03 — Design', title: 'Prototipação', desc: 'Telas e fluxos validados com a operação antes de qualquer código.' },
-  { n: '04 — Build', title: 'Desenvolvimento', desc: 'Construção modular, com entregas incrementais e revisões semanais.' },
-  { n: '05 — Rollout', title: 'Implantação', desc: 'Treinamento por setor e acompanhamento da curva de adoção real.' },
-  { n: '06 — Evolve', title: 'Evolução contínua', desc: 'Squad dedicada para evolução, novos módulos e otimização operacional.' },
+  { n: '01 · Discovery', title: 'Diagnóstico', desc: 'Mapeamos sua operação atual, fluxos, gargalos e o que já funciona. Saímos com um retrato claro.' },
+  { n: '02 · Strategy', title: 'Planejamento', desc: 'Definimos escopo, indicadores de sucesso e um roadmap com entregas em etapas curtas.' },
+  { n: '03 · Build', title: 'Desenvolvimento', desc: 'Construímos em ciclos curtos, com você acompanhando. Sem surpresa no fim do projeto.' },
+  { n: '04 · Rollout', title: 'Implantação', desc: 'Treinamento por setor, migração de dados e acompanhamento real da adoção pelo seu time.' },
+  { n: '05 · Evolve', title: 'Evolução', desc: 'Squad dedicada para ajustes, novos módulos e otimizações conforme o negócio cresce.' },
 ]
 
 export default function Process() {
@@ -34,23 +33,23 @@ export default function Process() {
         <div className="section-head">
           <div>
             <div className="eyebrow">
-              <span className="dot" />
-              <span className="mono">Processo / 04</span>
+              <span className="ix" />
+              <span className="mono">Como trabalhamos · 04</span>
             </div>
-            <h2>Como trabalhamos — do diagnóstico à evolução contínua.</h2>
+            <h2>Um método claro, com entregas mensuráveis em cada etapa.</h2>
           </div>
           <p className="lead">
-            Um método estruturado, com entregas claras em cada etapa. Você sempre
-            sabe onde o projeto está, o que vem agora e qual o próximo ganho
-            operacional.
+            Você sempre sabe onde o projeto está, o que vem agora e qual o próximo
+            ganho operacional. Sem caixa-preta, sem promessa genérica de
+            transformação digital.
           </p>
         </div>
 
-        <div className="process-wrap">
-          <div className="process-track" ref={trackRef}>
+        <div className="proc">
+          <div className="proc-grid" ref={trackRef}>
             {steps.map((step) => (
               <div key={step.n} className="pstep">
-                <div className="pn">{step.n}</div>
+                <div className="n">{step.n}</div>
                 <h4>{step.title}</h4>
                 <p>{step.desc}</p>
               </div>

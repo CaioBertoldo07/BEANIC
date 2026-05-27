@@ -4,10 +4,11 @@ import beanicLogo from '../assets/beanic-logo.png'
 import './Header.css'
 
 const navLinks = [
-  { href: '#servicos', label: 'Serviços' },
-  { href: '#diferenciais', label: 'Diferenciais' },
-  { href: '#portfolio', label: 'Portfólio' },
+  { href: '#pilares', label: 'Pilares' },
+  { href: '#publico', label: 'Para quem' },
+  { href: '#problemas', label: 'Problemas' },
   { href: '#processo', label: 'Processo' },
+  { href: '#projetos', label: 'Projetos' },
   { href: '#contato', label: 'Contato' },
 ]
 
@@ -37,7 +38,6 @@ export default function Header() {
       <div className="container nav">
         <a href="#top" className="brand">
           <img src={beanicLogo} alt="BEANIC" />
-          <span className="brand-sub">Soluções industriais</span>
         </a>
 
         <nav className="main">
@@ -53,11 +53,11 @@ export default function Header() {
         </nav>
 
         <div className="nav-cta">
-          <Link to="/login" className="btn btn-ghost" style={{ padding: '10px 18px', fontSize: '13px' }}>
+          <Link to="/login" className="btn btn-ghost btn-sm">
             Área Usuário
           </Link>
-          <a href="#contato" className="btn btn-primary" style={{ padding: '10px 18px', fontSize: '13px' }}>
-            Falar agora
+          <a href="#contato" className="btn btn-primary btn-sm">
+            Solicitar diagnóstico
             <span className="btn-arrow" />
           </a>
         </div>

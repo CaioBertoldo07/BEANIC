@@ -2,142 +2,139 @@ import './Portfolio.css'
 
 export default function Portfolio() {
   return (
-    <section className="section" id="portfolio">
+    <section className="section" id="projetos">
       <div className="container">
         <div className="section-head">
           <div>
             <div className="eyebrow">
-              <span className="dot" />
-              <span className="mono">Portfólio / 03 — Case em destaque</span>
+              <span className="ix" />
+              <span className="mono">Projetos e experiências · 06</span>
             </div>
-            <h2>AMACOM — estruturação digital de uma operação industrial completa.</h2>
+            <h2>Projetos reais, soluções tangíveis.</h2>
           </div>
           <p className="lead">
-            Da presença institucional à digitalização de setores internos — o
-            trabalho com a AMACOM mostra o que a BEANIC entrega quando atua ponta
-            a ponta.
+            Cada projeto da BEANIC é construído em parceria — começa com
+            diagnóstico, vira sistema, dashboard ou site, e segue evoluindo.
           </p>
         </div>
 
-        <div className="case">
-          <div className="case-info">
-            <div>
-              <div className="case-logo">AMACOM</div>
-              <h3>
-                Site institucional, sistemas internos e organização de processos
-                em um único projeto contínuo.
-              </h3>
-              <div className="case-bullets">
-                <div>Site institucional reposicionando a marca como referência industrial</div>
-                <div>Estruturação da presença digital e narrativa comercial técnica</div>
-                <div>Desenvolvimento de sistemas para setores internos de produção e estoque</div>
-                <div>Organização e padronização de processos operacionais</div>
-              </div>
-            </div>
-            <div className="case-meta">
-              <div><div className="k">Setor</div><div className="v">Indústria</div></div>
-              <div><div className="k">Escopo</div><div className="v">Site + Sistemas</div></div>
-              <div><div className="k">Relação</div><div className="v">Contínua</div></div>
-            </div>
-          </div>
-
-          <div className="case-visual">
-            <div className="browser">
-              <div className="browser-bar">
-                <div className="dots"><i /><i /><i /></div>
-                <div className="url">https://amacom.ind.br/</div>
-                <div style={{ width: '46px' }} />
-              </div>
-              <div className="browser-body">
-                <div className="amacom-hero">
-                  <div>
-                    <div className="ah-meta" style={{ marginBottom: '8px', color: 'var(--cyan)' }}>
-                      // indústria
-                    </div>
-                    <div className="ah-title">
-                      Engenharia industrial sob medida para operações que não param.
-                    </div>
-                  </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div className="ah-meta">Desde</div>
-                    <div style={{ fontFamily: "'Sora',sans-serif", fontSize: '22px', marginTop: '2px' }}>
-                      1998
-                    </div>
+        <div className="proj-grid">
+          {/* Case AMACOM */}
+          <div className="proj">
+            <div className="proj-cover">
+              <div className="cover-label">Case em destaque</div>
+              <div className="amacom-cover">
+                <div className="ac-head">
+                  <div className="ac-brand">AMACOM</div>
+                  <div className="mono" style={{ color: 'var(--text-mute)' }}>// indústria</div>
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Sora',sans-serif", fontSize: '18px', lineHeight: '1.25', maxWidth: '80%' }}>
+                    Engenharia industrial sob medida para operações que não param.
                   </div>
                 </div>
-
-                <div className="amacom-cards">
-                  <div className="ac">
-                    <div className="h">Linha A</div>
-                    <div className="v">312/h</div>
-                    <svg className="s" viewBox="0 0 100 24" preserveAspectRatio="none">
-                      <polyline points="0,18 15,14 30,16 45,10 60,12 75,6 100,8" fill="none" stroke="#2bb4e5" strokeWidth="1.5" />
+                <div className="ac-body">
+                  <div className="ac-k">
+                    <div className="ac-l">Linha A</div>
+                    <div className="ac-v">312/h</div>
+                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
+                      <polyline points="0,14 20,12 40,10 60,6 80,8 100,4" fill="none" stroke="#2dd4bf" strokeWidth="1.5" />
                     </svg>
                   </div>
-                  <div className="ac">
-                    <div className="h">Linha B</div>
-                    <div className="v">208/h</div>
-                    <svg className="s" viewBox="0 0 100 24" preserveAspectRatio="none">
-                      <polyline points="0,12 15,16 30,10 45,14 60,8 75,12 100,6" fill="none" stroke="#2bb4e5" strokeWidth="1.5" />
+                  <div className="ac-k">
+                    <div className="ac-l">Linha B</div>
+                    <div className="ac-v">208/h</div>
+                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
+                      <polyline points="0,10 20,14 40,8 60,10 80,6 100,8" fill="none" stroke="#2dd4bf" strokeWidth="1.5" />
                     </svg>
                   </div>
-                  <div className="ac">
-                    <div className="h">Estoque</div>
-                    <div className="v">98,2%</div>
-                    <svg className="s" viewBox="0 0 100 24" preserveAspectRatio="none">
-                      <polyline points="0,16 15,14 30,12 45,12 60,10 75,8 100,4" fill="none" stroke="#2bb4e5" strokeWidth="1.5" />
+                  <div className="ac-k">
+                    <div className="ac-l">Estoque</div>
+                    <div className="ac-v">98,2%</div>
+                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
+                      <polyline points="0,12 20,10 40,8 60,8 80,4 100,2" fill="none" stroke="#a8e065" strokeWidth="1.5" />
+                    </svg>
+                  </div>
+                  <div className="ac-k">
+                    <div className="ac-l">Refugo</div>
+                    <div className="ac-v">1,2%</div>
+                    <svg className="ac-s" viewBox="0 0 100 18" preserveAspectRatio="none">
+                      <polyline points="0,4 20,6 40,5 60,8 80,10 100,12" fill="none" stroke="#a8e065" strokeWidth="1.5" />
                     </svg>
                   </div>
                 </div>
-
-                <div style={{
-                  marginTop: 'auto',
-                  paddingTop: '14px',
-                  borderTop: '1px solid var(--line)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  fontSize: '11px',
-                  color: 'var(--text-mute)',
-                }}>
-                  <span>Produção · Qualidade · Estoque · Manutenção</span>
-                  <span style={{ color: 'var(--cyan)' }}>ver dashboard →</span>
-                </div>
               </div>
             </div>
-
-            <div className="case-thumb">
-              <div className="lbl">Sistema interno · OS</div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <div style={{ fontFamily: "'Sora',sans-serif", fontSize: '18px' }}>128</div>
-                <div style={{ fontSize: '10px', color: 'var(--cyan)' }}>ordens / hoje</div>
-              </div>
-              <div className="vol" style={{ marginTop: '10px' }}>
-                <i style={{ height: '30%' }} /><i style={{ height: '55%' }} /><i style={{ height: '40%' }} />
-                <i style={{ height: '70%' }} /><i className="x" style={{ height: '90%' }} /><i style={{ height: '60%' }} />
-                <i style={{ height: '48%' }} /><i style={{ height: '75%' }} /><i style={{ height: '64%' }} />
-                <i style={{ height: '82%' }} />
+            <div className="proj-info">
+              <h4>AMACOM — Estruturação digital completa</h4>
+              <p>Site institucional, sistemas internos para setores operacionais e organização de processos em um único projeto contínuo.</p>
+              <div className="proj-tags">
+                <span>Site institucional</span>
+                <span>Sistemas internos</span>
+                <span>Processos</span>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="case-mini">
-          <div className="mc">
-            <div>
-              <div className="mc-tag">Dashboard / Produção</div>
-              <h4>Visão executiva em tempo real</h4>
-              <p>OEE, refugo e takt time consolidados por linha — substituindo planilhas semanais.</p>
+          {/* Exp: +18% */}
+          <div className="exp">
+            <div className="exp-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M4 20V10M10 20V4M16 20v-8M22 20V8" />
+              </svg>
             </div>
-            <div className="stripe">visão<br />industrial</div>
+            <div>
+              <div className="stat">+18<span className="u">%</span></div>
+              <div className="stat-l">Em visibilidade de vendas (média entre projetos)</div>
+            </div>
+            <p>Quando indicadores entram em painel — e saem da planilha — o time decide com base em dado, não em achismo.</p>
           </div>
-          <div className="mc">
-            <div>
-              <div className="mc-tag">Automação / Estoque</div>
-              <h4>Movimentação sem retrabalho</h4>
-              <p>Entrada, transferência e baixa automatizadas com auditoria por etiqueta e operador.</p>
+
+          {/* Exp: -38% */}
+          <div className="exp">
+            <div className="exp-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2.5 0 4.7 1 6.3 2.7" />
+                <path d="M17 4v5h5" />
+              </svg>
             </div>
-            <div className="stripe">fluxo<br />operacional</div>
+            <div>
+              <div className="stat">−38<span className="u">%</span></div>
+              <div className="stat-l">Tempo gasto em tarefas repetitivas</div>
+            </div>
+            <p>Automações de WhatsApp, formulários e relatórios devolvem horas por semana ao time operacional.</p>
+          </div>
+
+          {/* Exp: Sistemas internos */}
+          <div className="exp">
+            <div className="exp-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M3 3h18v18H3zM3 9h18M9 21V9" />
+              </svg>
+            </div>
+            <div>
+              <h4>Sistemas internos</h4>
+              <p>Plataformas sob medida para vendas, OS, estoque e setores operacionais — desenhadas a partir do fluxo real.</p>
+            </div>
+            <div className="proj-tags">
+              <span>Sistemas</span><span>Operação</span><span>Sob medida</span>
+            </div>
+          </div>
+
+          {/* Exp: Sites institucionais */}
+          <div className="exp">
+            <div className="exp-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="4" width="18" height="14" rx="2" /><path d="M3 8h18" />
+              </svg>
+            </div>
+            <div>
+              <h4>Sites institucionais</h4>
+              <p>Presença digital comercialmente forte, com narrativa clara e estrutura voltada a converter conversa qualificada.</p>
+            </div>
+            <div className="proj-tags">
+              <span>Sites</span><span>Landing pages</span><span>Posicionamento</span>
+            </div>
           </div>
         </div>
       </div>
