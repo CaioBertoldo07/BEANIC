@@ -63,7 +63,7 @@ export default function Footer() {
 
           <div className="footer-col">
             <h5>Contato</h5>
-            <a href="mailto:contato@beanic.com.br">contato@beanic.com.br</a>
+            <a href="mailto:comercial@beanic.com.br">comercial@beanic.com.br</a>
             <a href="#">+55 (00) 0000-0000</a>
             <a href="#">WhatsApp comercial</a>
             <a href="#">Segunda — Sexta · 8h-18h</a>
