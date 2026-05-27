@@ -14,8 +14,24 @@ interface ApiResponse {
   usuarios: Usuario[]
 }
 
+interface AuditEntry {
+  id: string
+  timestamp: string
+  acao: 'criar' | 'revogar'
+  alvo: string
+  executor: string
+  ip: string
+  userAgent: string
+}
+
+interface AuditResponse {
+  total: number
+  entries: AuditEntry[]
+}
+
 export default function AdminUsuariosPage() {
   const [data, setData] = useState<ApiResponse | null>(null)
+  const [audit, setAudit] = useState<AuditResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState(false)
   const [revoking, setRevoking] = useState<string | null>(null)
@@ -29,9 +45,13 @@ export default function AdminUsuariosPage() {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const res = await fetch('/api/admin/usuarios')
-      if (!res.ok) throw new Error('Falha ao carregar')
-      setData((await res.json()) as ApiResponse)
+      const [resU, resA] = await Promise.all([
+        fetch('/api/admin/usuarios'),
+        fetch('/api/admin/audit?limit=30'),
+      ])
+      if (!resU.ok) throw new Error('Falha ao carregar usuários')
+      setData((await resU.json()) as ApiResponse)
+      if (resA.ok) setAudit((await resA.json()) as AuditResponse)
     } catch (err) {
       setToast({ type: 'err', msg: (err as Error).message })
     } finally {
@@ -197,6 +217,26 @@ export default function AdminUsuariosPage() {
           </div>
         )}
       </section>
+
+      {audit && audit.entries.length > 0 && (
+        <section className="usuarios-audit">
+          <div className="usuarios-lista-head">
+            <h2>Atividade recente</h2>
+            <span className="usuarios-audit-hint mono">últimas {audit.entries.length} ações · retenção 1 ano</span>
+          </div>
+          <div className="usuarios-audit-list">
+            {audit.entries.map(e => (
+              <div key={e.id} className="usuarios-audit-row">
+                <span className={`usuarios-audit-acao usuarios-audit-acao-${e.acao}`}>{e.acao === 'criar' ? '+ criar' : '× revogar'}</span>
+                <span className="usuarios-audit-alvo">{e.alvo}</span>
+                <span className="usuarios-audit-meta mono">
+                  {fmtDate(e.timestamp)} · {e.executor} · {e.ip}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {toast && (
         <div className={`admin-toast admin-toast-${toast.type}`}>

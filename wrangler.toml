@@ -31,10 +31,13 @@ binding = "BEANIC_CLIENTES"
 id = "5b35c53ec93e48f68163eb03a3784ce3"             # Production
 preview_id = "5b35c53ec93e48f68163eb03a3784ce3"   # Branch previews / dev
 
-# — Secrets (NÃO setar aqui — usar painel ou CLI) ——————————————————————
+# — Secrets/vars (NÃO setar aqui — usar painel ou CLI) ————————————————
 # Setar via wrangler:
-#   wrangler pages secret put RESEND_API_KEY    # Resend (e-mails)
-#   wrangler pages secret put CF_API_TOKEN      # Cloudflare API
-#   wrangler pages secret put CF_ACCOUNT_ID     # Account ID
-#   wrangler pages secret put CF_ACCESS_APP_UID    # Access app UID
-#   wrangler pages secret put CF_ACCESS_POLICY_UID # Access policy UID
+#   wrangler pages secret put RESEND_API_KEY        # Resend (e-mails)
+#
+# Vars públicas (painel ou wrangler):
+#   ADMIN_EMAIL              # e-mail único aceito como admin
+#   MAIL_FROM                # remetente Resend, ex "Beanic <portal@beanic.com.br>"
+#   CF_ACCESS_TEAM_DOMAIN    # ex "beanic.cloudflareaccess.com" (sem https://)
+#   CF_ACCESS_AUD            # AUD tag da Access Application do /admin
+#                            # (encontrado em Zero Trust → Access → Apps → Overview)

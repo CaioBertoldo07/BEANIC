@@ -10,6 +10,7 @@ import {
   type Env,
   type Usuario,
   jsonResponse,
+  logAudit,
   normalizarEmail,
   requireAdmin,
   sendEmail,
@@ -18,7 +19,7 @@ import {
 // ── GET ─────────────────────────────────────────────────────────────────────
 
 export const onRequestGet: PagesFunction<Env> = async ctx => {
-  const auth = requireAdmin(ctx.request, ctx.env)
+  const auth = await requireAdmin(ctx.request, ctx.env)
   if (!auth.ok) return auth.res
 
   const list = await ctx.env.BEANIC_CLIENTES.list({ prefix: 'usuario:' })
@@ -40,7 +41,7 @@ export const onRequestGet: PagesFunction<Env> = async ctx => {
 // ── POST ────────────────────────────────────────────────────────────────────
 
 export const onRequestPost: PagesFunction<Env> = async ctx => {
-  const auth = requireAdmin(ctx.request, ctx.env)
+  const auth = await requireAdmin(ctx.request, ctx.env)
   if (!auth.ok) return auth.res
 
   let payload: unknown
@@ -71,6 +72,7 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
   }
 
   await ctx.env.BEANIC_CLIENTES.put(`usuario:${email}`, JSON.stringify(usuario))
+  await logAudit(ctx.env, ctx.request, { acao: 'criar', alvo: email, executor: auth.email })
 
   // Avisa o usuário que ele já pode entrar — falha silenciosa pra não derrubar
   // a criação se o Resend estiver fora.
@@ -88,7 +90,7 @@ export const onRequestPost: PagesFunction<Env> = async ctx => {
 // ── DELETE ──────────────────────────────────────────────────────────────────
 
 export const onRequestDelete: PagesFunction<Env> = async ctx => {
-  const auth = requireAdmin(ctx.request, ctx.env)
+  const auth = await requireAdmin(ctx.request, ctx.env)
   if (!auth.ok) return auth.res
 
   const url = new URL(ctx.request.url)
@@ -102,6 +104,7 @@ export const onRequestDelete: PagesFunction<Env> = async ctx => {
   // são rejeitadas no próximo /api/auth/me (porque usuario:<email> não existe).
   await ctx.env.BEANIC_CLIENTES.delete(`usuario:${email}`)
   await ctx.env.BEANIC_CLIENTES.delete(`otp:${email}`)
+  await logAudit(ctx.env, ctx.request, { acao: 'revogar', alvo: email, executor: auth.email })
 
   return jsonResponse({ message: 'Usuário revogado' })
 }
