@@ -239,6 +239,12 @@
     grid-template-columns: 1fr;
     gap: 4px;
   }
+
+  .usuarios-audit-alvo,
+  .usuarios-audit-meta {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
 /* ── Botões utilitários compartilhados ───────────────────────────────────── */
@@ -311,14 +317,61 @@
 
 /* ── Responsivo ──────────────────────────────────────────────────────────── */
 @media (max-width: 720px) {
+  .admin-page-head {
+    align-items: stretch;
+  }
+
+  .admin-stats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-stat {
+    min-width: 0;
+  }
+
+  .usuarios-novo {
+    padding: 22px 18px;
+  }
+
   .usuarios-form {
     grid-template-columns: 1fr;
   }
+
   .usuarios-card {
     grid-template-columns: 1fr;
     align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
   }
+
+  .usuarios-card-contato,
+  .usuarios-card-email {
+    overflow-wrap: anywhere;
+  }
+
+  .usuarios-card-sep {
+    display: none;
+  }
+
+  .usuarios-card-email {
+    display: block;
+    margin-top: 2px;
+  }
+
   .usuarios-submit {
     justify-self: stretch;
+  }
+
+  .admin-btn-sm {
+    width: 100%;
+  }
+
+  .admin-toast {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    max-width: none;
   }
 }

@@ -213,6 +213,7 @@
   padding: 40px 48px;
   max-width: 1180px;
   width: 100%;
+  min-width: 0;
 }
 
 /* ── Responsivo ──────────────────────────────────────────────────────────── */
@@ -245,7 +246,37 @@
 }
 
 @media (max-width: 640px) {
+  .cliente-sidebar {
+    width: min(300px, 86vw);
+    padding: 24px 18px;
+  }
+
+  .cliente-topbar {
+    height: auto;
+    min-height: 62px;
+    padding: 10px 16px;
+  }
+
+  .cliente-topbar-user {
+    gap: 8px;
+  }
+
   .cliente-user-text {
     display: none;
+  }
+
+  .cliente-logout {
+    margin-left: 4px;
+    padding: 7px 10px;
+  }
+
+  .cliente-content {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cliente-content {
+    padding: 20px 14px;
   }
 }

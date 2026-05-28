@@ -104,3 +104,27 @@
     font-size: 32px;
   }
 }
+
+@media (max-width: 640px) {
+  .cta-final {
+    padding: 70px 0;
+  }
+
+  .cta-card {
+    border-radius: 18px;
+    padding: 34px 20px;
+  }
+
+  .cta-inner {
+    gap: 28px;
+  }
+
+  .cta-inner h2 {
+    font-size: 29px;
+    line-height: 1.12;
+  }
+
+  .wa {
+    width: 100%;
+  }
+}

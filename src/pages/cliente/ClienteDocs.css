@@ -152,3 +152,32 @@
   gap: 8px;
   line-height: 1.55;
 }
+
+@media (max-width: 760px) {
+  .cliente-tabs {
+    overflow-x: auto;
+    padding-bottom: 1px;
+  }
+
+  .cliente-tab {
+    flex: 0 0 auto;
+    padding: 12px 14px;
+  }
+
+  .cliente-docs-sections {
+    grid-template-columns: 1fr;
+  }
+
+  .cliente-docs-section,
+  .cliente-release {
+    padding: 22px 18px;
+  }
+
+  .cliente-release-head {
+    flex-direction: column;
+  }
+
+  .cliente-release-version {
+    font-size: 24px;
+  }
+}

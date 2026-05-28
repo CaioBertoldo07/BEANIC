@@ -135,4 +135,29 @@
   .cliente-conta-grid {
     grid-template-columns: 1fr;
   }
+
+  .cliente-conta-section,
+  .cliente-suporte-card {
+    padding: 22px 18px;
+  }
+
+  .cliente-data-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cliente-data-value {
+    max-width: 100%;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .cliente-conta-foot {
+    text-align: left;
+  }
+
+  .cliente-suporte-grid {
+    grid-template-columns: 1fr;
+  }
 }

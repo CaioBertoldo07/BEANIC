@@ -100,7 +100,18 @@ footer {
 }
 
 @media (max-width: 640px) {
+  footer {
+    padding: 56px 0 24px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    margin-top: 40px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

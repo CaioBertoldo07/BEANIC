@@ -14,6 +14,7 @@ const navLinks = [
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,19 +34,40 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.classList.toggle('mobile-nav-open', menuOpen)
+    return () => document.body.classList.remove('mobile-nav-open')
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <header>
       <div className="container nav">
-        <a href="#top" className="brand">
+        <a href="#top" className="brand" onClick={closeMenu}>
           <img src={beanicLogo} alt="BEANIC" />
         </a>
 
-        <nav className="main">
+        <button
+          className={`mobile-nav-toggle${menuOpen ? ' open' : ''}`}
+          type="button"
+          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={menuOpen}
+          aria-controls="site-nav"
+          onClick={() => setMenuOpen(open => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav id="site-nav" className={`main${menuOpen ? ' open' : ''}`}>
           {navLinks.map(link => (
             <a
               key={link.href}
               href={link.href}
               className={activeSection === link.href ? 'active' : ''}
+              onClick={closeMenu}
             >
               {link.label}
             </a>
@@ -56,7 +78,7 @@ export default function Header() {
           <Link to="/login" className="btn btn-ghost btn-sm">
             Área Usuário
           </Link>
-          <a href="#contato" className="btn btn-primary btn-sm">
+          <a href="#contato" className="btn btn-primary btn-sm" onClick={closeMenu}>
             Solicitar diagnóstico
             <span className="btn-arrow" />
           </a>

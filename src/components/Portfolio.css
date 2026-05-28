@@ -266,4 +266,26 @@
   .proj {
     grid-column: span 1;
   }
+
+  .proj-cover {
+    height: auto;
+    min-height: 230px;
+  }
+
+  .amacom-cover {
+    padding: 54px 18px 20px;
+  }
+
+  .ac-body {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ac-brand {
+    font-size: 18px;
+  }
+
+  .proj-info,
+  .exp {
+    padding: 22px 20px;
+  }
 }

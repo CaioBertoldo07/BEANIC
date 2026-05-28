@@ -94,4 +94,14 @@
   .proc-grid {
     grid-template-columns: 1fr;
   }
+
+  .pstep {
+    min-height: 0;
+    padding: 28px 18px 24px;
+    border-right: 0;
+  }
+
+  .pstep::before {
+    left: 18px;
+  }
 }

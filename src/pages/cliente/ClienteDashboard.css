@@ -218,3 +218,46 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .cliente-page-head {
+    margin-bottom: 26px;
+  }
+
+  .cliente-page-head h1 {
+    font-size: 29px;
+    line-height: 1.12;
+  }
+
+  .cliente-page-lead {
+    font-size: 14px;
+  }
+
+  .cliente-card {
+    padding: 22px 18px;
+  }
+
+  .cliente-card-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cliente-license-foot {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cliente-version {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cliente-shortcut {
+    align-items: flex-start;
+  }
+
+  .cliente-btn-sm {
+    width: 100%;
+  }
+}

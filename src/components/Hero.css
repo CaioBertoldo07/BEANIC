@@ -420,6 +420,7 @@
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .hero h1 {
@@ -434,5 +435,116 @@
   .app {
     left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 54px 0 66px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+
+  .hero p.sub {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    margin-top: 26px;
+    gap: 10px;
+  }
+
+  .hero-meta {
+    margin-top: 30px;
+    gap: 14px;
+    font-size: 12px;
+  }
+
+  .hero-meta span {
+    width: 100%;
+  }
+
+  .hero-comp {
+    height: auto;
+    min-height: 0;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app,
+  .float-card {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    animation: none;
+  }
+
+  .app-body {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .app-side {
+    display: none;
+  }
+
+  .app-head {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .crumb {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tag {
+    display: none;
+  }
+
+  .app-main {
+    padding: 16px;
+  }
+
+  .app-title {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .app-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-head {
+    align-items: flex-start;
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .float-card {
+    padding: 14px;
+  }
+
+  .fc-flow .row-flow {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fc-flow .sep {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 31px;
   }
 }
