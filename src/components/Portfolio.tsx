@@ -115,7 +115,7 @@ export default function Portfolio() {
               <h4>Implantação acompanhada</h4>
               <p>
                 Sistema entregue com treinamento por setor e acompanhamento da
-                adoção real. Não entregamos e somimos.
+                adoção real. Não entregamos e sumimos.
               </p>
             </div>
             <div className="proj-tags">
