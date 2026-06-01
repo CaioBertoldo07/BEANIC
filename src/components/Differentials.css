@@ -1,3 +1,14 @@
+/* Padding inferior reduzido localmente — corta o vácuo antes da próxima seção */
+.differentials-section {
+  padding-bottom: 56px;
+}
+
+@media (max-width: 768px) {
+  .differentials-section {
+    padding-bottom: 40px;
+  }
+}
+
 .diff-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -19,6 +30,7 @@
 .diff:hover {
   border-color: var(--teal-soft-2);
   background: rgba(45, 212, 191, 0.04);
+  transform: translateY(-2px);
 }
 
 .diff-head {
@@ -63,6 +75,65 @@
   margin: 0;
 }
 
+/* Âncora concreta (proof) — diferencia o card de mera afirmação */
+.diff-proof {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line-soft, rgba(255, 255, 255, 0.06));
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  letter-spacing: 0.01em;
+}
+
+.diff-proof-mark {
+  color: var(--teal);
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.diff:hover .diff-proof {
+  color: var(--text);
+}
+
+/* Rodapé com CTA */
+.differentials-foot {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--line-soft, rgba(255, 255, 255, 0.06));
+  display: flex;
+  justify-content: center;
+}
+
+.differentials-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--teal, #2dd4bf);
+  color: #052028;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, gap 0.2s;
+}
+
+.differentials-cta svg {
+  width: 16px;
+  height: 16px;
+}
+
+.differentials-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.25);
+  gap: 14px;
+}
+
 @media (max-width: 1024px) {
   .diff-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -72,5 +143,10 @@
 @media (max-width: 640px) {
   .diff-grid {
     grid-template-columns: 1fr;
+  }
+
+  .differentials-cta {
+    width: 100%;
+    justify-content: center;
   }
 }
