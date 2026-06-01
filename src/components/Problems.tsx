@@ -153,7 +153,7 @@ export default function Problems() {
             Quando o negócio cresce em <em>improviso</em>, cada nova venda{' '}
             <em className="g">aumenta a confusão</em> em vez de aumentar o controle.
           </div>
-          <div className="smalltag">O que ouvimos antes de cada diagnóstico</div>
+          <div className="smalltag">O que ouvimos antes de cada conversa</div>
         </div>
 
         <div className="prob-after">
@@ -163,7 +163,7 @@ export default function Problems() {
             repetitivo e devolve visibilidade real do negócio.
           </div>
           <a href="#contato" className="prob-cta">
-            <span>Se reconheceu algum desses pontos? Solicitar diagnóstico gratuito</span>
+            <span>Algum desses problemas é seu? Quero organizar minha operação</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>

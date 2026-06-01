@@ -22,7 +22,7 @@ export default function FinalCTA() {
             </div>
             <div className="cta-side">
               <a href="#" className="btn btn-primary" style={{ padding: '18px 28px', fontSize: '15px' }}>
-                Solicitar diagnóstico
+                Quero organizar minha operação
                 <span className="btn-arrow" />
               </a>
               <a href="#" className="wa">
@@ -31,7 +31,7 @@ export default function FinalCTA() {
                 </svg>
                 Falar no WhatsApp
               </a>
-              <div className="cta-meta">Resposta em até 1 dia útil · diagnóstico sem custo</div>
+              <div className="cta-meta">Resposta em até 1 dia útil · conversa sem compromisso</div>
             </div>
           </div>
         </div>

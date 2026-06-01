@@ -63,7 +63,7 @@ export default function Footer() {
             <a href="mailto:contato@beanic.com.br">contato@beanic.com.br</a>
             <a href="#">WhatsApp comercial</a>
             <a href="#">Segunda a Sexta · 8h-18h</a>
-            <a href="#contato">Solicitar diagnóstico</a>
+            <a href="#contato">Quero organizar minha operação</a>
           </div>
         </div>
 

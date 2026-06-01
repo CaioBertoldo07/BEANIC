@@ -21,7 +21,7 @@ export default function Hero() {
           </p>
           <div className="hero-actions">
             <a href="#contato" className="btn btn-primary">
-              Solicitar diagnóstico
+              Quero organizar minha operação
               <span className="btn-arrow" />
             </a>
             <a href="#contato" className="btn btn-ghost">

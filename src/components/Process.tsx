@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import './Process.css'
 
 const steps = [
-  { n: '01 · Discovery', title: 'Diagnóstico', desc: 'Mapeamos sua operação atual, fluxos, gargalos e o que já funciona. Saímos com um retrato claro.' },
+  { n: '01 · Discovery', title: 'Mapeamento', desc: 'Mapeamos sua operação atual, fluxos, gargalos e o que já funciona. Saímos com um retrato claro.' },
   { n: '02 · Strategy', title: 'Planejamento', desc: 'Definimos escopo, indicadores de sucesso e um roadmap com entregas em etapas curtas.' },
   { n: '03 · Build', title: 'Desenvolvimento', desc: 'Construímos em ciclos curtos, com você acompanhando. Sem surpresa no fim do projeto.' },
   { n: '04 · Rollout', title: 'Implantação', desc: 'Treinamento por setor, migração de dados e acompanhamento real da adoção pelo seu time.' },

@@ -79,7 +79,7 @@ export default function Header() {
             Área Usuário
           </Link>
           <a href="#contato" className="btn btn-primary btn-sm" onClick={closeMenu}>
-            Solicitar diagnóstico
+            Quero organizar minha operação
             <span className="btn-arrow" />
           </a>
         </div>

@@ -65,7 +65,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Proof of process: Diagnóstico */}
+          {/* Proof of process: Mapeamento */}
           <div className="exp">
             <div className="exp-ic">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -73,7 +73,7 @@ export default function Portfolio() {
               </svg>
             </div>
             <div>
-              <h4>Diagnóstico antes de código</h4>
+              <h4>Mapeamento antes de código</h4>
               <p>
                 Todo projeto começa mapeando o fluxo real da operação. Nada entra
                 em desenvolvimento sem ser validado com quem trabalha no dia a dia.
