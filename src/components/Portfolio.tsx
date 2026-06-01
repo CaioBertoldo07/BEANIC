@@ -20,37 +20,17 @@ export default function Portfolio() {
 
         <div className="proj">
           <div className="proj-preview">
-            {/* TODO: substituir por screenshot real de amacom.beanic.com.br quando disponível */}
             <div className="proj-mock">
               <div className="proj-mock-chrome">
                 <span /><span /><span />
-                <div className="proj-mock-url">amacom.beanic.com.br</div>
+                <div className="proj-mock-url">amacom.beanic.com.br/app</div>
               </div>
-              <div className="proj-mock-body">
-                <div className="proj-mock-nav">
-                  <div className="proj-mock-logo">AMACOM</div>
-                  <div className="proj-mock-nav-it" />
-                  <div className="proj-mock-nav-it" />
-                  <div className="proj-mock-nav-it" />
-                  <div className="proj-mock-nav-cta" />
-                </div>
-                <div className="proj-mock-hero">
-                  <div className="proj-mock-eyebrow" />
-                  <div className="proj-mock-h1" />
-                  <div className="proj-mock-h1 short" />
-                  <div className="proj-mock-p" />
-                  <div className="proj-mock-p w70" />
-                  <div className="proj-mock-cta-row">
-                    <div className="proj-mock-btn primary" />
-                    <div className="proj-mock-btn" />
-                  </div>
-                </div>
-                <div className="proj-mock-cards">
-                  <div className="proj-mock-card" />
-                  <div className="proj-mock-card" />
-                  <div className="proj-mock-card" />
-                </div>
-              </div>
+              <img
+                src="/amacom-erp.png"
+                alt="Dashboard do sistema ERP da AMACOM: setores Almoxarifado, Compras, Produção, Engenharia, Qualidade, Manutenção, SESMT, Administração e Recursos Humanos."
+                className="proj-mock-img"
+                loading="lazy"
+              />
             </div>
           </div>
 

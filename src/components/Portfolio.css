@@ -36,8 +36,7 @@
 
 .proj-mock {
   width: 100%;
-  max-width: 460px;
-  aspect-ratio: 16 / 11;
+  max-width: 540px;
   background: var(--bg, #050d18);
   border: 1px solid var(--line-strong);
   border-radius: 10px;
@@ -76,114 +75,11 @@
   letter-spacing: 0.02em;
 }
 
-.proj-mock-body {
-  flex: 1;
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.proj-mock-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.proj-mock-logo {
-  font-family: 'Sora', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--teal);
-}
-
-.proj-mock-nav-it {
-  width: 22px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-}
-
-.proj-mock-nav-cta {
-  margin-left: auto;
-  width: 42px;
-  height: 14px;
-  border-radius: 4px;
-  background: var(--teal-soft);
-  border: 1px solid var(--teal);
-}
-
-.proj-mock-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px 0;
-}
-
-.proj-mock-eyebrow {
-  height: 4px;
-  width: 28%;
-  background: var(--teal);
-  border-radius: 2px;
-  opacity: 0.7;
-  margin-bottom: 4px;
-}
-
-.proj-mock-h1 {
-  height: 7px;
-  width: 88%;
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 3px;
-}
-
-.proj-mock-h1.short {
-  width: 62%;
-}
-
-.proj-mock-p {
-  height: 4px;
-  width: 80%;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-top: 6px;
-}
-
-.proj-mock-p.w70 {
-  width: 60%;
-}
-
-.proj-mock-cta-row {
-  display: flex;
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.proj-mock-btn {
-  width: 40px;
-  height: 12px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--line);
-}
-
-.proj-mock-btn.primary {
-  background: var(--teal);
-  border-color: var(--teal);
-}
-
-.proj-mock-cards {
-  margin-top: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
-}
-
-.proj-mock-card {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 5px;
+.proj-mock-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--ink);
 }
 
 /* === Info === */
@@ -429,19 +325,23 @@
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.22s;
+  transition: background-color 0.22s, border-color 0.22s, color 0.22s;
 }
 
 .proj-next-cta svg {
   width: 14px;
   height: 14px;
+  transition: transform 0.22s;
 }
 
 .proj-next-cta:hover {
   background: var(--teal);
   border-color: var(--teal);
   color: #052028;
-  gap: 12px;
+}
+
+.proj-next-cta:hover svg {
+  transform: translateX(3px);
 }
 
 /* === Responsivo === */
