@@ -4,7 +4,6 @@ import './Process.css'
 type Step = {
   n: string
   title: string
-  duration: string
   desc: string
   icon: JSX.Element
 }
@@ -13,7 +12,6 @@ const steps: Step[] = [
   {
     n: '01',
     title: 'Mapeamento',
-    duration: '1–2 semanas',
     desc: 'Reunião kickoff e conversa direta com quem opera o dia a dia. Entregamos um documento de diagnóstico com fluxo atual, gargalos identificados e oportunidades, mais reunião de fechamento alinhando o que vai entrar no escopo.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -25,7 +23,6 @@ const steps: Step[] = [
   {
     n: '02',
     title: 'Planejamento',
-    duration: '~1 semana',
     desc: 'Escopo detalhado, indicadores de sucesso, roadmap em entregas curtas, prazo total e orçamento fechado. Você revisa e aprova tudo antes de qualquer linha de código sair daqui.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -38,7 +35,6 @@ const steps: Step[] = [
   {
     n: '03',
     title: 'Desenvolvimento',
-    duration: 'Ciclos de 2 semanas',
     desc: 'Construímos em sprints curtos. No fim de cada ciclo, você revisa o que ficou pronto em ambiente de homologação. Ajustes entram no próximo ciclo. Sem caixa-preta, sem entrega big bang no fim.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -49,7 +45,6 @@ const steps: Step[] = [
   {
     n: '04',
     title: 'Implantação',
-    duration: '1–2 semanas',
     desc: 'Migração dos dados, treinamento por setor e acompanhamento da adoção real. Não desaparecemos depois do go-live: 30 dias de garantia inclusos pra ajustes finos.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -60,7 +55,6 @@ const steps: Step[] = [
   {
     n: '05',
     title: 'Evolução',
-    duration: 'Contínua · opcional',
     desc: 'Squad dedicada para ajustes, novos módulos e otimizações conforme o negócio cresce. Modelo de mensalidade opcional: você ativa quando precisar, sem trava de contrato longo.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -114,7 +108,6 @@ export default function Process() {
                 <div className="pstep-icon" aria-hidden="true">{step.icon}</div>
                 <div className="n">{step.n}</div>
                 <h4>{step.title}</h4>
-                <div className="pstep-duration">{step.duration}</div>
                 <p>{step.desc}</p>
               </div>
             ))}
@@ -122,9 +115,6 @@ export default function Process() {
         </div>
 
         <div className="process-foot">
-          <p className="process-note">
-            Os prazos são estimativas — variam conforme o escopo do projeto.
-          </p>
           <a href="#contato" className="process-cta">
             <span>Quero organizar minha operação</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

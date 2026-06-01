@@ -103,20 +103,6 @@
   letter-spacing: -0.01em;
 }
 
-.pstep-duration {
-  margin-top: 8px;
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 10px;
-  border-radius: 99px;
-  background: rgba(45, 212, 191, 0.08);
-  border: 1px solid rgba(45, 212, 191, 0.22);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.08em;
-  color: var(--teal);
-}
-
 .pstep p {
   font-size: 13px;
   margin-top: 14px;
@@ -124,23 +110,14 @@
   color: var(--text-dim);
 }
 
-/* Rodapé da seção: nota + CTA */
+/* Rodapé da seção: CTA */
 .process-foot {
   margin-top: 40px;
   padding-top: 28px;
   border-top: 1px dashed var(--line-soft, rgba(255, 255, 255, 0.06));
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.process-note {
-  font-size: 13px;
-  color: var(--text-mute);
-  margin: 0;
-  font-style: italic;
+  justify-content: center;
 }
 
 .process-cta {
