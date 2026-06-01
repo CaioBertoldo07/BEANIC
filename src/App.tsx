@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import MarketingPage from './pages/MarketingPage'
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
@@ -14,7 +14,7 @@ const AdminUsuariosPage = lazy(() => import('./pages/admin/AdminUsuariosPage'))
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <>
       <div className="amb" />
       <div className="dots-bg" />
       <Suspense fallback={null}>
@@ -34,6 +34,6 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </>
   )
 }
