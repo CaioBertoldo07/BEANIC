@@ -69,7 +69,11 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div>© 2026 BEANIC · Tecnologia para organizar e escalar negócios.</div>
-          <div>Todos os direitos reservados.</div>
+          <div className="footer-legal">
+            <a href="/privacidade">Política de Privacidade</a>
+            <span aria-hidden="true">·</span>
+            <span>Todos os direitos reservados.</span>
+          </div>
         </div>
       </div>
     </footer>

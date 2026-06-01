@@ -1,0 +1,303 @@
+.privacy-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header minimal pra essa página */
+.privacy-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(5, 13, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+
+.privacy-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+  text-decoration: none;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.privacy-back svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.privacy-back:hover {
+  color: var(--teal);
+}
+
+.privacy-back:hover svg {
+  transform: translateX(-3px);
+}
+
+.privacy-brand img {
+  height: 28px;
+  display: block;
+}
+
+/* Main */
+.privacy-main {
+  flex: 1;
+  padding: 72px 0 80px;
+}
+
+.privacy-container {
+  max-width: 820px;
+}
+
+.privacy-head {
+  margin-bottom: 48px;
+}
+
+.privacy-head h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 18px 0 0;
+}
+
+.privacy-lead {
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 660px;
+}
+
+.privacy-meta {
+  margin-top: 18px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-mute);
+}
+
+/* Sumário */
+.privacy-toc {
+  background: rgba(15, 24, 40, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 56px;
+}
+
+.privacy-toc-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.privacy-toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 24px;
+}
+
+.privacy-toc li {
+  font-size: 13.5px;
+}
+
+.privacy-toc a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.18s;
+  line-height: 1.6;
+}
+
+.privacy-toc a:hover {
+  color: var(--teal);
+}
+
+/* Corpo do documento */
+.privacy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.privacy-body section {
+  scroll-margin-top: 80px;
+}
+
+.privacy-body h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.privacy-body h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 22px 0 10px;
+  color: var(--text);
+}
+
+.privacy-body p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-dim);
+  margin: 0 0 14px;
+}
+
+.privacy-body p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-body strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.privacy-body a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 212, 191, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+
+.privacy-body a:hover {
+  text-decoration-color: var(--teal);
+}
+
+.privacy-body ul {
+  margin: 8px 0 14px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.privacy-body ul li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  position: relative;
+  padding-left: 4px;
+}
+
+.privacy-body ul li::marker {
+  color: var(--teal);
+}
+
+.privacy-body code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid var(--teal-soft-2, rgba(45, 212, 191, 0.22));
+  color: var(--teal);
+  letter-spacing: 0.01em;
+}
+
+/* Rodapé com voltar */
+.privacy-foot {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--line-soft, rgba(255, 255, 255, 0.08));
+  display: flex;
+  justify-content: center;
+}
+
+.privacy-back-bottom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.privacy-back-bottom svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.privacy-back-bottom:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.privacy-back-bottom:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Responsivo */
+@media (max-width: 820px) {
+  .privacy-head h1 {
+    font-size: 38px;
+  }
+
+  .privacy-lead {
+    font-size: 16px;
+  }
+
+  .privacy-toc ol {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-body h2 {
+    font-size: 22px;
+  }
+
+  .privacy-body p,
+  .privacy-body ul li {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 520px) {
+  .privacy-main {
+    padding: 48px 0 60px;
+  }
+
+  .privacy-head h1 {
+    font-size: 32px;
+  }
+
+  .privacy-header .container {
+    gap: 12px;
+  }
+
+  .privacy-back span {
+    display: none;
+  }
+}

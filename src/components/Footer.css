@@ -66,6 +66,22 @@ footer {
   gap: 16px;
 }
 
+.footer-legal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-legal a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+
+.footer-legal a:hover {
+  color: var(--teal);
+}
+
 .socials {
   display: flex;
   gap: 10px;

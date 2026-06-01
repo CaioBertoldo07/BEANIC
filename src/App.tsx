@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MarketingPage from './pages/MarketingPage'
 
 const LoginPage = lazy(() => import('./pages/LoginPage'))
+const PrivacidadePage = lazy(() => import('./pages/PrivacidadePage'))
 const ClienteLayout = lazy(() => import('./pages/cliente/ClienteLayout'))
 const ClienteDashboard = lazy(() => import('./pages/cliente/ClienteDashboard'))
 const ClienteDownloads = lazy(() => import('./pages/cliente/ClienteDownloads'))
@@ -20,6 +21,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<MarketingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/privacidade" element={<PrivacidadePage />} />
           <Route path="/cliente" element={<ClienteLayout />}>
             <Route index element={<ClienteDashboard />} />
             <Route path="downloads" element={<ClienteDownloads />} />
