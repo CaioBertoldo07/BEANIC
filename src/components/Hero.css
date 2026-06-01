@@ -1,5 +1,5 @@
 .hero {
-  padding: 80px 0 100px;
+  padding: 72px 0 72px;
   position: relative;
 }
 
@@ -29,49 +29,92 @@
 }
 
 .hero p.sub {
-  margin-top: 26px;
+  margin-top: 22px;
   font-size: 18px;
   color: var(--text-dim);
   max-width: 560px;
   line-height: 1.55;
 }
 
+/* Linha de segmentos integrada ao hero (substitui o Trust separado) */
+.hero-segments {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.hero-segments .mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.hero-segments span:not(.mono) {
+  position: relative;
+  padding-left: 14px;
+}
+
+.hero-segments span:not(.mono)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  transform: translateY(-50%);
+  opacity: 0.7;
+}
+
 .hero-actions {
-  margin-top: 36px;
+  margin-top: 26px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
+.hero-actions .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Trust badges logo abaixo dos botões (não isolados em baixo) */
 .hero-meta {
-  margin-top: 48px;
+  margin-top: 18px;
   display: flex;
-  gap: 32px;
+  gap: 18px;
   flex-wrap: wrap;
   color: var(--text-mute);
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
 .hero-meta span {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .hero-meta span::before {
-  content: "";
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--teal) 30%, transparent 35%);
-  border: 2px solid var(--teal);
+  content: "✓";
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
 /* Hero composition */
 .hero-comp {
   position: relative;
-  height: 600px;
+  height: 560px;
 }
 
 /* App window mock */
@@ -363,7 +406,7 @@
 }
 
 .fc-flow {
-  bottom: -10px;
+  bottom: 24px;
   left: 140px;
   width: 340px;
   animation: float 11s ease-in-out infinite;
@@ -440,11 +483,11 @@
 
 @media (max-width: 640px) {
   .hero {
-    padding: 54px 0 66px;
+    padding: 54px 0 56px;
   }
 
   .hero h1 {
-    font-size: 36px;
+    font-size: 40px;
     line-height: 1.08;
   }
 
@@ -453,14 +496,20 @@
     font-size: 16px;
   }
 
+  .hero-segments {
+    margin-top: 18px;
+    gap: 6px 12px;
+    font-size: 12.5px;
+  }
+
   .hero-actions {
-    margin-top: 26px;
+    margin-top: 22px;
     gap: 10px;
   }
 
   .hero-meta {
-    margin-top: 30px;
-    gap: 14px;
+    margin-top: 16px;
+    gap: 12px;
     font-size: 12px;
   }
 

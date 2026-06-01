@@ -7,29 +7,52 @@ export default function Hero() {
         <div>
           <div className="pill">
             <span className="dot" />
-            Tecnologia para organizar e escalar negócios
+            ERP entregue · novos projetos em 2026
           </div>
           <h1 style={{ marginTop: '24px' }}>
-            Transformamos processos manuais em{' '}
-            <b>sistemas, sites, dashboards e automações</b> para empresas que
-            querem <span className="g">crescer com controle</span>.
+            Pare de <b>improvisar</b>.<br />
+            Comece a <span className="g">escalar</span>.
           </h1>
           <p className="sub">
-            Desenvolvemos soluções digitais sob medida para empresas que precisam
-            sair do improviso: organizar processos, automatizar rotinas, vender
-            com mais consistência e tomar decisões com dados reais.
+            Sistemas, sites e automações sob medida pra empresas que cresceram
+            sem estrutura. Sem template forçado, sem comercial intermediário —
+            você fala direto com quem constrói.
           </p>
+          <div className="hero-segments">
+            <span className="mono">Para</span>
+            <span>indústrias</span>
+            <span>comércios</span>
+            <span>prestadores de serviço</span>
+            <span>pequenos negócios</span>
+          </div>
           <div className="hero-actions">
             <a href="#contato" className="btn btn-primary">
               Quero organizar minha operação
               <span className="btn-arrow" />
             </a>
-            <a href="#contato" className="btn btn-ghost">
-              Falar sobre meu projeto
+            <a
+              href="https://wa.me/559200000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+                style={{ marginRight: 8 }}
+              >
+                <path d="M3 21l1.7-4.5A8 8 0 1 1 8 19l-5 2z" />
+              </svg>
+              Falar no WhatsApp
             </a>
           </div>
           <div className="hero-meta">
-            <span>Solução sob medida para o seu fluxo real</span>
+            <span>Sob medida pro seu fluxo real</span>
             <span>Sem ERP genérico, sem template forçado</span>
           </div>
         </div>
@@ -175,17 +198,17 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating card: Crescimento */}
+          {/* Floating card: Case real (AMACOM) */}
           <div className="float-card fc-growth">
             <div className="row">
               <div className="ic g">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 17l6-6 4 4 8-8" /><path d="M14 7h7v7" />
+                  <path d="M5 12l5 5L20 7" />
                 </svg>
               </div>
               <div>
-                <div className="lbl">Crescimento</div>
-                <div className="val">+34% em 90 dias</div>
+                <div className="lbl">Cliente ativo</div>
+                <div className="val">AMACOM · ERP entregue</div>
               </div>
             </div>
           </div>

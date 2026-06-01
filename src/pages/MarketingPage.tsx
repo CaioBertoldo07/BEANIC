@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import Trust from '../components/Trust'
 import Problems from '../components/Problems'
 import Services from '../components/Services'
 import Process from '../components/Process'
@@ -32,7 +31,6 @@ export default function MarketingPage() {
     <>
       <Header />
       <Hero />
-      <Trust />
       {/* Dor primeiro — antes da explicação institucional */}
       <Problems />
       <Services />
