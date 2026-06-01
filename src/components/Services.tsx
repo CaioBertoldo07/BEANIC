@@ -21,7 +21,7 @@ export default function Services() {
 
         <div className="pillars">
           {/* Pillar 1: Sistemas */}
-          <div className="pillar">
+          <div className="pillar" id="pilar-operacao">
             <div className="pnum">01 · Operação</div>
             <h3>Sistemas sob medida</h3>
             <p>
@@ -62,7 +62,7 @@ export default function Services() {
           </div>
 
           {/* Pillar 2: Sites */}
-          <div className="pillar">
+          <div className="pillar" id="pilar-sites">
             <div className="pnum">02 · Presença digital</div>
             <h3>Sites e presença digital</h3>
             <p>
@@ -94,7 +94,7 @@ export default function Services() {
           </div>
 
           {/* Pillar 3: Automações */}
-          <div className="pillar">
+          <div className="pillar" id="pilar-automacao">
             <div className="pnum">03 · Automação</div>
             <h3>Automações</h3>
             <p>
@@ -154,7 +154,7 @@ export default function Services() {
           </div>
 
           {/* Pillar 4: Dashboards */}
-          <div className="pillar">
+          <div className="pillar" id="pilar-dados">
             <div className="pnum">04 · Dados</div>
             <h3>Dashboards e gestão de dados</h3>
             <p>
