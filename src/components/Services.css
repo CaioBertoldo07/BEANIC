@@ -1,3 +1,14 @@
+/* Padding da seção reduzido localmente — corta o vácuo antes do heading */
+.pillars-section {
+  padding-top: 56px;
+}
+
+@media (max-width: 768px) {
+  .pillars-section {
+    padding-top: 40px;
+  }
+}
+
 .pillars {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -61,7 +72,7 @@
   margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 10px 14px;
 }
 
 .pillar .feats span {
@@ -69,121 +80,350 @@
   color: var(--text-dim);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .pillar .feats span::before {
   content: "";
-  width: 4px;
-  height: 4px;
+  width: 14px;
+  height: 1.5px;
   background: var(--teal);
-  border-radius: 50%;
-  flex: 0 0 4px;
+  border-radius: 2px;
+  flex: 0 0 14px;
+  opacity: 0.7;
+}
+
+.pillar:hover .feats span {
+  color: var(--text);
+  border-bottom-color: var(--line-soft, rgba(255, 255, 255, 0.04));
+}
+
+.pillar:hover .feats span::before {
+  opacity: 1;
 }
 
 .pillar-viz {
-  margin-top: auto;
+  margin-top: 24px;
   padding-top: 24px;
   height: 140px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  border-top: 1px dashed var(--line-soft, rgba(255, 255, 255, 0.06));
 }
 
-/* System visual */
-.v-system {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* === Outcome (resultado esperado) === */
+.pillar-outcome {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.08), rgba(168, 224, 101, 0.04));
+  border: 1px solid var(--teal-soft-2, rgba(45, 212, 191, 0.22));
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
   gap: 6px;
-  width: 100%;
 }
 
-.v-system .col {
+.pillar-outcome .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+/* === CTA por pilar === */
+.pillar-cta {
+  margin-top: 16px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.12));
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+
+.pillar-cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.22s;
+}
+
+.pillar-cta:hover {
+  background: var(--teal, #2dd4bf);
+  color: #052028;
+  border-color: var(--teal, #2dd4bf);
+  gap: 12px;
+}
+
+.pillar-cta:hover svg {
+  transform: translateX(2px);
+}
+
+/* === MOCKUPS === */
+
+/* Pillar 01: mock de app interno com sidebar + linhas de status */
+.v-app {
+  width: 100%;
+  height: 100%;
+  background: var(--ink, #0a1422);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.v-app-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.v-app-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.v-app-crumb {
+  margin-left: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-mute);
+  letter-spacing: 0.08em;
+}
+
+.v-app-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 0;
+}
+
+.v-app-side {
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-right: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.v-app-side-it {
+  height: 6px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.v-app-side-it.on {
+  background: var(--teal-soft, rgba(45, 212, 191, 0.18));
+}
+
+.v-app-main {
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.v-system .row {
-  height: 10px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
+.v-app-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 4px;
+  border-radius: 4px;
 }
 
-.v-system .row.hi {
-  background: var(--teal-soft);
-  border-color: var(--teal-soft-2);
+.v-app-row.hi {
+  background: rgba(45, 212, 191, 0.06);
 }
 
-.v-system .head {
-  height: 12px;
+.v-app-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: 0 0 6px;
+}
+
+.v-app-status.ok {
   background: var(--teal);
-  border-radius: 3px;
-  opacity: 0.7;
 }
 
-/* Sites visual */
-.v-sites {
+.v-app-status.pending {
+  background: var(--lime, #a8e065);
+}
+
+.v-app-cell {
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.v-app-cell.w-10 { width: 10%; }
+.v-app-cell.w-15 { width: 15%; }
+.v-app-cell.w-20 { width: 20%; }
+.v-app-cell.w-25 { width: 25%; }
+.v-app-cell.w-30 { width: 30%; }
+.v-app-cell.w-40 { width: 40%; }
+.v-app-cell.w-45 { width: 45%; }
+.v-app-cell.w-50 { width: 50%; }
+
+/* Pillar 02: mock de site real com navbar + hero + cards */
+.v-site {
   width: 100%;
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 10px;
-}
-
-.v-sites .b {
-  background: var(--ink);
+  height: 100%;
+  background: var(--ink, #0a1422);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 10px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.v-site-chrome {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.v-site-chrome span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.v-site-url {
+  flex: 1;
+  margin-left: 10px;
+  padding: 2px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: var(--text-mute);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.v-site-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
   gap: 6px;
 }
 
-.v-sites .bar {
+.v-site-nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.v-site-logo {
+  width: 22px;
   height: 6px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--teal);
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+.v-site-nav-it {
+  width: 14px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.v-site-nav-cta {
+  margin-left: auto;
+  width: 26px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--teal-soft, rgba(45, 212, 191, 0.25));
+  border: 1px solid var(--teal);
+}
+
+.v-site-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 0;
+}
+
+.v-site-h1 {
+  height: 5px;
+  width: 80%;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+}
+
+.v-site-h1.short {
+  width: 55%;
+}
+
+.v-site-p {
+  height: 3px;
+  width: 70%;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+.v-site-cta {
+  display: flex;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.v-site-btn {
+  width: 24px;
+  height: 7px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+}
+
+.v-site-btn.primary {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.v-site-cards {
+  margin-top: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+
+.v-site-card {
+  height: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
   border-radius: 3px;
 }
 
-.v-sites .bar.t {
-  background: var(--teal-soft);
-  width: 60%;
-  height: 10px;
-}
-
-.v-sites .bar.s {
-  background: rgba(255, 255, 255, 0.08);
-  width: 80%;
-}
-
-.v-sites .bar.s2 {
-  background: rgba(255, 255, 255, 0.06);
-  width: 50%;
-}
-
-.v-sites .b-r {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.v-sites .tile {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  display: flex;
-  align-items: flex-end;
-  padding: 8px;
-}
-
-.v-sites .tile .tag-code {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  color: var(--teal);
-  letter-spacing: 0.1em;
-}
+/* === Mockups antigos mantidos pra automação e dashboards === */
 
 /* Auto visual */
 .v-auto {
@@ -278,6 +518,7 @@
   background: var(--lime);
 }
 
+/* === Responsivo === */
 @media (max-width: 1024px) {
   .pillars {
     grid-template-columns: 1fr;
@@ -295,7 +536,6 @@
   }
 
   .pillar .feats,
-  .v-sites,
   .v-dash {
     grid-template-columns: 1fr;
   }
@@ -313,5 +553,10 @@
 
   .v-auto .auto-sep {
     display: none;
+  }
+
+  .pillar-cta {
+    align-self: stretch;
+    justify-content: center;
   }
 }

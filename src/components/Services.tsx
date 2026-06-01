@@ -2,7 +2,7 @@ import './Services.css'
 
 export default function Services() {
   return (
-    <section className="section" id="pilares">
+    <section className="section pillars-section" id="pilares">
       <div className="container">
         <div className="section-head">
           <div>
@@ -10,12 +10,14 @@ export default function Services() {
               <span className="ix" />
               <span className="mono">A solução · 02</span>
             </div>
-            <h2>Quatro frentes para organizar, automatizar e crescer com controle.</h2>
+            <h2>
+              Quatro pilares que resolvem dores concretas e formam{' '}
+              <span className="g">a camada digital</span> pra escalar sem improviso.
+            </h2>
           </div>
           <p className="lead">
-            Cada pilar resolve uma dor concreta de operação. Juntos, formam a
-            camada digital que seu negócio precisa para parar de improvisar e
-            começar a escalar com estrutura.
+            Operação, vitrine comercial, automação e dados. Cada pilar entra onde a
+            sua empresa hoje opera no improviso — e devolve estrutura mensurável.
           </p>
         </div>
 
@@ -40,57 +42,120 @@ export default function Services() {
               <span>Fluxos operacionais</span>
             </div>
             <div className="pillar-viz">
-              <div className="v-system">
-                <div className="col">
-                  <div className="head" /><div className="row hi" /><div className="row" />
-                  <div className="row hi" /><div className="row" />
+              <div className="v-app">
+                <div className="v-app-bar">
+                  <div className="v-app-dot" />
+                  <div className="v-app-dot" />
+                  <div className="v-app-dot" />
+                  <div className="v-app-crumb">app · vendas</div>
                 </div>
-                <div className="col">
-                  <div className="head" /><div className="row" /><div className="row hi" />
-                  <div className="row hi" /><div className="row" />
-                </div>
-                <div className="col">
-                  <div className="head" /><div className="row hi" /><div className="row" />
-                  <div className="row" /><div className="row hi" />
-                </div>
-                <div className="col">
-                  <div className="head" /><div className="row" /><div className="row hi" />
-                  <div className="row" /><div className="row" />
+                <div className="v-app-grid">
+                  <div className="v-app-side">
+                    <div className="v-app-side-it on" />
+                    <div className="v-app-side-it" />
+                    <div className="v-app-side-it" />
+                    <div className="v-app-side-it" />
+                  </div>
+                  <div className="v-app-main">
+                    <div className="v-app-row hi">
+                      <span className="v-app-status ok" />
+                      <span className="v-app-cell w-40" />
+                      <span className="v-app-cell w-20" />
+                      <span className="v-app-cell w-15" />
+                    </div>
+                    <div className="v-app-row">
+                      <span className="v-app-status pending" />
+                      <span className="v-app-cell w-50" />
+                      <span className="v-app-cell w-15" />
+                      <span className="v-app-cell w-10" />
+                    </div>
+                    <div className="v-app-row">
+                      <span className="v-app-status ok" />
+                      <span className="v-app-cell w-30" />
+                      <span className="v-app-cell w-25" />
+                      <span className="v-app-cell w-20" />
+                    </div>
+                    <div className="v-app-row hi">
+                      <span className="v-app-status ok" />
+                      <span className="v-app-cell w-45" />
+                      <span className="v-app-cell w-15" />
+                      <span className="v-app-cell w-20" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="pillar-outcome">
+              <span className="lbl">→ Resultado</span>
+              Substitui o caos das planilhas por uma fonte de verdade única.
+            </div>
+            <a href="#contato" className="pillar-cta">
+              <span>Quero isso no meu negócio</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
 
-          {/* Pillar 2: Sites */}
+          {/* Pillar 2: Vitrine comercial */}
           <div className="pillar" id="pilar-sites">
-            <div className="pnum">02 · Presença digital</div>
-            <h3>Sites e presença digital</h3>
+            <div className="pnum">02 · Vitrine comercial</div>
+            <h3>Sites que vendem, não só apresentam</h3>
             <p>
-              Um site amador tira credibilidade antes da primeira conversa. Construímos
-              sites institucionais com narrativa comercial clara, com estrutura que
-              posiciona sua empresa como referência no mercado e gera orçamentos
-              de quem realmente precisa do que você oferece.
+              Um site amador tira credibilidade antes da primeira conversa.
+              Construímos sites institucionais com argumentação clara e estrutura
+              de conversão — não só vitrine, mas máquina de captação que
+              transforma visita anônima em orçamento qualificado.
             </p>
             <div className="feats">
-              <span>Sites institucionais</span>
-              <span>Landing pages</span>
-              <span>Portfólios</span>
-              <span>Páginas de serviços</span>
-              <span>Catálogos</span>
               <span>Captação de orçamento</span>
+              <span>Landing pages</span>
+              <span>Argumento comercial</span>
+              <span>Posicionamento de marca</span>
+              <span>Páginas de serviço</span>
+              <span>Performance e SEO</span>
             </div>
             <div className="pillar-viz">
-              <div className="v-sites">
-                <div className="b">
-                  <div className="bar t" /><div className="bar s" /><div className="bar" />
-                  <div className="bar s2" /><div className="bar" />
+              <div className="v-site">
+                <div className="v-site-chrome">
+                  <span /><span /><span />
+                  <div className="v-site-url">beanic.com.br</div>
                 </div>
-                <div className="b-r">
-                  <div className="tile" />
-                  <div className="tile" />
+                <div className="v-site-body">
+                  <div className="v-site-nav">
+                    <div className="v-site-logo" />
+                    <div className="v-site-nav-it" />
+                    <div className="v-site-nav-it" />
+                    <div className="v-site-nav-it" />
+                    <div className="v-site-nav-cta" />
+                  </div>
+                  <div className="v-site-hero">
+                    <div className="v-site-h1" />
+                    <div className="v-site-h1 short" />
+                    <div className="v-site-p" />
+                    <div className="v-site-cta">
+                      <div className="v-site-btn primary" />
+                      <div className="v-site-btn" />
+                    </div>
+                  </div>
+                  <div className="v-site-cards">
+                    <div className="v-site-card" />
+                    <div className="v-site-card" />
+                    <div className="v-site-card" />
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="pillar-outcome">
+              <span className="lbl">→ Resultado</span>
+              Visita anônima vira conversa qualificada antes do primeiro contato.
+            </div>
+            <a href="#contato" className="pillar-cta">
+              <span>Quero isso no meu negócio</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
 
           {/* Pillar 3: Automações */}
@@ -151,6 +216,16 @@ export default function Services() {
                 </div>
               </div>
             </div>
+            <div className="pillar-outcome">
+              <span className="lbl">→ Resultado</span>
+              Libera horas de operação manual a cada semana, sem perder rastro.
+            </div>
+            <a href="#contato" className="pillar-cta">
+              <span>Quero isso no meu negócio</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
 
           {/* Pillar 4: Dashboards */}
@@ -195,6 +270,16 @@ export default function Services() {
                 </div>
               </div>
             </div>
+            <div className="pillar-outcome">
+              <span className="lbl">→ Resultado</span>
+              Decisões em tempo real, baseadas em dado e não em achismo.
+            </div>
+            <a href="#contato" className="pillar-cta">
+              <span>Quero isso no meu negócio</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
