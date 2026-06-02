@@ -98,7 +98,7 @@ export default function Portfolio() {
               <div className="proj-preview-item">
                 <div className="proj-preview-item-img">
                   <img
-                    src="/doces-maloca-site.png"
+                    src="/doces-maloca-site.webp"
                     alt="Landing page da Doces da Maloca: página comercial de apresentação dos produtos e pedidos pelo WhatsApp."
                     loading="lazy"
                   />
@@ -108,7 +108,7 @@ export default function Portfolio() {
               <div className="proj-preview-item">
                 <div className="proj-preview-item-img">
                   <img
-                    src="/doces-maloca-sistema.png"
+                    src="/doces-maloca-sistema.webp"
                     alt="Sistema interno de gestão da Doces da Maloca: painel de controle personalizado em uso na operação."
                     loading="lazy"
                   />
