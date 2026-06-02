@@ -10,11 +10,11 @@ export default function Portfolio() {
               <span className="ix" />
               <span className="mono">Onde estamos agora · 05</span>
             </div>
-            <h2>Empresa nova. Projetos reais, em andamento.</h2>
+            <h2>Projetos reais, entregues e em evolução</h2>
           </div>
           <p className="lead">
-            Em vez de cases inflados, mostramos o que está em construção agora —
-            com transparência sobre o estágio de cada entrega.
+            Em vez de cases inflados, mostramos entregas reais: sites publicados,
+            sistemas em uso e projetos que continuam evoluindo junto com cada negócio.
           </p>
         </div>
 
@@ -87,6 +87,83 @@ export default function Portfolio() {
                 <span>Site institucional</span>
                 <span>ERP completo</span>
                 <span>Multimódulos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="proj proj--dm">
+          <div className="proj-preview">
+            <div className="proj-previews">
+              <div className="proj-preview-item">
+                <div className="proj-preview-item-img">
+                  <img
+                    src="/doces-maloca-site.png"
+                    alt="Landing page da Doces da Maloca: página comercial de apresentação dos produtos e pedidos pelo WhatsApp."
+                    loading="lazy"
+                  />
+                </div>
+                <div className="proj-preview-label">Landing page comercial</div>
+              </div>
+              <div className="proj-preview-item">
+                <div className="proj-preview-item-img">
+                  <img
+                    src="/doces-maloca-sistema.png"
+                    alt="Sistema interno de gestão da Doces da Maloca: painel de controle personalizado em uso na operação."
+                    loading="lazy"
+                  />
+                </div>
+                <div className="proj-preview-label">Sistema interno de gestão</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="proj-info">
+            <div className="proj-tag-status">Entregue · Em uso</div>
+            <h3>Doces da Maloca</h3>
+            <p>
+              Landing page comercial desenvolvida para apresentar os produtos, fortalecer a
+              presença digital da marca e facilitar pedidos pelo WhatsApp. Além do site, a BEANIC
+              também desenvolveu um sistema interno de gestão sob medida, atualmente em uso há
+              mais de 3 meses na operação da empresa.
+            </p>
+
+            <div className="proj-status">
+              <div className="status-item done">
+                <span className="status-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                    <path d="M5 12l5 5L20 7" />
+                  </svg>
+                </span>
+                Landing page publicada
+              </div>
+              <div className="status-item done">
+                <span className="status-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                    <path d="M5 12l5 5L20 7" />
+                  </svg>
+                </span>
+                Sistema interno em uso há mais de 3 meses
+              </div>
+            </div>
+
+            <div className="proj-actions">
+              <a
+                href="https://docesdamaloca.beanic.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="proj-link primary"
+              >
+                <span>Ver site</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M7 17L17 7M9 7h8v8" />
+                </svg>
+              </a>
+              <div className="proj-tags">
+                <span>Landing page publicada</span>
+                <span>Sistema interno em uso</span>
+                <span>Gestão de pedidos</span>
+                <span>Presença digital</span>
               </div>
             </div>
           </div>
